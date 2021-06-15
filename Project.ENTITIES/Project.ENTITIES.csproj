@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,7 +44,16 @@
   <ItemGroup>
     <Compile Include="Enums\DataStatus.cs" />
     <Compile Include="Enums\UserRole.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\AppUser.cs" />
+    <Compile Include="Models\Attribute.cs" />
     <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductAttribute.cs" />
+    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
