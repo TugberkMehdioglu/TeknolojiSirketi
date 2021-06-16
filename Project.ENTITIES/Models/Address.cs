@@ -33,7 +33,7 @@ namespace Project.ENTITIES.Models
         public byte ApartmentNo { get; set; }
 
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Kapı No")]
-        public byte Flat { get; set; }
+        public byte? Flat { get; set; }//Müstakil daireler için null geçilebilir yaptık
 
 
         //Bu property DB'ye gitmicek
@@ -44,12 +44,7 @@ namespace Project.ENTITIES.Models
                 return $"{District} {Neighborhood} {Street} {ApartmentNo}/{Flat} - {City.ToUpper()}/{Country.ToUpper()}";
             } 
         }
-        public bool Use { get; set; }
         public UserProfile UserProfileID { get; set; }
-        public Address()
-        {
-            Use = false;//Kullanıcı siparişini verirken siparişin gideceği adresi, kendisinin seçmesini istediğimiz için false yaptık
-        }
 
 
         //Relational Properties
