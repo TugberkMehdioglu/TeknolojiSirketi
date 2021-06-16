@@ -30,10 +30,10 @@ namespace Project.ENTITIES.Models
         public string Street { get; set; }
 
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Apartman No")]
-        public char ApartmentNo { get; set; }
+        public byte ApartmentNo { get; set; }
 
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Kapı No")]
-        public char Flat { get; set; }
+        public byte Flat { get; set; }
 
 
         //Bu property DB'ye gitmicek
