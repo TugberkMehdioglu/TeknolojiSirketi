@@ -15,11 +15,13 @@ namespace Project.ENTITIES.Models
 
         public decimal TotalPrice { get; set; }
         public Address AddressID { get; set; }
+        public int AppUserID { get; set; }
 
 
 
         //Relational Properties
         public virtual List<OrderDetail> OrderDetails { get; set; }
         public virtual Address Address { get; set; }//Her order'da adres gözükmesini ve her bir adrese hangi siparişlerin gittiğini görmek istiyoruz
+        public virtual AppUser AppUser { get; set; }
     }
 }

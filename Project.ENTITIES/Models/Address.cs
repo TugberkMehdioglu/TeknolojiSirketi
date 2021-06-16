@@ -33,10 +33,10 @@ namespace Project.ENTITIES.Models
         public byte ApartmentNo { get; set; }
 
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Kapı No")]
-        public byte Flat { get; set; }
+        public byte? Flat { get; set; }
 
 
-        //Bu property DB'ye gitmicek
+        //Bu property DB'ye gitmeyecek
         public string FullAddress 
         {
             get 
