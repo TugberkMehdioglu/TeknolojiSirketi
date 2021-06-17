@@ -20,7 +20,7 @@ namespace Project.ENTITIES.Models
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Stok")]
         public short UnitInStock { get; set; }
         public string ImagePath { get; set; }
-        public Category CategoryID { get; set; }
+        public int CategoryID { get; set; }
 
 
 

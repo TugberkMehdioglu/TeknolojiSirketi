@@ -43,7 +43,7 @@ namespace Project.ENTITIES.Models
                 return $"{District} {Neighborhood} {Street} {AptNo}/{Flat} - {City.ToUpper()}/{Country.ToUpper()}";
             } 
         }
-        public UserProfile UserProfileID { get; set; }
+        public int UserProfileID { get; set; }
 
 
         //Relational Properties

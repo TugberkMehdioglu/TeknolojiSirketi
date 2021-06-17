@@ -14,7 +14,7 @@ namespace Project.ENTITIES.Models
         //------
 
         public decimal TotalPrice { get; set; }
-        public Address AddressID { get; set; }
+        public int AddressID { get; set; }
         public int AppUserID { get; set; }
 
 

@@ -55,6 +55,12 @@
     <Compile Include="Options\AppUserMap.cs" />
     <Compile Include="Options\AttributeMap.cs" />
     <Compile Include="Options\BaseMap.cs" />
+    <Compile Include="Options\CategoryMap.cs" />
+    <Compile Include="Options\OrderDetailMap.cs" />
+    <Compile Include="Options\OrderMap.cs" />
+    <Compile Include="Options\ProductAttributeMap.cs" />
+    <Compile Include="Options\ProductMap.cs" />
+    <Compile Include="Options\UserProfileMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

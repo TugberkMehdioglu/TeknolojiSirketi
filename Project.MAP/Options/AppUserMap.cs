@@ -17,6 +17,7 @@ namespace Project.MAP.Options
             Ignore(x => x.ConfirmPassword);
 
             ToTable("Kullanıcılar");
+
             Property(x => x.UserName).HasColumnName("Kullanıcı Adı").HasMaxLength(15).IsRequired();
             Property(x => x.Password).HasColumnName("Şifre").HasMaxLength(20).IsRequired();
             Property(x => x.Role).HasColumnName("Rol");

@@ -15,6 +15,7 @@ namespace Project.MAP.Options
             Ignore(x => x.FullAddress);
 
             ToTable("Adresler");
+
             Property(x => x.Name).HasColumnName("Adres Adı").HasMaxLength(20).IsRequired();
             Property(x => x.Country).HasColumnName("Ülke").IsRequired();
             Property(x => x.City).HasColumnName("Şehir").IsRequired();
