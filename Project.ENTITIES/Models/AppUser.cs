@@ -25,6 +25,9 @@ namespace Project.ENTITIES.Models
         public UserRole Role { get; set; }
         public Guid ActivationCode { get; set; }
         public bool Active { get; set; }
+
+        [Required(ErrorMessage ="{0} zorunludur")]
+        [MaxLength(60, ErrorMessage ="{0} en fazla {1} karakter olmalıdır")]
         public string Email { get; set; }
         public AppUser()
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Models
 {
-    //Kullanıcının birden fazla adres kaydedebilmesi için bu class'ı açtık
+    //Kullanıcının birden fazla adres kaydedebilmesi ve DB'de en çok hani ülke/şehir/mahalle'ye satış yapılmış sorgusu için bu class'ı açtık
     public class Address : BaseEntity
     {
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Adres Adı")]
@@ -30,18 +30,17 @@ namespace Project.ENTITIES.Models
         public string Street { get; set; }
 
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Apartman No")]
-        public byte ApartmentNo { get; set; }
+        public byte AptNo { get; set; }
 
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Kapı No")]
         public byte? Flat { get; set; }//Müstakil daireler için null geçilebilir yaptık
-
 
         //Bu property DB'ye gitmeyecek
         public string FullAddress 
         {
             get 
             {
-                return $"{District} {Neighborhood} {Street} {ApartmentNo}/{Flat} - {City.ToUpper()}/{Country.ToUpper()}";
+                return $"{District} {Neighborhood} {Street} {AptNo}/{Flat} - {City.ToUpper()}/{Country.ToUpper()}";
             } 
         }
         public UserProfile UserProfileID { get; set; }
