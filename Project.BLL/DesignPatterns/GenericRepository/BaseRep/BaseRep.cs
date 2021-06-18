@@ -26,97 +26,115 @@ namespace Project.BLL.DesignPatterns.GenericRepository.BaseRep
 
         public void Add(T item)
         {
-            throw new NotImplementedException();
+            _db.Set<T>().Add(item);
+            Save();
         }
 
         public void AddRange(List<T> item)
         {
-            throw new NotImplementedException();
+            _db.Set<T>().AddRange(item);
+            Save();
         }
 
         public bool Any(System.Linq.Expressions.Expression<Func<T, bool>> exp)
         {
-            throw new NotImplementedException();
+            return _db.Set<T>().Any(exp);
         }
 
         public void Delete(T item)
         {
-            throw new NotImplementedException();
+            item.DeleteDate = DateTime.Now;
+            item.Status = ENTITIES.Enums.DataStatus.Deleted;
+            Save();
         }
 
         public void DeleteRange(List<T> item)
         {
-            throw new NotImplementedException();
+            foreach (T element in item)
+            {
+                Delete(element);
+            }
         }
 
         public void Destroy(T item)
         {
-            throw new NotImplementedException();
+            _db.Set<T>().Remove(item);
+            Save();
         }
 
         public void DestroyRange(List<T> item)
         {
-            throw new NotImplementedException();
+            foreach (T element in item)
+            {
+                Destroy(element);
+            }
         }
 
         public T Find(int id)
         {
-            throw new NotImplementedException();
+            return _db.Set<T>().Find(id);
         }
 
         public T FindFirstData()
         {
-            throw new NotImplementedException();
+            return _db.Set<T>().OrderBy(x => x.CreatedDate).FirstOrDefault();
         }
 
         public T FindLastData()
         {
-            throw new NotImplementedException();
+            return _db.Set<T>().OrderByDescending(x => x.CreatedDate).FirstOrDefault();
         }
 
         public T FirstOrDefault(System.Linq.Expressions.Expression<Func<T, bool>> exp)
         {
-            throw new NotImplementedException();
+            return _db.Set<T>().FirstOrDefault(exp);
         }
 
         public List<T> GetActives()
         {
-            throw new NotImplementedException();
+            return Where(x => x.Status != ENTITIES.Enums.DataStatus.Deleted);
         }
 
         public List<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _db.Set<T>().ToList();
         }
 
         public List<T> GetModifieds()
         {
-            throw new NotImplementedException();
+            return Where(x => x.Status == ENTITIES.Enums.DataStatus.Updated);
         }
 
         public List<T> GetPassives()
         {
-            throw new NotImplementedException();
+            return Where(x => x.Status == ENTITIES.Enums.DataStatus.Deleted);
         }
 
         public object Select(System.Linq.Expressions.Expression<Func<T, object>> exp)
         {
-            throw new NotImplementedException();
+            return _db.Set<T>().Select(exp).ToList();
         }
 
         public void Update(T item)
         {
-            throw new NotImplementedException();
+            item.Status = ENTITIES.Enums.DataStatus.Updated;
+            item.ModifiedDate = DateTime.Now;
+            T toBeUpdated = Find(item.ID);
+            _db.Entry(toBeUpdated).CurrentValues.SetValues(item);
+            Save();
         }
 
         public void UpdateRange(List<T> item)
         {
-            throw new NotImplementedException();
+            foreach (T element in item)
+            {
+                Update(element);
+            }
         }
 
         public List<T> Where(System.Linq.Expressions.Expression<Func<T, bool>> exp)
         {
-            throw new NotImplementedException();
+            return _db.Set<T>().Where(exp).ToList();
         }
     }
 }
