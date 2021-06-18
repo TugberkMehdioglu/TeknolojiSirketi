@@ -1,11 +1,14 @@
 ﻿using Bogus.DataSets;
+using Microsoft.Build.Utilities;
 using Project.COMMON.Tools;
 using Project.DAL.ContextClasses;
+using Project.DTO.Models;
 using Project.ENTITIES.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,6 +54,7 @@ namespace Project.DAL.StrategyPattern
             context.SaveChanges();
 
 
+            List<StockDTO> dto = new List<StockDTO>();
 
             Category anakart = new Category
             {
@@ -135,6 +139,57 @@ namespace Project.DAL.StrategyPattern
             }
             context.Categories.Add(ram);
             context.SaveChanges();
+
+            dto.AddRange(anakart.Products.Select(x => new StockDTO
+            {
+                ID = x.ID,
+                ProductName = x.Name,
+                UnitPrice = x.UnitPrice,
+                UnitInStock = x.UnitInStock
+            }).ToList());
+
+            dto.AddRange(İslemci.Products.Select(x => new StockDTO
+            {
+                ID = x.ID,
+                ProductName = x.Name,
+                UnitPrice = x.UnitPrice,
+                UnitInStock = x.UnitInStock
+            }).ToList());
+
+            dto.AddRange(ekranKarti.Products.Select(x => new StockDTO
+            {
+                ID = x.ID,
+                ProductName = x.Name,
+                UnitPrice = x.UnitPrice,
+                UnitInStock = x.UnitInStock
+            }).ToList());
+
+            dto.AddRange(ram.Products.Select(x => new StockDTO
+            {
+                ID = x.ID,
+                ProductName = x.Name,
+                UnitPrice = x.UnitPrice,
+                UnitInStock = x.UnitInStock
+            }).ToList());
+
+            using (HttpClient client=new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44339/api/");
+                Task<HttpResponseMessage> postTask = client.PostAsJsonAsync("Home/AddStocks", dto);
+
+                HttpResponseMessage result;
+
+                try
+                {
+                    result = postTask.Result;
+                }
+                catch (Exception)
+                {
+
+                    throw new Exception("DepoAPI çalışmayı durdurdu");
+                }
+            }
+
         }
     }
 }

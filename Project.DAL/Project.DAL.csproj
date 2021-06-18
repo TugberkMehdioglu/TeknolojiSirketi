@@ -43,6 +43,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build.Utilities.v4.0" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -76,6 +77,10 @@
     <ProjectReference Include="..\Project.COMMON\Project.COMMON.csproj">
       <Project>{A89AA01D-CF83-41FF-841F-E8FCF28407F3}</Project>
       <Name>Project.COMMON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.DTO\Project.DTO.csproj">
+      <Project>{6748E7BB-6CD2-405B-9C82-936C466E5C25}</Project>
+      <Name>Project.DTO</Name>
     </ProjectReference>
     <ProjectReference Include="..\Project.ENTITIES\Project.ENTITIES.csproj">
       <Project>{d0728f2c-6c30-44c9-ac69-d67c091db5bc}</Project>
