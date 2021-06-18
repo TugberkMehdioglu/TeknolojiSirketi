@@ -16,8 +16,8 @@ namespace Project.MAP.Options
 
             ToTable("Profiller");
 
-            Property(x => x.FirstName).HasColumnName("İsim").IsRequired().HasMaxLength(60);
-            Property(x => x.LastName).HasColumnName("Soyisim").IsRequired().HasMaxLength(40);
+            Property(x => x.FirstName).HasColumnName("İsim").IsRequired().HasMaxLength(100);
+            Property(x => x.LastName).HasColumnName("Soyisim").IsRequired().HasMaxLength(100);
             Property(x => x.ImagePath).HasColumnName("Resim");
         }
     }

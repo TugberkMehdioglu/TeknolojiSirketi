@@ -15,8 +15,8 @@ namespace Project.MAP.Options
 
             ToTable("Özellikler");
 
-            Property(x => x.Name).HasColumnName("Ad").IsRequired().HasMaxLength(25);
-            Property(x => x.Value).HasColumnName("Değer").IsRequired().HasMaxLength(50);
+            Property(x => x.Name).HasColumnName("Ad").IsRequired().HasMaxLength(35);
+            Property(x => x.Value).HasColumnName("Değer").IsRequired().HasMaxLength(60);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Project.ENTITIES.Models
     {
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Ürün Adı")]
         [MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır")]
-        [MaxLength(30, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
+        [MaxLength(100, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
         public string Name { get; set; }
 
         [Required(ErrorMessage ="{0} zorunludur"), Display(Name ="Birim Fiyatı")]

@@ -12,12 +12,12 @@ namespace Project.ENTITIES.Models
     {
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Kullanıcı Adı")]
         [MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır")]
-        [MaxLength(15, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
+        [MaxLength(30, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Şifre")]
         [MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır")]
-        [MaxLength(20, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
+        [MaxLength(30, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
         public string Password { get; set; }
 
         [Compare("Password")]
@@ -27,7 +27,7 @@ namespace Project.ENTITIES.Models
         public bool Active { get; set; }
 
         [Required(ErrorMessage ="{0} zorunludur")]
-        [MaxLength(60, ErrorMessage ="{0} en fazla {1} karakter olmalıdır")]
+        [MaxLength(80, ErrorMessage ="{0} en fazla {1} karakter olmalıdır")]
         public string Email { get; set; }
         public AppUser()
         {

@@ -18,12 +18,12 @@ namespace Project.MAP.Options
 
             ToTable("Kullanıcılar");
 
-            Property(x => x.UserName).HasColumnName("Kullanıcı Adı").HasMaxLength(15).IsRequired();
-            Property(x => x.Password).HasColumnName("Şifre").HasMaxLength(20).IsRequired();
+            Property(x => x.UserName).HasColumnName("Kullanıcı Adı").HasMaxLength(30).IsRequired();
+            Property(x => x.Password).HasColumnName("Şifre").HasMaxLength(30).IsRequired();
             Property(x => x.Role).HasColumnName("Rol");
             Property(x => x.ActivationCode).HasColumnName("Aktivasyon Kodu");
             Property(x => x.Active).HasColumnName("Aktif");
-            Property(x => x.Email).IsRequired().HasMaxLength(60);
+            Property(x => x.Email).IsRequired().HasMaxLength(80);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Project.MAP.Options
         {
             ToTable("Ürünler");
 
-            Property(x => x.Name).HasColumnName("Ad").IsRequired().HasMaxLength(30);
+            Property(x => x.Name).HasColumnName("Ad").IsRequired().HasMaxLength(100);
             Property(x => x.UnitPrice).HasColumnName("Birim Fiyat").IsRequired();
             Property(x => x.UnitInStock).HasColumnName("Stok").IsRequired();
             Property(x => x.ImagePath).HasColumnName("Resim");

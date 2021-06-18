@@ -14,7 +14,7 @@ namespace Project.MAP.Options
         {
             ToTable("Kategoriler");
 
-            Property(x => x.Name).HasColumnName("Adı").IsRequired().HasMaxLength(30);
+            Property(x => x.Name).HasColumnName("Adı").IsRequired().HasMaxLength(50);
             Property(x => x.Description).HasColumnName("Açıklaması");
         }
     }

@@ -19,6 +19,7 @@ namespace Project.DAL.StrategyPattern
             {
                 UserName = "admin",
                 Password = DantexCryptex.Crypt("123"),
+                ConfirmPassword = DantexCryptex.Crypt("123"),
                 Role = ENTITIES.Enums.UserRole.Admin,
                 Active = true, //Mail aktivasyonu kabul edilmiş şekilde oluşturduk
                 Email = "tugberkmehdioglu@yandex.com"
@@ -30,6 +31,7 @@ namespace Project.DAL.StrategyPattern
             {
                 UserName = "member",
                 Password = DantexCryptex.Crypt("123"),
+                ConfirmPassword = DantexCryptex.Crypt("123"),
                 Role = ENTITIES.Enums.UserRole.Member,
                 Active = true, //Mail aktivasyonu kabul edilmiş şekilde oluşturduk
                 Email = "deneme2@gmail.com"

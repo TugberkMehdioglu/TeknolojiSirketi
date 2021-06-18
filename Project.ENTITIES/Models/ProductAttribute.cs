@@ -9,8 +9,8 @@ namespace Project.ENTITIES.Models
     //Çoka-çok ilişki
     public class ProductAttribute : BaseEntity
     {
-        public Attribute AttributeID { get; set; }
-        public Product ProductID { get; set; }
+        public int AttributeID { get; set; }
+        public int ProductID { get; set; }
 
         //Relational Properties
         public virtual Attribute Attribute { get; set; }
