@@ -21,7 +21,11 @@ namespace Project.ENTITIES.Models
         public short UnitInStock { get; set; }
         public string ImagePath { get; set; }
         public int CategoryID { get; set; }
-
+        public Product()
+        {
+            //Initilization ile DB oluşturulurken SaveChanges() demeden Product'ın Attributes kısmına veri girişi yapabilmek için List instance'ı aldık
+            Attributes = new List<ProductAttribute>();
+        }
 
 
         //Relational Properties

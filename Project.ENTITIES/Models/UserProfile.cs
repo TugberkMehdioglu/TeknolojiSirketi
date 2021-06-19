@@ -19,6 +19,11 @@ namespace Project.ENTITIES.Models
         public string FullName { get { return $"{FirstName} {LastName}"; } } //Bu property DB'ye gitmicek
         public string ImagePath { get; set; }
 
+        public UserProfile()
+        {
+            //Initilization ile DB oluşturulurken SaveChanges() demeden UserProfile'ın Addresses kısmına veri girişi yapabilmek için List instance'ı aldık
+            Addresses = new List<Address>();
+        }
 
         //Relational Properties
         public virtual AppUser User { get; set; }

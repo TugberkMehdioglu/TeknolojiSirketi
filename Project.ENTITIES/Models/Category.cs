@@ -17,7 +17,7 @@ namespace Project.ENTITIES.Models
 
         public Category()
         {
-            //FakeData ile DB oluşturulurken SaveChanges() demeden Category'nin Products kısmına veri girişi yapabilmek için List instance'ı aldık
+            //Initilization ile DB oluşturulurken SaveChanges() demeden Category'nin Products kısmına veri girişi yapabilmek için List instance'ı aldık
             Products = new List<Product>();
         }
 

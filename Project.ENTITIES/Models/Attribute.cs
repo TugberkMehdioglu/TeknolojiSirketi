@@ -11,11 +11,11 @@ namespace Project.ENTITIES.Models
     {
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Özellik Adı")]
         [MinLength(2, ErrorMessage = "{0} en az {1} karakter olmalıdır")]
-        [MaxLength(35, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
+        [MaxLength(80, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Özellik Adı")]
-        [MaxLength(60, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
+        [MaxLength(80, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
         public string Value { get; set; }
 
         //Relational Properties
