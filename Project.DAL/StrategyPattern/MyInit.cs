@@ -89,7 +89,7 @@ namespace Project.DAL.StrategyPattern
             Category anakart = new Category
             {
                 Name = "Anakart",
-                Description = "Anakart modelleri, fiyatları ve anakart markaları en uygun özel taksit seçenekleriyle Vatan Bilgisayar'da!",
+                Description = "Anakart modelleri, fiyatları ve anakart markaları en uygun özel taksit seçenekleriyle Tekno Center'da!",
             };
             context.Categories.Add(anakart);
             context.SaveChanges();
@@ -180,7 +180,7 @@ namespace Project.DAL.StrategyPattern
             Category Islemci = new Category
             {
                 Name = "İşlemci",
-                Description = "İşlemci fiyatları amd intel işlemci markaları ve modelleri en uygun taksit seçenekleri sadece Vatan Bilgisayar'da!",
+                Description = "İşlemci fiyatları amd intel işlemci markaları ve modelleri en uygun taksit seçenekleri sadece Tekno Center'da!",
             };
 
             context.Categories.Add(Islemci);
@@ -270,7 +270,7 @@ namespace Project.DAL.StrategyPattern
             Category ekranKarti = new Category
             {
                 Name = "Ekran Kartı",
-                Description = "Nvidia ve amd gibi markalardan oluşan ekran kartı modellerini en uygun fiyatlarla ekran kartları ve özel taksit seçenekleriyle Vatan Bilgisayar'da"
+                Description = "Nvidia ve amd gibi markalardan oluşan ekran kartı modellerini en uygun fiyatlarla ekran kartları ve özel taksit seçenekleriyle Tekno Center'da"
             };
 
             context.Categories.Add(ekranKarti);
@@ -360,7 +360,7 @@ namespace Project.DAL.StrategyPattern
             Category ram = new Category
             {
                 Name = "Ram",
-                Description = "Ram modelleri ve bellekler en uygun fiyat seçenekleri, farklı taksit imkanları ve kampanyalarla her zaman Vatan Bilgisayar'da. Hemen satın al."
+                Description = "Ram modelleri ve bellekler en uygun fiyat seçenekleri, farklı taksit imkanları ve kampanyalarla her zaman Tekno Center'da. Hemen satın al."
             };
 
             context.Categories.Add(ram);
