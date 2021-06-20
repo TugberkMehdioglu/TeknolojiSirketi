@@ -70,7 +70,7 @@ namespace Project.DAL.StrategyPattern
 
             List<StockDTO> dto = new List<StockDTO>();
 
-            
+
             List<Project.ENTITIES.Models.Attribute> anakartList = new List<Attribute>
             {
                 new Attribute{Name="Soket Tipi", Value="Soket 1200"},
@@ -91,21 +91,60 @@ namespace Project.DAL.StrategyPattern
                 Name = "Anakart",
                 Description = "Anakart modelleri, fiyatları ve anakart markaları en uygun özel taksit seçenekleriyle Vatan Bilgisayar'da!",
             };
-
-            for (int i = 0; i < 10; i++)
-            {
-                Product urun = new Product
-                {
-                    Name = $"GIGABYTE Z590 AORUS MASTER Intel Z590 Soket 1200 DDR4 5400MHz (O.C) M.2 Anakart",
-                    UnitPrice = 5.668m,
-                    ImagePath = "/Pictures/Anakart.jpg",
-                    UnitInStock = 100
-                };
-                anakart.Products.Add(urun);
-
-            }
             context.Categories.Add(anakart);
             context.SaveChanges();
+
+            Product urun = new Product
+            {
+                Name = $"GIGABYTE Z590 AORUS MASTER Intel Z590 Soket 1200 DDR4 5400MHz (O.C) M.2 Anakart",
+                UnitPrice = 5.668m,
+                ImagePath = "/Pictures/anakartUrun.jpg",
+                UnitInStock = 100
+            };
+            anakart.Products.Add(urun);
+            context.SaveChanges();
+
+            Product urun1 = new Product
+            {
+                Name = $"GIGABYTE B550M S2H 5000MHz(OC) DDR4 Soket AM4 M.2 HDMI DVI VGA mATX Anakart",
+                UnitPrice = 799,
+                ImagePath = "/Pictures/anakartUrun1.jpg",
+                UnitInStock = 100
+            };
+            anakart.Products.Add(urun1);
+            context.SaveChanges();
+
+            Product urun2 = new Product
+            {
+                Name = $"MSI MPG B560I GAMING EDGE WIFI 5200MHz(OC) DDR4 Soket M.2 HDMI DP mITX Anakart",
+                UnitPrice = 1.988m,
+                ImagePath = "/Pictures/anakartUrun2.jpg",
+                UnitInStock = 100
+            };
+            anakart.Products.Add(urun2);
+            context.SaveChanges();
+
+            Product urun3 = new Product
+            {
+                Name = $"ASUS TUF GAMING A520M-PLUS WIFI 4800MHz(OC) DDR4 Soket AM4 M.2 HDMI DP VGA mATX Anakart",
+                UnitPrice = 1.134m,
+                ImagePath = "/Pictures/anakartUrun3.jpg",
+                UnitInStock = 100
+            };
+            anakart.Products.Add(urun3);
+            context.SaveChanges();
+
+            Product urun4 = new Product
+            {
+                Name = $"ASUS ROG MAXIMUS XIII EXTREME Z590 5333MHz(OC) DDR4 Soket1200 M.2 Wi-Fi HDMI EATX Anakart",
+                UnitPrice = 10.234m,
+                ImagePath = "/Pictures/anakartUrun4.jpg",
+                UnitInStock = 100
+            };
+            anakart.Products.Add(urun4);
+            context.SaveChanges();
+
+
 
             //Çoka-çok ilişki tamamlaması
             foreach (Product item in anakart.Products)
