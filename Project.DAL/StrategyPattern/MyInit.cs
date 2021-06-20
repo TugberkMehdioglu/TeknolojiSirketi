@@ -94,54 +94,54 @@ namespace Project.DAL.StrategyPattern
             context.Categories.Add(anakart);
             context.SaveChanges();
 
-            Product urun = new Product
+            Product urunAnakart = new Product
             {
                 Name = $"GIGABYTE Z590 AORUS MASTER Intel Z590 Soket 1200 DDR4 5400MHz (O.C) M.2 Anakart",
                 UnitPrice = 5.668m,
                 ImagePath = "/Pictures/anakartUrun.jpg",
                 UnitInStock = 100
             };
-            anakart.Products.Add(urun);
+            anakart.Products.Add(urunAnakart);
             context.SaveChanges();
 
-            Product urun1 = new Product
+            Product urunAnakart1 = new Product
             {
                 Name = $"GIGABYTE B550M S2H 5000MHz(OC) DDR4 Soket AM4 M.2 HDMI DVI VGA mATX Anakart",
                 UnitPrice = 799,
                 ImagePath = "/Pictures/anakartUrun1.jpg",
                 UnitInStock = 100
             };
-            anakart.Products.Add(urun1);
+            anakart.Products.Add(urunAnakart1);
             context.SaveChanges();
 
-            Product urun2 = new Product
+            Product urunAnakart2 = new Product
             {
                 Name = $"MSI MPG B560I GAMING EDGE WIFI 5200MHz(OC) DDR4 Soket M.2 HDMI DP mITX Anakart",
                 UnitPrice = 1.988m,
                 ImagePath = "/Pictures/anakartUrun2.jpg",
                 UnitInStock = 100
             };
-            anakart.Products.Add(urun2);
+            anakart.Products.Add(urunAnakart2);
             context.SaveChanges();
 
-            Product urun3 = new Product
+            Product urunAnakart3 = new Product
             {
                 Name = $"ASUS TUF GAMING A520M-PLUS WIFI 4800MHz(OC) DDR4 Soket AM4 M.2 HDMI DP VGA mATX Anakart",
                 UnitPrice = 1.134m,
                 ImagePath = "/Pictures/anakartUrun3.jpg",
                 UnitInStock = 100
             };
-            anakart.Products.Add(urun3);
+            anakart.Products.Add(urunAnakart3);
             context.SaveChanges();
 
-            Product urun4 = new Product
+            Product urunAnakart4 = new Product
             {
                 Name = $"ASUS ROG MAXIMUS XIII EXTREME Z590 5333MHz(OC) DDR4 Soket1200 M.2 Wi-Fi HDMI EATX Anakart",
                 UnitPrice = 10.234m,
                 ImagePath = "/Pictures/anakartUrun4.jpg",
                 UnitInStock = 100
             };
-            anakart.Products.Add(urun4);
+            anakart.Products.Add(urunAnakart4);
             context.SaveChanges();
 
 
@@ -177,28 +177,67 @@ namespace Project.DAL.StrategyPattern
             context.SaveChanges();
 
 
-            Category İslemci = new Category
+            Category Islemci = new Category
             {
                 Name = "İşlemci",
                 Description = "İşlemci fiyatları amd intel işlemci markaları ve modelleri en uygun taksit seçenekleri sadece Vatan Bilgisayar'da!",
             };
 
-            for (int i = 0; i < 10; i++)
+            context.Categories.Add(Islemci);
+            context.SaveChanges();
+            Product urunIslemci = new Product
             {
-                Product urun = new Product
-                {
-                    Name = "Intel Core i9 9900K Soket 1151 - 9. Nesil 3.6GHz 16MB Önbellek 14nm İşlemci",
-                    UnitPrice = 5.906m,
-                    UnitInStock = 100,
-                    ImagePath = "/Pictures/İşlemci.jpg",
-                };
-                İslemci.Products.Add(urun);
-            }
-            context.Categories.Add(İslemci);
+                Name = "Intel Core i9 9900K Soket 1151 - 9. Nesil 3.6GHz 16MB Önbellek 14nm İşlemci",
+                UnitPrice = 5.906m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/islemciUrun.jpg",
+            };
+            Islemci.Products.Add(urunIslemci);
             context.SaveChanges();
 
+            Product urunIslemci1 = new Product
+            {
+                Name = "INTEL Core i9 11900F 2.5GHz 16MB Önbellek 8 Çekirdek 1200 14nm İşlemci",
+                UnitPrice = 4.299m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/islemciUrun1.jpg",
+            };
+            Islemci.Products.Add(urunIslemci1);
+            context.SaveChanges();
+
+            Product urunIslemci2 = new Product
+            {
+                Name = "AMD RYZEN 7 3700X 3.6GHz 32MB Önbellek 8 Çekirdek AM4 7nm İşlemci",
+                UnitPrice = 2.799m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/islemciUrun2.jpg",
+            };
+            Islemci.Products.Add(urunIslemci2);
+            context.SaveChanges();
+
+            Product urunIslemci3 = new Product
+            {
+                Name = "AMD RYZEN 5 1600 (AF) 3.2GHz 19MB Önbellek 6 Çekirdek AM4 14nm İşlemci",
+                UnitPrice = 1.383m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/islemciUrun3.jpg",
+            };
+            Islemci.Products.Add(urunIslemci3);
+            context.SaveChanges();
+
+            Product urunIslemci4 = new Product
+            {
+                Name = "AMD RYZEN 9 5950X 3.4GHz 64MB Önbellek 16 Çekirdek AM4 7nm İşlemci",
+                UnitPrice = 9.419m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/islemciUrun4.jpg",
+            };
+            Islemci.Products.Add(urunIslemci4);
+            context.SaveChanges();
+
+
             //Çoka-çok ilişki tamamlaması
-            foreach (Product item in İslemci.Products)
+            foreach (Product item in Islemci.Products)
             {
                 foreach (Project.ENTITIES.Models.Attribute element in islemciList)
                 {
@@ -234,18 +273,57 @@ namespace Project.DAL.StrategyPattern
                 Description = "Nvidia ve amd gibi markalardan oluşan ekran kartı modellerini en uygun fiyatlarla ekran kartları ve özel taksit seçenekleriyle Vatan Bilgisayar'da"
             };
 
-            for (int i = 0; i < 10; i++)
-            {
-                Product urun = new Product
-                {
-                    Name = "MSI GEFORCE RTX 3090 GAMING X TRIO 24G 24GB GDDR6X 384Bit",
-                    UnitPrice = 40.732m,
-                    UnitInStock = 100,
-                    ImagePath = "/Pictures/EkranKarti.jpg"
-                };
-                ekranKarti.Products.Add(urun);
-            }
             context.Categories.Add(ekranKarti);
+            context.SaveChanges();
+
+            Product urunEkranKarti = new Product
+            {
+                Name = "MSI GEFORCE RTX 3090 GAMING X TRIO 24G 24GB GDDR6X 384Bit",
+                UnitPrice = 40.732m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ekranKartıUrun.jpg"
+            };
+            ekranKarti.Products.Add(urunEkranKarti);
+            context.SaveChanges();
+
+            Product urunEkranKarti1 = new Product
+            {
+                Name = "GIGABYTE Radeon RX 6900 XT GAMING OC 16GB GDDR6 256 Bit Ekran Kartı",
+                UnitPrice = 25.428m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ekranKartıUrun1.jpg"
+            };
+            ekranKarti.Products.Add(urunEkranKarti1);
+            context.SaveChanges();
+
+            Product urunEkranKarti2 = new Product
+            {
+                Name = "MSI GeForce GT 1030 2GH LP OC 2GB GDDR5 64 Bit Ekran Kartı",
+                UnitPrice = 1.031m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ekranKartıUrun2.jpg"
+            };
+            ekranKarti.Products.Add(urunEkranKarti2);
+            context.SaveChanges();
+
+            Product urunEkranKarti3 = new Product
+            {
+                Name = "MSI GeForce RTX 3070 Ti VENTUS 3X 8GB GDDR6 256 Bit Ekran Kartı",
+                UnitPrice = 6.427m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ekranKartıUrun3.jpg"
+            };
+            ekranKarti.Products.Add(urunEkranKarti3);
+            context.SaveChanges();
+
+            Product urunEkranKarti4 = new Product
+            {
+                Name = "SAPPHIRE RX 550 PULSE OC 4GB GDDR5 128Bit DX12 Ekran Kartı",
+                UnitPrice = 2.459m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ekranKartıUrun4.jpg"
+            };
+            ekranKarti.Products.Add(urunEkranKarti4);
             context.SaveChanges();
 
             //Çoka-çok ilişki tamamlaması
@@ -285,18 +363,98 @@ namespace Project.DAL.StrategyPattern
                 Description = "Ram modelleri ve bellekler en uygun fiyat seçenekleri, farklı taksit imkanları ve kampanyalarla her zaman Vatan Bilgisayar'da. Hemen satın al."
             };
 
-            for (int i = 0; i < 10; i++)
-            {
-                Product urun = new Product
-                {
-                    Name = "GSKILL 128GB (4X32GB) Trident Z Neo DDR4 3200MHz CL16 AMD Ryzen RGB LED Ram",
-                    UnitPrice = 10.049m,
-                    UnitInStock = 100,
-                    ImagePath = "/Pictures/Ram.jpg"
-                };
-                ram.Products.Add(urun);
-            }
             context.Categories.Add(ram);
+            context.SaveChanges();
+
+            Product urunRAM = new Product
+            {
+                Name = "GSKILL 128GB (4X32GB) Trident Z Neo DDR4 3200MHz CL16 AMD Ryzen RGB LED Ram",
+                UnitPrice = 10.049m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ramUrun.jpg"
+            };
+            ram.Products.Add(urunRAM);
+            context.SaveChanges();
+
+
+            Product urunRAM1 = new Product
+            {
+                Name = "CORSAIR 32GB (4x8GB) Vengeance RGB PRO Siyah 3600MHz CL16 DDR4 Quad Kit Ram",
+                UnitPrice = 2.499m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ramUrun1.jpg"
+            };
+            ram.Products.Add(urunRAM1);
+            context.SaveChanges();
+
+            Product urunRAM2 = new Product
+            {
+                Name = "PATRIOT 8GB Viper Steel Siyah 3000MHz CL16 DDR4 Single Kit Ram",
+                UnitPrice = 399m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ramUrun2.jpg"
+            };
+            ram.Products.Add(urunRAM2);
+            context.SaveChanges();
+
+            Product urunRAM3 = new Product
+            {
+                Name = "SILICON POWER 32GB (2x16GB) XPOWER Turbine RGB Gri 3200MHz CL16 DDR4 Dual Kit Ram",
+                UnitPrice = 2.309m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ramUrun3.jpg"
+            };
+            ram.Products.Add(urunRAM3);
+            context.SaveChanges();
+
+            Product urunRAM4 = new Product
+            {
+                Name = "HYPERX 16GB Fury 3200MHz CL16 DDR4 Single Kit Ram",
+                UnitPrice = 908m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ramUrun4.jpg"
+            };
+            ram.Products.Add(urunRAM4);
+            context.SaveChanges();
+
+            Product urunRAM5 = new Product
+            {
+                Name = "XPG 16GB (2x8GB) SPECTRIX D50 Beyaz RGB 4133MHz CL19 DDR4 Dual Kit Ram",
+                UnitPrice = 1.451m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ramUrun4.jpg"
+            };
+            ram.Products.Add(urunRAM5);
+            context.SaveChanges();
+
+            Product urunRAM6 = new Product
+            {
+                Name = "PATRIOT 16GB (2x8GB) Viper Rgb Bla 3200MHz CL16 DDR4 Dual Kit Ram",
+                UnitPrice = 1.072m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ramUrun6.jpg"
+            };
+            ram.Products.Add(urunRAM6);
+            context.SaveChanges();
+
+            Product urunRAM7 = new Product
+            {
+                Name = "XPG 8GB Gammix D30 Kırmızı 3200MHz CL16 DDR4 Single Kit Ram",
+                UnitPrice = 501m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ramUrun6.jpg"
+            };
+            ram.Products.Add(urunRAM7);
+            context.SaveChanges();
+
+            Product urunRAM8 = new Product
+            {
+                Name = "CORSAIR 8GB Vengeance LPX Siyah 3600MHz CL18 DDR4 Single Kit Ram",
+                UnitPrice = 603m,
+                UnitInStock = 100,
+                ImagePath = "/Pictures/ramUrun8.jpg"
+            };
+            ram.Products.Add(urunRAM8);
             context.SaveChanges();
 
             //Çoka-çok ilişki tamamlaması
@@ -323,7 +481,7 @@ namespace Project.DAL.StrategyPattern
                 UnitInStock = x.UnitInStock
             }).ToList());
 
-            dto.AddRange(İslemci.Products.Select(x => new StockDTO
+            dto.AddRange(Islemci.Products.Select(x => new StockDTO
             {
                 ID = x.ID,
                 ProductName = x.Name,

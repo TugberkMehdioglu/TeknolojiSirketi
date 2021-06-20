@@ -107,10 +107,30 @@
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="Pictures\Anakart.jpg" />
-    <Content Include="Pictures\EkranKarti.jpg" />
-    <Content Include="Pictures\Ram.jpg" />
-    <Content Include="Pictures\İşlemci.jpg" />
+    <Content Include="Pictures\anakartUrun.jpg" />
+    <Content Include="Pictures\anakartUrun1.jpg" />
+    <Content Include="Pictures\anakartUrun2.jpg" />
+    <Content Include="Pictures\anakartUrun3.jpg" />
+    <Content Include="Pictures\anakartUrun4.jpg" />
+    <Content Include="Pictures\ekranKartıUrun.jpg" />
+    <Content Include="Pictures\ekranKartıUrun1.jpg" />
+    <Content Include="Pictures\ekranKartıUrun2.jpg" />
+    <Content Include="Pictures\ekranKartıUrun3.jpg" />
+    <Content Include="Pictures\ekranKartıUrun4.jpg" />
+    <Content Include="Pictures\islemciUrun.jpg" />
+    <Content Include="Pictures\islemciUrun1.jpg" />
+    <Content Include="Pictures\islemciUrun2.jpg" />
+    <Content Include="Pictures\islemciUrun3.jpg" />
+    <Content Include="Pictures\islemciUrun4.jpg" />
+    <Content Include="Pictures\ramUrun.jpg" />
+    <Content Include="Pictures\ramUrun1.jpg" />
+    <Content Include="Pictures\ramUrun2.jpg" />
+    <Content Include="Pictures\ramUrun3.jpg" />
+    <Content Include="Pictures\ramUrun4.jpg" />
+    <Content Include="Pictures\ramUrun5.jpg" />
+    <Content Include="Pictures\ramUrun6.jpg" />
+    <Content Include="Pictures\ramUrun7.jpg" />
+    <Content Include="Pictures\ramUrun8.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
