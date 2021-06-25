@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RegisterOk</title>
+
+    @*Boostrap ve Jquery kullanımı için gerekli ref'ler*@
+    <link href="~/OuterTools/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/OuterTools/js/jquery.js"></script>
+    <script src="~/OuterTools/js/bootstrap.js"></script>
+</head>
+<body>
+    <div>
+        <h3 style="color:green; font-family:'DejaVu Math TeX Gyre'" class="text-center">
+            Kayıt işleminiz gerçekleşmiştir, lütfen mail'inize yolladığımız linke tıklayarak hesabınızı aktif hale getiriniz
+        </h3>
+    </div>
+</body>
+</html>
+
+<script>
+
+    $(function () {
+
+        setTimeout(function () {
+
+            window.location = "/Home/Login";
+        }, 5000)
+    })
+
+</script>

@@ -102,7 +102,6 @@ namespace Project.DAL.StrategyPattern
                 UnitInStock = 100
             };
             anakart.Products.Add(urunAnakart);
-            context.SaveChanges();
 
             Product urunAnakart1 = new Product
             {
@@ -112,7 +111,6 @@ namespace Project.DAL.StrategyPattern
                 UnitInStock = 100
             };
             anakart.Products.Add(urunAnakart1);
-            context.SaveChanges();
 
             Product urunAnakart2 = new Product
             {
@@ -122,7 +120,6 @@ namespace Project.DAL.StrategyPattern
                 UnitInStock = 100
             };
             anakart.Products.Add(urunAnakart2);
-            context.SaveChanges();
 
             Product urunAnakart3 = new Product
             {
@@ -132,7 +129,6 @@ namespace Project.DAL.StrategyPattern
                 UnitInStock = 100
             };
             anakart.Products.Add(urunAnakart3);
-            context.SaveChanges();
 
             Product urunAnakart4 = new Product
             {
@@ -185,6 +181,7 @@ namespace Project.DAL.StrategyPattern
 
             context.Categories.Add(Islemci);
             context.SaveChanges();
+
             Product urunIslemci = new Product
             {
                 Name = "Intel Core i9 9900K Soket 1151 - 9. Nesil 3.6GHz 16MB Önbellek 14nm İşlemci",
@@ -193,7 +190,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/islemciUrun.jpg",
             };
             Islemci.Products.Add(urunIslemci);
-            context.SaveChanges();
 
             Product urunIslemci1 = new Product
             {
@@ -203,7 +199,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/islemciUrun1.jpg",
             };
             Islemci.Products.Add(urunIslemci1);
-            context.SaveChanges();
 
             Product urunIslemci2 = new Product
             {
@@ -213,7 +208,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/islemciUrun2.jpg",
             };
             Islemci.Products.Add(urunIslemci2);
-            context.SaveChanges();
 
             Product urunIslemci3 = new Product
             {
@@ -223,7 +217,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/islemciUrun3.jpg",
             };
             Islemci.Products.Add(urunIslemci3);
-            context.SaveChanges();
 
             Product urunIslemci4 = new Product
             {
@@ -284,7 +277,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/ekranKartıUrun.jpg"
             };
             ekranKarti.Products.Add(urunEkranKarti);
-            context.SaveChanges();
 
             Product urunEkranKarti1 = new Product
             {
@@ -294,7 +286,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/ekranKartıUrun1.jpg"
             };
             ekranKarti.Products.Add(urunEkranKarti1);
-            context.SaveChanges();
 
             Product urunEkranKarti2 = new Product
             {
@@ -304,7 +295,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/ekranKartıUrun2.jpg"
             };
             ekranKarti.Products.Add(urunEkranKarti2);
-            context.SaveChanges();
 
             Product urunEkranKarti3 = new Product
             {
@@ -314,7 +304,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/ekranKartıUrun3.jpg"
             };
             ekranKarti.Products.Add(urunEkranKarti3);
-            context.SaveChanges();
 
             Product urunEkranKarti4 = new Product
             {
@@ -362,7 +351,6 @@ namespace Project.DAL.StrategyPattern
                 Name = "Ram",
                 Description = "Ram modelleri ve bellekler en uygun fiyat seçenekleri, farklı taksit imkanları ve kampanyalarla her zaman Tekno Center'da. Hemen satın al."
             };
-
             context.Categories.Add(ram);
             context.SaveChanges();
 
@@ -374,8 +362,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/ramUrun.jpg"
             };
             ram.Products.Add(urunRAM);
-            context.SaveChanges();
-
 
             Product urunRAM1 = new Product
             {
@@ -385,7 +371,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/ramUrun1.jpg"
             };
             ram.Products.Add(urunRAM1);
-            context.SaveChanges();
 
             Product urunRAM2 = new Product
             {
@@ -395,7 +380,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/ramUrun2.jpg"
             };
             ram.Products.Add(urunRAM2);
-            context.SaveChanges();
 
             Product urunRAM3 = new Product
             {
@@ -405,7 +389,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/ramUrun3.jpg"
             };
             ram.Products.Add(urunRAM3);
-            context.SaveChanges();
 
             Product urunRAM4 = new Product
             {
@@ -415,7 +398,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/ramUrun4.jpg"
             };
             ram.Products.Add(urunRAM4);
-            context.SaveChanges();
 
             Product urunRAM5 = new Product
             {
@@ -425,7 +407,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/ramUrun4.jpg"
             };
             ram.Products.Add(urunRAM5);
-            context.SaveChanges();
 
             Product urunRAM6 = new Product
             {
@@ -435,7 +416,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/ramUrun6.jpg"
             };
             ram.Products.Add(urunRAM6);
-            context.SaveChanges();
 
             Product urunRAM7 = new Product
             {
@@ -445,7 +425,6 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/ramUrun6.jpg"
             };
             ram.Products.Add(urunRAM7);
-            context.SaveChanges();
 
             Product urunRAM8 = new Product
             {

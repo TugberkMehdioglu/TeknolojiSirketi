@@ -20,7 +20,7 @@ namespace Project.ENTITIES.Models
         [MaxLength(30, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
         public string Password { get; set; }
 
-        [Compare("Password")]
+        [Compare("Password", ErrorMessage ="Şifreler uyuşmuyor"), Display(Name ="Şifre doğrula")]
         public string ConfirmPassword { get; set; } //Bu property DB'ye gitmicek
         public UserRole Role { get; set; }
         public Guid ActivationCode { get; set; }
