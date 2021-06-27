@@ -29,7 +29,7 @@
                     <tr class="gradeX">
                         <td>@item.ID</td>
                         <td>@item.Name</td>
-                        <td>@item.UnitPrice</td>
+                        <td>@item.UnitPrice.ToString("C2")</td>
                         <td>@item.UnitInStock</td>
                         @if (item.Category == null)
                         {
