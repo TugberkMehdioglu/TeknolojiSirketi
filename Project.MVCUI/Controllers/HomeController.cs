@@ -33,8 +33,8 @@ namespace Project.MVCUI.Controllers
                 return View();
             }
 
-            control.Password = DantexCryptex.DeCrypt(control.Password);
-            if (control.Password != appUser.Password)
+            string password = DantexCryptex.DeCrypt(control.Password);
+            if (password != appUser.Password)
             {
                 ViewBag.Kullanici = "Kullanıcı Adı veya şifre hatalı";
                 return View();
