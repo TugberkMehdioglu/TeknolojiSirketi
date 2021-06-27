@@ -97,7 +97,7 @@ namespace Project.DAL.StrategyPattern
             Product urunAnakart = new Product
             {
                 Name = $"GIGABYTE Z590 AORUS MASTER Intel Z590 Soket 1200 DDR4 5400MHz (O.C) M.2 Anakart",
-                UnitPrice = 5.668m,
+                UnitPrice = 5668m,
                 ImagePath = "/Pictures/anakartUrun.jpg",
                 UnitInStock = 100
             };
@@ -115,7 +115,7 @@ namespace Project.DAL.StrategyPattern
             Product urunAnakart2 = new Product
             {
                 Name = $"MSI MPG B560I GAMING EDGE WIFI 5200MHz(OC) DDR4 Soket M.2 HDMI DP mITX Anakart",
-                UnitPrice = 1.988m,
+                UnitPrice = 1988m,
                 ImagePath = "/Pictures/anakartUrun2.jpg",
                 UnitInStock = 100
             };
@@ -124,7 +124,7 @@ namespace Project.DAL.StrategyPattern
             Product urunAnakart3 = new Product
             {
                 Name = $"ASUS TUF GAMING A520M-PLUS WIFI 4800MHz(OC) DDR4 Soket AM4 M.2 HDMI DP VGA mATX Anakart",
-                UnitPrice = 1.134m,
+                UnitPrice = 1134m,
                 ImagePath = "/Pictures/anakartUrun3.jpg",
                 UnitInStock = 100
             };
@@ -133,7 +133,7 @@ namespace Project.DAL.StrategyPattern
             Product urunAnakart4 = new Product
             {
                 Name = $"ASUS ROG MAXIMUS XIII EXTREME Z590 5333MHz(OC) DDR4 Soket1200 M.2 Wi-Fi HDMI EATX Anakart",
-                UnitPrice = 10.234m,
+                UnitPrice = 10234m,
                 ImagePath = "/Pictures/anakartUrun4.jpg",
                 UnitInStock = 100
             };
@@ -185,7 +185,7 @@ namespace Project.DAL.StrategyPattern
             Product urunIslemci = new Product
             {
                 Name = "Intel Core i9 9900K Soket 1151 - 9. Nesil 3.6GHz 16MB Önbellek 14nm İşlemci",
-                UnitPrice = 5.906m,
+                UnitPrice = 5906m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/islemciUrun.jpg",
             };
@@ -194,7 +194,7 @@ namespace Project.DAL.StrategyPattern
             Product urunIslemci1 = new Product
             {
                 Name = "INTEL Core i9 11900F 2.5GHz 16MB Önbellek 8 Çekirdek 1200 14nm İşlemci",
-                UnitPrice = 4.299m,
+                UnitPrice = 4299m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/islemciUrun1.jpg",
             };
@@ -203,7 +203,7 @@ namespace Project.DAL.StrategyPattern
             Product urunIslemci2 = new Product
             {
                 Name = "AMD RYZEN 7 3700X 3.6GHz 32MB Önbellek 8 Çekirdek AM4 7nm İşlemci",
-                UnitPrice = 2.799m,
+                UnitPrice = 2799m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/islemciUrun2.jpg",
             };
@@ -212,7 +212,7 @@ namespace Project.DAL.StrategyPattern
             Product urunIslemci3 = new Product
             {
                 Name = "AMD RYZEN 5 1600 (AF) 3.2GHz 19MB Önbellek 6 Çekirdek AM4 14nm İşlemci",
-                UnitPrice = 1.383m,
+                UnitPrice = 1383m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/islemciUrun3.jpg",
             };
@@ -221,7 +221,7 @@ namespace Project.DAL.StrategyPattern
             Product urunIslemci4 = new Product
             {
                 Name = "AMD RYZEN 9 5950X 3.4GHz 64MB Önbellek 16 Çekirdek AM4 7nm İşlemci",
-                UnitPrice = 9.419m,
+                UnitPrice = 9419m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/islemciUrun4.jpg",
             };
@@ -272,7 +272,7 @@ namespace Project.DAL.StrategyPattern
             Product urunEkranKarti = new Product
             {
                 Name = "MSI GEFORCE RTX 3090 GAMING X TRIO 24G 24GB GDDR6X 384Bit",
-                UnitPrice = 40.732m,
+                UnitPrice = 40732m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/ekranKartıUrun.jpg"
             };
@@ -281,7 +281,7 @@ namespace Project.DAL.StrategyPattern
             Product urunEkranKarti1 = new Product
             {
                 Name = "GIGABYTE Radeon RX 6900 XT GAMING OC 16GB GDDR6 256 Bit Ekran Kartı",
-                UnitPrice = 25.428m,
+                UnitPrice = 25428m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/ekranKartıUrun1.jpg"
             };
@@ -290,7 +290,7 @@ namespace Project.DAL.StrategyPattern
             Product urunEkranKarti2 = new Product
             {
                 Name = "MSI GeForce GT 1030 2GH LP OC 2GB GDDR5 64 Bit Ekran Kartı",
-                UnitPrice = 1.031m,
+                UnitPrice = 1031m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/ekranKartıUrun2.jpg"
             };
@@ -299,7 +299,7 @@ namespace Project.DAL.StrategyPattern
             Product urunEkranKarti3 = new Product
             {
                 Name = "MSI GeForce RTX 3070 Ti VENTUS 3X 8GB GDDR6 256 Bit Ekran Kartı",
-                UnitPrice = 6.427m,
+                UnitPrice = 6427m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/ekranKartıUrun3.jpg"
             };
@@ -308,7 +308,7 @@ namespace Project.DAL.StrategyPattern
             Product urunEkranKarti4 = new Product
             {
                 Name = "SAPPHIRE RX 550 PULSE OC 4GB GDDR5 128Bit DX12 Ekran Kartı",
-                UnitPrice = 2.459m,
+                UnitPrice = 2459m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/ekranKartıUrun4.jpg"
             };
@@ -357,7 +357,7 @@ namespace Project.DAL.StrategyPattern
             Product urunRAM = new Product
             {
                 Name = "GSKILL 128GB (4X32GB) Trident Z Neo DDR4 3200MHz CL16 AMD Ryzen RGB LED Ram",
-                UnitPrice = 10.049m,
+                UnitPrice = 10049m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/ramUrun.jpg"
             };
@@ -366,7 +366,7 @@ namespace Project.DAL.StrategyPattern
             Product urunRAM1 = new Product
             {
                 Name = "CORSAIR 32GB (4x8GB) Vengeance RGB PRO Siyah 3600MHz CL16 DDR4 Quad Kit Ram",
-                UnitPrice = 2.499m,
+                UnitPrice = 2499m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/ramUrun1.jpg"
             };
@@ -384,7 +384,7 @@ namespace Project.DAL.StrategyPattern
             Product urunRAM3 = new Product
             {
                 Name = "SILICON POWER 32GB (2x16GB) XPOWER Turbine RGB Gri 3200MHz CL16 DDR4 Dual Kit Ram",
-                UnitPrice = 2.309m,
+                UnitPrice = 2309m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/ramUrun3.jpg"
             };
@@ -402,7 +402,7 @@ namespace Project.DAL.StrategyPattern
             Product urunRAM5 = new Product
             {
                 Name = "XPG 16GB (2x8GB) SPECTRIX D50 Beyaz RGB 4133MHz CL19 DDR4 Dual Kit Ram",
-                UnitPrice = 1.451m,
+                UnitPrice = 1451m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/ramUrun4.jpg"
             };
@@ -411,7 +411,7 @@ namespace Project.DAL.StrategyPattern
             Product urunRAM6 = new Product
             {
                 Name = "PATRIOT 16GB (2x8GB) Viper Rgb Bla 3200MHz CL16 DDR4 Dual Kit Ram",
-                UnitPrice = 1.072m,
+                UnitPrice = 1072m,
                 UnitInStock = 100,
                 ImagePath = "/Pictures/ramUrun6.jpg"
             };
