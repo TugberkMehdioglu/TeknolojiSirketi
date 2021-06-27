@@ -1,0 +1,52 @@
+﻿@model ProductVM
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>Ürün Eklemek icin @Html.ActionLink("tıklayınız", "AddProduct")</h3>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Ürün ID</th>
+                    <th>Ürün Ismi</th>
+                    <th>Ürün Fiyatı</th>
+                    <th>Ürün Stok</th>
+                    <th>Ürün Kategorisi</th>
+                    <th>Ürün Resmi</th>
+                    <th class="hidden-phone">Durum</th>
+                    <th class="hidden-phone">Sil</th>
+                    <th class="hidden-phone">Güncelle</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Product item in Model.Products)
+                {
+                    <tr class="gradeX">
+                        <td>@item.ID</td>
+                        <td>@item.Name</td>
+                        <td>@item.UnitPrice</td>
+                        <td>@item.UnitInStock</td>
+                        @if (item.Category == null)
+                        {
+                            <td>Kategorisi belirtilmemiş</td>
+                        }
+                        else
+                        {
+                            <td>@item.Category.Name</td>
+                        }
+                        <td><img width="30" height="30" title="@item.Name" src="@item.ImagePath" /></td>
+                        <td class="center hidden-phone">@item.Status</td>
+                        <td class="center hidden-phone">@Html.ActionLink("Sil", "DeleteProduct", new { id = item.ID }, new { @class = "btn btn-danger" })</td>
+                        <td class="center hidden-phone">@Html.ActionLink("Güncelle", "UpdateProduct", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
