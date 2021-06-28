@@ -1,5 +1,6 @@
 ﻿using PagedList;
 using Project.BLL.DesignPatterns.GenericRepository.ConcRep;
+using Project.ENTITIES.Models;
 using Project.MVCUI.VMClasses;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,19 @@ namespace Project.MVCUI.Controllers
             if (categoryID != null) ViewBag.categoryID = categoryID;
 
             return View(pavm);
+        }
+
+        //ShoppingList'teki ajax için
+        public List<Product> SearchProducts(string search, int? categoryID)
+        {
+            if (categoryID != null)
+            {
+                return _pRep.GetActives().Where(x => x.Name == search && x.CategoryID == categoryID).ToList();
+            }
+            else
+            {
+                return _pRep.GetActives().Where(x => x.Name == search).ToList();
+            }
         }
     }
 }
