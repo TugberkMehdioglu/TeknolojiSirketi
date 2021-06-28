@@ -120,7 +120,7 @@
                 <div class="col-md-4" id="div">
                     <section class="panel">
                         <div class="pro-img-box">
-                            <img src="@item.ImagePath" alt="Resim Yok" title="@item.Name" />
+                            <a href="@Url.Action("ProductDetail", new { id=item.ID})"><img src="@item.ImagePath" alt="Resim Yok" title="@item.Name" /></a>                            
                             <a href="@Url.Action("AddToCart", new { id=item.ID})" class="adtocart">
                                 <i class="icon-shopping-cart"></i>
                             </a>
