@@ -118,10 +118,10 @@
                 @foreach (Product item in Model.PagedProducts)
                 {
                     <li id="li">
-                        <div class="col-md-4" id="div">
+                        <div class="col-md-4" id="div" style="width:427px; height:554px">
                             <section class="panel">
                                 <div class="pro-img-box">
-                                    <a href="@Url.Action("ProductDetail", new { id=item.ID})"><img src="@item.ImagePath" alt="Resim Yok" title="@item.Name" /></a>
+                                    <a href="@Url.Action("ProductDetail", new { id=item.ID})"><img src="@item.ImagePath" alt="Resim Yok" title="@item.Name" width="397" height="397"/></a>
                                     <a href="@Url.Action("AddToCart", new { id=item.ID})" class="adtocart">
                                         <i class="icon-shopping-cart"></i>
                                     </a>
