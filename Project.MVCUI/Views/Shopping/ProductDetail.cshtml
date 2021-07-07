@@ -1,0 +1,40 @@
+﻿@model ProductVM
+@{
+    ViewBag.Title = "ProductDetail";
+}
+
+
+<div class="col-md-12">
+
+    <section class="panel">
+        <div class="panel-body">
+            <div class="col-md-6">
+                <div class="pro-img-details">
+                    <img src="@Model.Product.ImagePath" alt="Resim Yok" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4 class="pro-d-title">
+                    <a href="#" class="">
+                        @Model.Product.Name
+                    </a>
+                </h4>
+                <div class="product_meta">
+
+                    <span class="posted_in"> <strong>Kategorisi: </strong> <a rel="tag" href="#">@Model.Product.Category.Name</a></span>
+
+                    @foreach (Project.ENTITIES.Models.ProductAttribute item in Model.Product.Attributes)
+                    {
+                        <span class="tagged_as"><strong>@item.Attribute.Name: </strong> <a rel="tag" href="#">@item.Attribute.Value</a></span>
+                    }
+
+                </div>
+                <div class="m-bot15"> <strong>Fiyatı: </strong>  <span class="pro-price">@Model.Product.UnitPrice.ToString("C2")</span></div>
+                <p>
+                    @Html.ActionLink(" Sepete Ekle", "AddToCart", new { id = Model.Product.ID }, new { @class = "icon-shopping-cart btn btn-round btn-danger" })
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
+

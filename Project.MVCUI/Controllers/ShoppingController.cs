@@ -30,7 +30,7 @@ namespace Project.MVCUI.Controllers
             PAVM pavm = new PAVM
             {
                 PagedProducts = categoryID == null ? _pRep.GetActives().ToPagedList(page ?? 1, 6) : _pRep.GetActives().Where(x => x.CategoryID == categoryID).ToPagedList(page ?? 1, 6),
-                Categories = _cRep.GetActives()
+                Categories = _cRep.GetActives(),             
             };
 
             if (categoryID != null) ViewBag.categoryID = categoryID;
@@ -38,17 +38,14 @@ namespace Project.MVCUI.Controllers
             return View(pavm);
         }
 
-        //ShoppingList'teki ajax için
-        public List<Product> SearchProducts(string search, int? categoryID)
+        public ActionResult ProductDetail(int id)
         {
-            if (categoryID != null)
+            ProductVM pvm = new ProductVM
             {
-                return _pRep.GetActives().Where(x => x.Name == search && x.CategoryID == categoryID).ToList();
-            }
-            else
-            {
-                return _pRep.GetActives().Where(x => x.Name == search).ToList();
-            }
+                Product = _pRep.Find(id)
+            };
+
+            return View(pvm);
         }
     }
 }

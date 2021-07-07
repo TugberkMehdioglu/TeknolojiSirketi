@@ -12,7 +12,5 @@ namespace Project.MVCUI.VMClasses
     {
         public IPagedList<Product> PagedProducts { get; set; }
         public List<Category> Categories { get; set; }
-
-
     }
 }
