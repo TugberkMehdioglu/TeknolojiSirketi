@@ -26,7 +26,7 @@ namespace Project.MVCUI.Models.ShoppingTools
         {
             if (_sepetim.ContainsKey(item.ID))
             {
-                item.Amount += 1;
+                _sepetim[item.ID].Amount += 1;
                 return;
             }
             _sepetim.Add(item.ID, item);

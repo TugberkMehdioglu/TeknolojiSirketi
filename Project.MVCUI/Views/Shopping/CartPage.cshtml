@@ -1,0 +1,37 @@
+﻿@model CartPageVM
+@{
+    ViewBag.Title = "CartPage";
+}
+
+<div class="jumbotron">
+    Ödemeniz gereken toplam tutar @Model.Cart.TotalPrice.ToString("C2") 'dir. Siparişinizi tamamlamak için lütfen @Html.ActionLink("tıklayınız", "ConfirmOrder")
+</div>
+
+<div class="row product-list">
+    @foreach (CartItem item in Model.Cart.Sepetim)
+    {
+        <div class="col-md-4" id="div" style="width:427px; height:554px">
+            <section class="panel">
+                <div class="pro-img-box">
+                    <a href="@Url.Action("ProductDetail", new { id=item.ID})"><img src="@item.ImagePath" alt="Resim Yok" title="@item.Name" width="397" height="397" /></a>
+                    <a href="@Url.Action("DeleteFromCart", new { id=item.ID})" class="adtocart">
+                        <i class="icon-remove"></i>
+                    </a>
+                </div>
+
+                <div class="panel-body text-center">
+                    <h4>
+                        <a href="@Url.Action("ProductDetail", new { id=item.ID})" class="pro-title">
+                            @item.Name
+                            <br /><br />
+                            @item.Amount Adet
+                        </a>
+                    </h4>
+                    <p class="price">@item.SubTotal.ToString("C2")</p>
+                </div>
+            </section>
+        </div>
+    }
+</div>
+
+<br /><br /><br />

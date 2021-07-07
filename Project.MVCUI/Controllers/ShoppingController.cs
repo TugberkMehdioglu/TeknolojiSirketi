@@ -1,6 +1,7 @@
 ﻿using PagedList;
 using Project.BLL.DesignPatterns.GenericRepository.ConcRep;
 using Project.ENTITIES.Models;
+using Project.MVCUI.Models.ShoppingTools;
 using Project.MVCUI.VMClasses;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,56 @@ namespace Project.MVCUI.Controllers
             };
 
             return View(pvm);
+        }
+
+        public ActionResult AddToCart(int id)
+        {
+            Cart c = Session["scart"] != null ? Session["scart"] as Cart : new Cart();
+
+            Product UpcomingProduct = _pRep.Find(id);
+
+            CartItem ci = new CartItem
+            {
+                ID = UpcomingProduct.ID,
+                Name = UpcomingProduct.Name,
+                Price = UpcomingProduct.UnitPrice,
+                ImagePath = UpcomingProduct.ImagePath
+            };
+
+            c.SepeteEkle(ci);
+            Session["scart"] = c;
+            return RedirectToAction("ShoppingList");           
+        }
+
+        public ActionResult DeleteFromCart(int id)
+        {
+            if (Session["scart"] != null)
+            {
+                Cart c = Session["scart"] as Cart;
+
+                c.SepettenSil(id);
+
+                if (c.Sepetim.Count == 0)
+                {
+                    Session.Remove("scart");
+                    return RedirectToAction("ShoppingList");
+                }
+                return RedirectToAction("CartPage");
+            }
+            return RedirectToAction("ShoppingList");
+        }
+
+        public ActionResult CartPage()
+        {
+            if (Session["scart"] != null)
+            {
+                CartPageVM cpvm = new CartPageVM
+                {
+                    Cart = Session["scart"] as Cart
+                };
+                return View(cpvm);
+            }
+            return RedirectToAction("ShoppingList");
         }
     }
 }

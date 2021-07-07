@@ -1821,6 +1821,7 @@
     <Compile Include="Models\ShoppingTools\CartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VMClasses\AppUserVM.cs" />
+    <Compile Include="VMClasses\CartPageVM.cs" />
     <Compile Include="VMClasses\CategoryVM.cs" />
     <Compile Include="VMClasses\PAVM.cs" />
     <Compile Include="VMClasses\ProductVM.cs" />
@@ -1999,6 +2000,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shopping\ShoppingList.cshtml" />
     <Content Include="Views\Shopping\ProductDetail.cshtml" />
+    <Content Include="Views\Shopping\CartPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
