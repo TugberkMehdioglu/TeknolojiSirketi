@@ -81,12 +81,12 @@ namespace Project.MVCUI.Controllers
                     Session.Remove("scart");
                     return RedirectToAction("ShoppingList");
                 }
-                return RedirectToAction("CartPage");
+                return RedirectToAction("CardPage");
             }
             return RedirectToAction("ShoppingList");
         }
 
-        public ActionResult CartPage()
+        public ActionResult CardPage()
         {
             if (Session["scart"] != null)
             {

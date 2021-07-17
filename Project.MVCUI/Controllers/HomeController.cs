@@ -60,5 +60,16 @@ namespace Project.MVCUI.Controllers
             ViewBag.Active = "Lütfen Mail'inize yolladığımız link'e tıklayarak hesabınızı aktif hale getiriniz";
             return View("Login");
         }
+
+
+        public ActionResult LogOut()
+        {
+            if (Session["member"] != null || Session["admin"] != null)
+            {
+                Session.RemoveAll();
+                return RedirectToAction("ShoppingList", "Shopping");
+            }
+            else return RedirectToAction("ShoppingList", "Shopping");
+        }
     }
 }

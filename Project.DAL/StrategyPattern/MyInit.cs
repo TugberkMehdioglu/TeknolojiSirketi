@@ -50,6 +50,7 @@ namespace Project.DAL.StrategyPattern
                 ID = 2,
                 FirstName = "Hakkı",
                 LastName = "Ünal",
+                ImagePath = "/Pictures/anonim.png"
             };
 
             Address adres = new ENTITIES.Models.Address

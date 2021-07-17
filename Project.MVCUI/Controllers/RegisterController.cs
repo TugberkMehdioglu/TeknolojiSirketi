@@ -54,7 +54,7 @@ namespace Project.MVCUI.Controllers
             //Her kullanıcının şifresini kriptolu şekilde DB'de tutuyoruz
             //Hem Password hem de ConfirmPassword'e aynı kriptolu şifreyi atamazsak validation error alırız
             au.Password = au.ConfirmPassword = DantexCryptex.Crypt(au.Password);
-            up.ImagePath = "~/Pictures/anonim.png";//İlk kayıtta herkese anonim resmi atadık
+            up.ImagePath = "/Pictures/anonim.png";//İlk kayıtta herkese anonim resmi atadık
             _auRep.Add(au);
 
             up.ID = au.ID;//Bire-bir ilişki tamamlaması
