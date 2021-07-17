@@ -1823,6 +1823,7 @@
     <Compile Include="VMClasses\AppUserVM.cs" />
     <Compile Include="VMClasses\CartPageVM.cs" />
     <Compile Include="VMClasses\CategoryVM.cs" />
+    <Compile Include="VMClasses\OrderVM.cs" />
     <Compile Include="VMClasses\PAVM.cs" />
     <Compile Include="VMClasses\ProductVM.cs" />
   </ItemGroup>
@@ -2001,6 +2002,7 @@
     <Content Include="Views\Shopping\ShoppingList.cshtml" />
     <Content Include="Views\Shopping\ProductDetail.cshtml" />
     <Content Include="Views\Shopping\CartPage.cshtml" />
+    <Content Include="Views\Shopping\ConfirmOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2021,6 +2023,10 @@
     <ProjectReference Include="..\Project.COMMON\Project.COMMON.csproj">
       <Project>{A89AA01D-CF83-41FF-841F-E8FCF28407F3}</Project>
       <Name>Project.COMMON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.DTO\Project.DTO.csproj">
+      <Project>{6748E7BB-6CD2-405B-9C82-936C466E5C25}</Project>
+      <Name>Project.DTO</Name>
     </ProjectReference>
     <ProjectReference Include="..\Project.ENTITIES\Project.ENTITIES.csproj">
       <Project>{D0728F2C-6C30-44C9-AC69-D67C091DB5BC}</Project>

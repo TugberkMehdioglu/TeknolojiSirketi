@@ -1,0 +1,120 @@
+﻿@model OrderVM
+@{
+    ViewBag.Title = "ConfirmOrder";
+}
+
+
+<style>
+    .field-validation-error {
+        color: red
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Sipariş Tamamla
+            </header>
+            <div class="panel-body">
+                <div class="stepy-tab">
+                    <ul id="default-titles" class="stepy-titles clearfix">
+                        <li id="default-title-0" class="current-step">
+                            <div>Kart Bilgileri</div>
+                        </li>
+                        <li id="default-title-1" class="">
+                            <div>Adres</div>
+                        </li>
+                        <li id="default-title-2" class="">
+                            <div>Onayla</div>
+                        </li>
+                    </ul>
+                </div>
+                @using (Html.BeginForm("ConfirmOrder", "Shopping", FormMethod.Post, new { @class = "form-horizontal", @id = "default" }))
+                {
+                    <fieldset title="Kart Bilgileri" class="step" id="default-step-0">
+                        <legend> </legend>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Kart Üzerindeki İsim Soyisim: </label>
+                            <div class="col-lg-10">
+                                @Html.ValidationMessageFor(x => x.PaymentDTO.CardUserName)
+                                @Html.TextBoxFor(x => x.PaymentDTO.CardUserName, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Kart Numarası: </label>
+                            <div class="col-lg-10">
+                                @Html.ValidationMessageFor(x => x.PaymentDTO.CardNumber)
+                                @Html.TextBoxFor(x => x.PaymentDTO.CardNumber, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Güvenlik Numarası: </label>
+                            <div class="col-lg-10">
+                                @Html.ValidationMessageFor(x => x.PaymentDTO.SecurityNumber)
+                                @Html.TextBoxFor(x => x.PaymentDTO.SecurityNumber, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Son Kullanma Tarihi(Ay): </label>
+                            <div class="col-lg-10">
+                                @Html.ValidationMessageFor(x => x.PaymentDTO.CardExpiryMonth)
+                                @Html.TextBoxFor(x => x.PaymentDTO.CardExpiryMonth, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Son Kullanma Tarihi(Yıl): </label>
+                            <div class="col-lg-10">
+                                @Html.ValidationMessageFor(x => x.PaymentDTO.CardExpiryYear)
+                                @Html.TextBoxFor(x => x.PaymentDTO.CardExpiryYear, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                    </fieldset>
+                    <fieldset title="Adres" class="step" id="default-step-1">
+                        <legend> </legend>
+
+                        @foreach (Address item in Model.Addresses)
+                        {
+                            <div class="form-group">
+
+                                <label class="col-lg-2">@item.Name : </label>
+                                <div class="col-lg-6">
+                                    @item.FullAddress
+                                </div>
+                                <div class="col-lg-4">
+                                    @Html.ValidationMessageFor(x => x.Order.AddressID)
+                                    @Html.RadioButtonFor(x => x.Order.AddressID, item.ID)
+                                </div>
+                            </div>
+                        }
+                    </fieldset>
+                    <button class="finish btn btn-danger">Siparişi Tamamla</button>
+                }
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+<script>
+    //step wizard
+    $(function () {
+        $('#default').stepy({
+            backLabel: 'Geri',
+            block: true,
+            nextLabel: 'İleri',
+            titleClick: true,
+            titleTarget: '.stepy-tab'
+        });
+    });
+</script>

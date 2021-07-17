@@ -98,5 +98,30 @@ namespace Project.MVCUI.Controllers
             }
             return RedirectToAction("ShoppingList");
         }
+
+        public ActionResult ConfirmOrder()
+        {
+            if (Session["member"] == null)
+            {
+                TempData["siparis"] = "Siparişi tamamlamak için lütfen giriş yapınız";
+                return RedirectToAction("Login", "Home");
+            }
+            else 
+            {
+                AppUser au = Session["member"] as AppUser;
+                OrderVM ovm = new OrderVM
+                {
+                    Addresses = au.Profile.Addresses
+                };
+
+                return View(ovm);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmOrder(OrderVM ovm)
+        {
+            return View();
+        }
     }
 }

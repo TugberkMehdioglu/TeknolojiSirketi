@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace Project.ENTITIES.Models
         //------
 
         public decimal TotalPrice { get; set; }
+
+        [Required(ErrorMessage ="Bu alan zorunludur")]
         public int AddressID { get; set; }
         public int AppUserID { get; set; }
 
