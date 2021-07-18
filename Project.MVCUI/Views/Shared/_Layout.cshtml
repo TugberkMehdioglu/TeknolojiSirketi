@@ -28,7 +28,7 @@
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
-
+    <script src="~/OuterTools/assets/jquery-knob/js/jquery.knob.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
@@ -66,8 +66,8 @@
                             </a>
                             <ul class="dropdown-menu extended logout">
                                 <div class="log-arrow-up"></div>
-                                <li><a href="#"><i class=" icon-shopping-cart"></i>Sepet</a></li>
-                                <li><a href="#"><i class="icon-cog"></i> Profil</a></li>
+                                <li><a href="@Url.Action("CardPage", "Shopping")"><i class=" icon-shopping-cart"></i>Sepet</a></li>
+                                <li><a href="@Url.Action("Profile", "Home")"><i class="icon-cog"></i> Profil</a></li>
                                 <li><a href="#"><i class="icon-bell-alt"></i> Notification</a></li>
                                 <li><a href="@Url.Action("LogOut", "Home")"><i class="icon-signout"></i> Çıkış Yap</a></li>
                             </ul>
@@ -273,6 +273,8 @@
     <script src="~/OuterTools/js/owl.carousel.js"></script>
     <script src="~/OuterTools/js/jquery.customSelect.min.js"></script>
     <script src="~/OuterTools/js/respond.min.js"></script>
+
+
 
     <script class="include" type="text/javascript" src="~/OuterTools/js/jquery.dcjqaccordion.2.7.js"></script>
 

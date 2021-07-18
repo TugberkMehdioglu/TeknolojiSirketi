@@ -2,6 +2,7 @@
 using Project.COMMON.Tools;
 using Project.ENTITIES.Enums;
 using Project.ENTITIES.Models;
+using Project.MVCUI.VMClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +71,21 @@ namespace Project.MVCUI.Controllers
                 return RedirectToAction("ShoppingList", "Shopping");
             }
             else return RedirectToAction("ShoppingList", "Shopping");
+        }
+
+        public ActionResult Profile()
+        {
+            if (Session["member"] != null)
+            {
+                ProfileVM pvm = new ProfileVM
+                {
+                    User = Session["member"] as AppUser,
+                    Profile = (Session["member"] as AppUser).Profile
+                };
+
+                return View(pvm);
+            }
+            else return RedirectToAction("Login");
         }
     }
 }

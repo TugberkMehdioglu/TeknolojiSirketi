@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\PaymentDTO.cs" />
+    <Compile Include="Models\StockDropDTO.cs" />
     <Compile Include="Models\StockDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

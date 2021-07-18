@@ -1826,6 +1826,7 @@
     <Compile Include="VMClasses\OrderVM.cs" />
     <Compile Include="VMClasses\PAVM.cs" />
     <Compile Include="VMClasses\ProductVM.cs" />
+    <Compile Include="VMClasses\ProfileVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -2001,8 +2002,9 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shopping\ShoppingList.cshtml" />
     <Content Include="Views\Shopping\ProductDetail.cshtml" />
-    <Content Include="Views\Shopping\CartPage.cshtml" />
+    <Content Include="Views\Shopping\CardPage.cshtml" />
     <Content Include="Views\Shopping\ConfirmOrder.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

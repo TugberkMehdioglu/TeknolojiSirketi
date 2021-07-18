@@ -1,11 +1,14 @@
 ﻿using PagedList;
 using Project.BLL.DesignPatterns.GenericRepository.ConcRep;
+using Project.COMMON.Tools;
 using Project.ENTITIES.Models;
 using Project.MVCUI.Models.ShoppingTools;
 using Project.MVCUI.VMClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -121,7 +124,69 @@ namespace Project.MVCUI.Controllers
         [HttpPost]
         public ActionResult ConfirmOrder(OrderVM ovm)
         {
-            return View();
+            Cart c = Session["scart"] as Cart;
+
+            ovm.PaymentDTO.ShoppingPrice = ovm.Order.TotalPrice = c.TotalPrice;
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44309/api/");
+                Task<HttpResponseMessage> postTask = client.PostAsJsonAsync("Payment/ReceivePayment", ovm.PaymentDTO);
+
+                HttpResponseMessage result;
+
+                try
+                {
+                    result = postTask.Result;
+                }
+                catch (Exception)
+                {
+                    TempData["hata"] = "Banka bağlantıyı reddetti, lütfen bankanızla iletişime geçin";
+                    return RedirectToAction("ShoppingList");
+                }
+
+                if (result.IsSuccessStatusCode)
+                {
+                    AppUser user = Session["member"] as AppUser;
+                    Order order = new Order()
+                    {
+                        UserName = user.UserName,
+                        Email = user.Email,
+                        AddressID = ovm.Order.AddressID,
+                        AppUserID = user.ID,
+                        TotalPrice = ovm.Order.TotalPrice
+                    };
+                    _oRep.Add(order);
+
+                    foreach (CartItem item in c.Sepetim)
+                    {
+                        OrderDetail od = new OrderDetail
+                        {
+                            OrderID = order.ID,
+                            ProductID = item.ID,
+                            Quantity = item.Amount,
+                            TotalPrice = item.SubTotal
+                        };
+                        _odRep.Add(od);
+                    }
+
+                    TempData["odeme"] = "Siparişiniz alınmıştır, teşekkür ederiz";
+
+                    MailService.Send(user.Email, subject: "Sipariş", body: $"Siparişiniz başarıyla alınmıştır, sipariş tutarınız: {c.TotalPrice.ToString("C2")}");
+                    return RedirectToAction("ShoppingList");
+
+                }
+                else
+                {
+                    TempData["hata"] = "Ödeme ile ilgili bir sorun oluştu, lütfen bankanızla iletişime geçin";
+                    return RedirectToAction("ShoppingList");
+                }
+            }
+
+            
+
+
+                return View();
         }
     }
 }
