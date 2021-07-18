@@ -1,0 +1,133 @@
+﻿@model ProfileVM
+@{
+    ViewBag.Title = "AddAddress";
+}
+
+<section id="container" class="">
+    <div class="row">
+        <aside class="profile-nav col-lg-3">
+            <section class="panel">
+                <div class="user-heading round">
+                    <a href="#">
+                        <img src="@Model.Profile.ImagePath" alt="Resim Yok">
+                    </a>
+                    <h1>@Model.Profile.FullName</h1>
+                    <p>@Model.User.Email</p>
+                </div>
+
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="@Url.Action("ProfileDetail", "Home")"> <i class="icon-user"></i> Profil</a></li>
+                    <li><a href="@Url.Action("EditProfile", "Home", new { id=Model.User.ID})"> <i class="icon-edit"></i> Profili düzenle</a></li>
+                    <li><a href="@Url.Action("Addresses")"> <i class="icon-road"></i> Adresler</a></li>
+                </ul>
+
+            </section>
+        </aside>
+        <aside class="profile-info col-lg-9">
+            <section class="panel">
+                <div class="bio-graph-heading">
+                    ADRES EKLE
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        @using (Html.BeginForm())
+                        {
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">Adres Adı: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.Address.Name)
+                                    @Html.TextBoxFor(x => x.Address.Name, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <br /><br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">Ülke: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.Address.Country)
+                                    @Html.TextBoxFor(x => x.Address.Country, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">İl: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.Address.City)
+                                    @Html.TextBoxFor(x => x.Address.City, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">İlçe: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.Address.District)
+                                    @Html.TextBoxFor(x => x.Address.District, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">Mahalle: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.Address.Neighborhood)
+                                    @Html.TextBoxFor(x => x.Address.Neighborhood, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">Sokak: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.Address.Street)
+                                    @Html.TextBoxFor(x => x.Address.Street, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">Apartman No: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.Address.AptNo)
+                                    @Html.TextBoxFor(x => x.Address.AptNo, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">Kapı No: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.Address.Flat)
+                                    @Html.TextBoxFor(x => x.Address.Flat, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">Ekle: </label>
+                                <div class="col-lg-10">
+                                    <button class="btn btn-round btn-success">Ekle</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </section>
+        </aside>
+    </div>
+</section>
+
+<script>
+
+    $(".knob").knob();
+
+</script>

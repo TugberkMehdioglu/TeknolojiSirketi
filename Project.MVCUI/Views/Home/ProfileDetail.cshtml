@@ -19,6 +19,7 @@
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><a href="@Url.Action("ProfileDetail")"> <i class="icon-user"></i> Profil</a></li>
                     <li><a href="@Url.Action("EditProfile", new { id=Model.User.ID})"> <i class="icon-edit"></i> Profili düzenle</a></li>
+                    <li><a href="@Url.Action("Addresses", "Address")"> <i class="icon-road"></i> Adresler</a></li>
                 </ul>
 
             </section>
@@ -49,26 +50,23 @@
                 </div>
             </section>
 
+
             <div class="bio-graph-heading">
                 Adresler
             </div>
 
-            <section>
+            <section class="panel-body">
                 <div class="row">
                     @foreach (Address item in Model.Profile.Addresses)
                     {
-                        <div class="col-lg-6">
-                            <div class="panel" style="width:625px; height:125px;">
-                                <div class="panel-body">
-                                    <div>
-                                        <h4 style="font-size:x-large; font-weight:bold ">@item.Name :</h4>
-                                    </div>
-                                    <div class="bio-desk">
-                                        <p>@item.FullAddress</p>
-                                    </div>
-                                </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2" style="font-size:large">@item.Name: </label>
+                            <div class="col-lg-10" style="font-size:medium">
+                                @item.FullAddress
                             </div>
                         </div>
+
+                        <br /><br /><br /><br />
                     }
                 </div>
             </section>

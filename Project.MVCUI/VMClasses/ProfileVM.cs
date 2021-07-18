@@ -10,7 +10,7 @@ namespace Project.MVCUI.VMClasses
     {
         public AppUser User { get; set; }
         public UserProfile Profile { get; set; }
-
+        public Address Address { get; set; }
 
     }
 }

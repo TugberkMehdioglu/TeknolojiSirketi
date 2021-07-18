@@ -1811,6 +1811,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ShoppingController.cs" />
@@ -2006,6 +2007,9 @@
     <Content Include="Views\Shopping\ConfirmOrder.cshtml" />
     <Content Include="Views\Home\ProfileDetail.cshtml" />
     <Content Include="Views\Home\EditProfile.cshtml" />
+    <Content Include="Views\Address\Addresses.cshtml" />
+    <Content Include="Views\Address\AddAddress.cshtml" />
+    <Content Include="Views\Address\UpdateAddress.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
