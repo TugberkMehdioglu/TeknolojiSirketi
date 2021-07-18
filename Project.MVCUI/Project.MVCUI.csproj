@@ -2004,7 +2004,8 @@
     <Content Include="Views\Shopping\ProductDetail.cshtml" />
     <Content Include="Views\Shopping\CardPage.cshtml" />
     <Content Include="Views\Shopping\ConfirmOrder.cshtml" />
-    <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Home\ProfileDetail.cshtml" />
+    <Content Include="Views\Home\EditProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

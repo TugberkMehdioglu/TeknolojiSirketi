@@ -14,9 +14,11 @@ namespace Project.MVCUI.Controllers
     public class HomeController : Controller
     {
         AppUserRep _auRep;
+        UserProfileRep _upRep;
         public HomeController()
         {
             _auRep = new AppUserRep();
+            _upRep = new UserProfileRep();
         }
         public ActionResult Login()
         {
@@ -73,7 +75,7 @@ namespace Project.MVCUI.Controllers
             else return RedirectToAction("ShoppingList", "Shopping");
         }
 
-        public ActionResult Profile()
+        public ActionResult ProfileDetail()
         {
             if (Session["member"] != null)
             {
@@ -86,6 +88,44 @@ namespace Project.MVCUI.Controllers
                 return View(pvm);
             }
             else return RedirectToAction("Login");
+        }
+
+        public ActionResult EditProfile(int id)
+        {
+            if (id > 0)
+            {
+                ProfileVM pvm = new ProfileVM
+                {
+                    User = _auRep.Find(id),
+                    Profile = _auRep.Find(id).Profile
+                };
+
+                return View(pvm);
+            }
+            else return RedirectToAction("ShoppingList");
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(ProfileVM profileVM, HttpPostedFileBase photo)
+        {
+            //Resim yüklenmemiş ise anonim resmi yüklüyoruz
+            if (photo == null) profileVM.Profile.ImagePath = "/Pictures/anonim.png";
+
+            else profileVM.Profile.ImagePath = ImageUploader.UploadImage("/Pictures/", photo);
+
+            profileVM.User.Password = profileVM.User.ConfirmPassword = DantexCryptex.Crypt(profileVM.User.Password);
+
+            //Validation olduğu için BLL'de currentValue.setValue yapılmasına rağmen bu değerleri yeniden istiyor
+            AppUser au = new AppUser();
+            au = _auRep.Find(profileVM.User.ID);
+            profileVM.User.Profile = au.Profile;
+            profileVM.User.Active = au.Active;
+            profileVM.User.Email = au.Email;
+            
+
+            _auRep.Update(profileVM.User);
+
+            return RedirectToAction("ProfileDetail");
         }
     }
 }

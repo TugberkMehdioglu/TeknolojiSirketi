@@ -1,0 +1,119 @@
+﻿@model ProfileVM
+@{
+    ViewBag.Title = "EditProfile";
+}
+
+<section id="container" class="">
+    <!-- page start-->
+    <div class="row">
+        <aside class="profile-nav col-lg-3">
+            <section class="panel">
+                <div class="user-heading round">
+                    <a href="#">
+                        <img src="@Model.Profile.ImagePath" alt="Resim Yok">
+                    </a>
+                    <h1>@Model.Profile.FullName</h1>
+                    <p>@Model.User.Email</p>
+                </div>
+
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="@Url.Action("ProfileDetail")"> <i class="icon-user"></i> Profil</a></li>
+                    <li class="active"><a href="@Url.Action("EditProfile", new { id=Model.User.ID})"> <i class="icon-edit"></i> Profili düzenle</a></li>
+                </ul>
+
+            </section>
+        </aside>
+        <aside class="profile-info col-lg-9">
+            <section class="panel">
+                <div class="bio-graph-heading">
+                    PROFİL DÜZENLE
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        @using (Html.BeginForm("EditProfile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.HiddenFor(x => x.User.ID)
+                            @Html.HiddenFor(x => x.Profile.ID)
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">Kullanıcı Adı: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.User.UserName)
+                                    @Html.TextBoxFor(x => x.User.UserName, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <br /><br /><br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">İsim: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.Profile.FirstName)
+                                    @Html.TextBoxFor(x => x.Profile.FirstName, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <br /><br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">Soyisim: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.Profile.LastName)
+                                    @Html.TextBoxFor(x => x.Profile.LastName, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <br /><br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">Şifre: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.User.Password)
+                                    @Html.PasswordFor(x => x.User.Password, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <br /><br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">Şifre: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.User.ConfirmPassword)
+                                    @Html.PasswordFor(x => x.User.ConfirmPassword, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <br /><br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">Fotoğraf: </label>
+                                <div class="col-lg-10">
+                                    @Html.ValidationMessageFor(x => x.Profile.ImagePath)
+                                    <input type="file" name="photo" class="form-control" />
+                                </div>
+                            </div>
+
+                            <br /><br /><br />
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" style="font-size:large">Güncelle: </label>
+                                <div class="col-lg-10">
+                                    <button class="btn btn-success text-center">Güncelle</button>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </section>
+        </aside>
+    </div>
+
+    <!-- page end-->
+</section>
+<!--main content end-->
+<script>
+
+    $(".knob").knob();
+
+</script>
