@@ -14,8 +14,6 @@ namespace Project.MAP.Options
         {
             HasOptional(x => x.Profile).WithRequired(x => x.User); //Bire - bir ilişki tamamlaması
 
-            Ignore(x => x.ConfirmPassword);
-
             ToTable("Kullanıcılar");
 
             Property(x => x.UserName).HasColumnName("Kullanıcı Adı").HasMaxLength(30).IsRequired();

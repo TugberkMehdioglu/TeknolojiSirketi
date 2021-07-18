@@ -108,22 +108,21 @@ namespace Project.MVCUI.Controllers
         [HttpPost]
         public ActionResult EditProfile(ProfileVM profileVM, HttpPostedFileBase photo)
         {
-            //Resim yüklenmemiş ise anonim resmi yüklüyoruz
-            if (photo == null) profileVM.Profile.ImagePath = "/Pictures/anonim.png";
+            AppUser au = _auRep.Find(profileVM.User.ID);
+
+            //Resim yüklenmemiş ise önceden yüklenmiş fotoğrafı atıyoruz
+            if (photo == null) profileVM.Profile.ImagePath = au.Profile.ImagePath;
 
             else profileVM.Profile.ImagePath = ImageUploader.UploadImage("/Pictures/", photo);
 
             profileVM.User.Password = profileVM.User.ConfirmPassword = DantexCryptex.Crypt(profileVM.User.Password);
 
-            //Validation olduğu için BLL'de currentValue.setValue yapılmasına rağmen bu değerleri yeniden istiyor
-            AppUser au = new AppUser();
-            au = _auRep.Find(profileVM.User.ID);
-            profileVM.User.Profile = au.Profile;
-            profileVM.User.Active = au.Active;
+            //Validation Email'i zorunlu tutuyor ve burada active'i atamazsak otomatik false'a çeker
             profileVM.User.Email = au.Email;
-            
+            profileVM.User.Active = au.Active;
 
             _auRep.Update(profileVM.User);
+            _upRep.Update(profileVM.Profile);
 
             return RedirectToAction("ProfileDetail");
         }
