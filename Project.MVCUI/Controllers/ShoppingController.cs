@@ -1,6 +1,7 @@
 ﻿using PagedList;
 using Project.BLL.DesignPatterns.GenericRepository.ConcRep;
 using Project.COMMON.Tools;
+using Project.DTO.Models;
 using Project.ENTITIES.Models;
 using Project.MVCUI.Models.ShoppingTools;
 using Project.MVCUI.VMClasses;
@@ -158,6 +159,9 @@ namespace Project.MVCUI.Controllers
                     };
                     _oRep.Add(order);
 
+                    List<StockDropDTO> listDrop = new List<StockDropDTO>();//DepoAPI için
+                    CargoDTO cargo = new CargoDTO(); //KargoAPI için
+
                     foreach (CartItem item in c.Sepetim)
                     {
                         OrderDetail od = new OrderDetail
@@ -168,25 +172,104 @@ namespace Project.MVCUI.Controllers
                             TotalPrice = item.SubTotal
                         };
                         _odRep.Add(od);
+
+                        //DepoAPI'dan da stok düşürücez
+                        StockDropDTO dropDTO = new StockDropDTO
+                        {
+                            ID = item.ID,
+                            Quantity = item.Amount
+                        };
+
+                        listDrop.Add(dropDTO);
                     }
 
-                    TempData["odeme"] = "Siparişiniz alınmıştır, teşekkür ederiz";
+                    using (HttpClient client2 = new HttpClient())
+                    {
+                        client2.BaseAddress = new Uri("https://localhost:44339/api/");
+                        Task<HttpResponseMessage> postTask2 = client2.PostAsJsonAsync("Home/StockDrop", listDrop);
 
-                    MailService.Send(user.Email, subject: "Sipariş", body: $"Siparişiniz başarıyla alınmıştır, sipariş tutarınız: {c.TotalPrice.ToString("C2")}");
-                    return RedirectToAction("ShoppingList");
+                        HttpResponseMessage result2;
 
+                        try
+                        {
+                            result2 = postTask2.Result;
+                        }
+                        catch (Exception)
+                        {
+                            TempData["hata"] = "Depo bağlantıyı reddetti, lütfen müşteri hizmetleri ile iletişime geçiniz";
+                            return RedirectToAction("ShoppingList");
+                        }
+
+                        if (result2.IsSuccessStatusCode)
+                        {
+                            foreach (CartItem item in c.Sepetim)
+                            {
+                                Product toBeUpdated = _pRep.Find(item.ID);
+                                toBeUpdated.UnitInStock -= item.Amount;
+                                _pRep.Update(toBeUpdated);
+                            }
+
+                            cargo.FirstName = user.Profile.FirstName;
+                            cargo.LastName = user.Profile.LastName;
+                            cargo.Email = user.Email;
+                            cargo.Phone = "111111"; //CargoAPI'da phone zorunlu ama bu projemizde olmadığı için bu şekilde yaptık
+
+                            foreach (Address item in user.Profile.Addresses)
+                            {
+                                if (order.AddressID == item.ID) 
+                                {
+                                    cargo.Address = item.FullAddress;
+                                    cargo.Country = item.Country;
+                                    cargo.City = item.City;
+                                } 
+                            }
+
+                            using (HttpClient client3 = new HttpClient())
+                            {
+                                client3.BaseAddress = new Uri("https://localhost:44351/api/");
+                                Task<HttpResponseMessage> postTask3 = client3.PostAsJsonAsync("Home/CargoOrder", cargo);
+
+                                HttpResponseMessage result3;
+
+                                try
+                                {
+                                    result3 = postTask.Result;
+                                }
+                                catch (Exception)
+                                {
+                                    TempData["hata"] = "Kargo şirketi bağlantıyı reddetti, lütfen müşteri hizmetleri ile iletişime geçiniz";
+                                    return RedirectToAction("ShoppingList");
+                                }
+
+                                if (result3.IsSuccessStatusCode)
+                                {
+                                    TempData["odeme"] = "Siparişiniz alınmıştır, teşekkür ederiz";
+
+                                    MailService.Send(user.Email, subject: "Sipariş", body: $"Siparişiniz başarıyla alınmıştır, sipariş tutarınız: {c.TotalPrice.ToString("C2")}");
+                                    c.Sepetim.Clear();//Sepeti temizledik
+                                    Session.Remove("scart");//Sepeti temizledik
+                                    return RedirectToAction("ShoppingList");
+                                }
+                                else
+                                {
+                                    TempData["hata"] = "Kargo şirketi ile ilgili bir sorun oluştu, lütfen müşteri hizmetleri ile iletişime geçin";
+                                    return RedirectToAction("ShoppingList");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            TempData["hata"] = "Depo ile ilgili bir sorun oluştu, lütfen müşteri hizmetleri ile iletişime geçin";
+                            return RedirectToAction("ShoppingList");
+                        }
+                    }
                 }
                 else
                 {
                     TempData["hata"] = "Ödeme ile ilgili bir sorun oluştu, lütfen bankanızla iletişime geçin";
                     return RedirectToAction("ShoppingList");
                 }
-            }
-
-            
-
-
-                
+            }               
         }
     }
 }

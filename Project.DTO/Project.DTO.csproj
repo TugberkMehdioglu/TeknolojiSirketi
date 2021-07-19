@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CargoDTO.cs" />
     <Compile Include="Models\PaymentDTO.cs" />
     <Compile Include="Models\StockDropDTO.cs" />
     <Compile Include="Models\StockDTO.cs" />

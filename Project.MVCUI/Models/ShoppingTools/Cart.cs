@@ -46,7 +46,7 @@ namespace Project.MVCUI.Models.ShoppingTools
         {
             get
             {
-                return _sepetim.Values.Sum(x => x.SubTotal);
+                return _sepetim.Sum(x => x.Value.SubTotal);
             } 
         }
     }
