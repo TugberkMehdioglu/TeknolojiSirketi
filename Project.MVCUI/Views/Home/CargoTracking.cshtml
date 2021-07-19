@@ -1,0 +1,65 @@
+﻿@model CargoDTO
+@{
+    ViewBag.Title = "CargoTracking";
+}
+
+<h3 class="text-center">KARGO TAKİP</h3>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel panel-body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kargo Takip No</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" class="form-control" id="txtID" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <input type="button" value="Sorgula" class="btn btn-round btn-primary" id="btnSorgula" /> <!--Direk <button> yapmamamızın sebebi post özelliğini kullanmadığımızdan-->
+            <br />
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel panel-body">
+            <table id="tab1" class="table table-hover">
+                <tr>
+                    <th>Takip No</th>
+                    <th>Kargolanma Tarihi</th>
+                    <th>Teslim Tarihi</th>
+                    <th>Durum</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(function () {
+
+        $("#btnSorgula").click(function () {
+
+            $.ajax({
+
+                url: "https://localhost:44351/api/Home/GetCargo",
+                typ: "GET",
+                data: { id: $("#txtID").val() },
+                success: function (data) {
+
+                    $("#tab1").find("tr:gt(0)").remove();
+                    $("#tab1").append("<tbody><tr><td>" + data.ID + "</td><td>" + data.ShippedDate + "</td><td>" + data.DeliveryDate + "</td><td>" + data.Status +"</td></tr></tbody>")
+                }
+            })
+        })
+    })
+
+</script>

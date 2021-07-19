@@ -126,5 +126,10 @@ namespace Project.MVCUI.Controllers
 
             return RedirectToAction("ProfileDetail");
         }
+
+        public ActionResult CargoTracking()
+        {
+            return View();
+        }
     }
 }
