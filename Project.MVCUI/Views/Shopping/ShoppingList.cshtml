@@ -31,8 +31,66 @@
                 </ul>
             </div>
         </section>
-        
-        
+        <section class="panel">
+            <header class="panel-heading">
+                Önerilen Ürünler
+            </header>
+            <div class="panel-body">
+                <div class="best-seller">
+                    @{
+                        Product element = Model.Products.Where(x => x.ID == 1).FirstOrDefault();
+
+                        <article class="media">
+                            <a class="pull-left thumb p-thumb">
+                                <img src="@element.ImagePath">
+                            </a>
+                            <div class="media-body">
+                                <a href="@Url.Action("ProductDetail", new { id=element.ID})" class=" p-head">@element.Name</a>
+                                <p>@element.UnitPrice.ToString("C2")</p>
+                            </div>
+                        </article>
+
+                        Product element2 = Model.Products.Where(x => x.ID == 6).FirstOrDefault();
+
+                        <article class="media">
+                            <a class="pull-left thumb p-thumb">
+                                <img src="@element2.ImagePath">
+                            </a>
+                            <div class="media-body">
+                                <a href="@Url.Action("ProductDetail", new { id=element2.ID})" class=" p-head">@element2.Name</a>
+                                <p>@element2.UnitPrice.ToString("C2")</p>
+                            </div>
+                        </article>
+
+                        Product element3 = Model.Products.Where(x => x.ID == 11).FirstOrDefault();
+
+                        <article class="media">
+                            <a class="pull-left thumb p-thumb">
+                                <img src="@element3.ImagePath">
+                            </a>
+                            <div class="media-body">
+                                <a href="@Url.Action("ProductDetail", new { id=element3.ID})" class=" p-head">@element3.Name</a>
+                                <p>@element3.UnitPrice.ToString("C2")</p>
+                            </div>
+                        </article>
+
+                        Product element4 = Model.Products.Where(x => x.ID == 16).FirstOrDefault();
+
+                        <article class="media">
+                            <a class="pull-left thumb p-thumb">
+                                <img src="@element4.ImagePath">
+                            </a>
+                            <div class="media-body">
+                                <a href="@Url.Action("ProductDetail", new { id=element4.ID})" class=" p-head">@element4.Name</a>
+                                <p>@element4.UnitPrice.ToString("C2")</p>
+                            </div>
+                        </article>
+                    }
+                </div>
+            </div>
+        </section>
+
+
     </div>
     <div class="col-md-9">
         <section class="panel">

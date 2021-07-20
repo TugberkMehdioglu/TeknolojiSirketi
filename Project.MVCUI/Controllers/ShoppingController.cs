@@ -35,7 +35,8 @@ namespace Project.MVCUI.Controllers
             PAVM pavm = new PAVM
             {
                 PagedProducts = categoryID == null ? _pRep.GetActives().ToPagedList(page ?? 1, 6) : _pRep.GetActives().Where(x => x.CategoryID == categoryID).ToPagedList(page ?? 1, 6),
-                Categories = _cRep.GetActives(),             
+                Categories = _cRep.GetActives(),
+                Products = _pRep.GetActives()
             };
 
             if (categoryID != null) ViewBag.categoryID = categoryID;
