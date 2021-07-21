@@ -1,6 +1,8 @@
 ﻿@model CategoryVM
 @{ ViewBag.Title = "CategoryList";
     Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
 <div class="text-center" style="font-family:'Agency FB'; font-size:x-large">Kategoriler</div>
 
 <div><h4>Kategori eklemek için @Html.ActionLink("tıklayınız", "AddCategory")</h4></div>
@@ -39,3 +41,16 @@
 </div>
 
 <script src="~/Areas/Admin/AdminContent/CategoryDTJ.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $("#search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#ul li").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+
+</script>

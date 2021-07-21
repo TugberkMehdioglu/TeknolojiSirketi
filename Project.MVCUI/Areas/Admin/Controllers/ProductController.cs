@@ -20,11 +20,11 @@ namespace Project.MVCUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/Product
-        public ActionResult ProductList()
+        public ActionResult ProductList(int? id)
         {
             ProductVM pvm = new ProductVM()
             {
-                Products = _pRep.GetActives()
+                Products = id == null ? _pRep.GetActives() : _pRep.GetActives().Where(x => x.CategoryID == id).ToList()
             };
             return View(pvm);
         }
