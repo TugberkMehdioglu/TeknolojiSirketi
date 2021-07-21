@@ -234,7 +234,7 @@ namespace Project.MVCUI.Controllers
 
                                 try
                                 {
-                                    result3 = postTask.Result;
+                                    result3 = postTask3.Result;
                                 }
                                 catch (Exception)
                                 {

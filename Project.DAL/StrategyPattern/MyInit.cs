@@ -64,7 +64,21 @@ namespace Project.DAL.StrategyPattern
                 AptNo = 12,
                 Flat = 8,
             };
+
+            Address adres2 = new Address
+            {
+                Name = "İş yeri",
+                Country = "Türkiye",
+                City = "İstanbul",
+                District = "Beşiktaş",
+                Neighborhood = "Etiler",
+                Street = "Toprakkale",
+                AptNo = 8,
+                Flat = 2
+            };
+
             profile.Addresses.Add(adres); //Bire-çok ilişki tamamlaması
+            profile.Addresses.Add(adres2); //Bire-çok ilişki tamamlaması
             context.Profiles.Add(profile);
             context.SaveChanges();
 
