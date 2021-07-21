@@ -1,38 +1,41 @@
 ﻿@model CategoryVM
 @{ ViewBag.Title = "CategoryList";
     Layout = "~/Views/Shared/_Layout.cshtml"; }
+<div class="text-center" style="font-family:'Agency FB'; font-size:x-large">Kategoriler</div>
+
+<div><h4>Kategori eklemek için @Html.ActionLink("tıklayınız", "AddCategory")</h4></div>
+
+<h3 style="color:green" class="text-center">@TempData["merhaba"]</h3> @*Admin giriş karşılama*@
+
 <div class="panel-body">
     <div class="adv-table">
-        <table cellpadding="0" cellspacing="0" border="0" class="table table-hover" id="hidden-table-info">
+        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
             <thead>
                 <tr>
                     <th>Kategori ID</th>
-                    <th>Kategori Ismi</th>
-                    <th class="hidden-phone">Kategori Acıklaması</th>
+                    <th>Kategori Adı</th>
+                    <th class="hidden-phone">Kategori Açıklaması</th>
                     <th class="hidden-phone">Durum</th>
-                    <th class="hidden-phone">Sil</th>
-                    <th class="hidden-phone">Güncelle</th>
+                    <th class="center hidden-phone; text-center">Güncelle</th>
+                    <th class="center hidden-phone; text-center">Sil</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (Category item in Model.Categories)
                 {
-    <tr class="gradeX">
-        <td>@item.ID</td>
-        <td>
-            @item.Name
-        </td>
-        <td class="hidden-phone">@item.Description</td>
-        <td class="center hidden-phone">@item.Status</td>
-        <td class="center hidden-phone">@Html.ActionLink("Sil", "DeleteCategory", new { id = item.ID }, new { @class = "btn btn-danger" })</td>
-        <td class="center hidden-phone">@Html.ActionLink("Güncelle", "UpdateCategory", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
-    </tr>}
-
-
-
+                    <tr class="gradeX">
+                        <td>@item.ID</td>
+                        <td>@item.Name</td>
+                        <td class="hidden-phone">@item.Description</td>
+                        <td class="center hidden-phone">@item.Status</td>
+                        <td class="center hidden-phone">@Html.ActionLink("Güncelle", "UpdateCategory", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+                        <td class="center hidden-phone">@Html.ActionLink("Sil", "DeleteCategory", new { id = item.ID }, new { @class = "btn btn-danger" })</td>
+                    </tr>
+                }
             </tbody>
         </table>
 
     </div>
 </div>
+
 <script src="~/Areas/Admin/AdminContent/CategoryDTJ.js"></script>
