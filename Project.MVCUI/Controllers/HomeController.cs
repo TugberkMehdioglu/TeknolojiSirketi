@@ -47,7 +47,7 @@ namespace Project.MVCUI.Controllers
                 if (!control.Active) return ActiveControl();
 
                 Session["admin"] = control;
-                return RedirectToAction("CategoryList", "Category");
+                return RedirectToAction("CategoryList", new { @controller= "Category", area="Admin" });
             }
             else
             {

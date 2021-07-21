@@ -50,11 +50,10 @@
                 <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
             </div>
             <!--logo start-->
-            <a href="@Url.Action("ShoppingList", "Shopping")" class="logo">Tekno<span>Center</span></a>
+            <a href="@Url.Action("ShoppingList", new { @controller="Shopping", area=""})" class="logo">Tekno<span>Center</span></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
-                
                 <!--  notification end -->
             </div>
             <div class="top-nav ">
@@ -65,27 +64,33 @@
                         <!-- user login dropdown start-->
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <img  src="@((Session["member"] as AppUser).Profile.ImagePath)" style="width:29px; height:29px;">
+                                <img src="@((Session["member"] as AppUser).Profile.ImagePath)" style="width:29px; height:29px;">
                                 <span class="username">@((Session["member"]as AppUser).Profile.FullName)</span>
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu extended logout">
                                 <div class="log-arrow-up"></div>
-                                <li><a href="@Url.Action("CardPage", "Shopping")"><i class=" icon-shopping-cart"></i>Sepet</a></li>
-                                <li><a href="@Url.Action("ProfileDetail", "Home")"><i class="icon-cog"></i> Profil</a></li>
+                                <li><a href="@Url.Action("CardPage", new { @controller="Shopping", area=""})"><i class=" icon-shopping-cart"></i>Sepet</a></li>
+                                <li><a href="@Url.Action("ProfileDetail", new { @controller="Home", area=""})"><i class="icon-cog"></i> Profil</a></li>
                                 <li><a href="#"><i class="icon-bell-alt"></i> Notification</a></li>
-                                <li><a href="@Url.Action("LogOut", "Home")"><i class="icon-signout"></i> Çıkış Yap</a></li>
+                                <li><a href="@Url.Action("LogOut", new { @controller="Home", area=""})" class="btn btn-primary"><i class="icon-signout"></i> Çıkış Yap</a></li>
                             </ul>
                         </li>
                         <!-- user login dropdown end -->
                     </ul>
                     <!--search & user info end-->
                 }
+                else if (Session["admin"] != null)
+                {
+                    <div class="nav pull-right top-menu">
+                        @Html.ActionLink("Çıkış Yap", "LogOut", new { @controller="Home", area=""}, new { @class="btn btn-round btn-primary"})
+                    </div>
+                }
                 else
                 {
                     <div class="nav pull-right top-menu">
-                        @Html.ActionLink("Giriş Yap", "Login", "Home", null, new { @class="btn btn-round btn-info"})
-                        @Html.ActionLink("Üye Ol", "RegisterNow", "Register", null, new { @class="btn btn-round btn-info"})
+                        @Html.ActionLink("Giriş Yap", "Login", "Home", new { area = "" }, new { @class = "btn btn-round btn-info" })
+                        @Html.ActionLink("Üye Ol", "RegisterNow", "Register", new { area = "" }, new { @class = "btn btn-round btn-info" })
                     </div>
                 }
             </div>
@@ -96,22 +101,35 @@
             <div id="sidebar" class="nav-collapse ">
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu" id="nav-accordion">
+                    @if (Session["admin"] != null)
+                    {
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="icon-cogs"></i>
+                                <span>Admin Paneli</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="@Url.Action("CategoryList", new { @controller="Category", area="Admin"})">Kategori İşlemleri</a></li>
+                                <li><a href="@Url.Action("ProductList", new { @controller="Product", area="Admin"})">Ürün İşlemleri</a></li>
+                            </ul>
+                        </li>
+                    }
                     <li>
-                        <a href="@Url.Action("ShoppingList", "Shopping")">
+                        <a href="@Url.Action("ShoppingList", new { @controller="Shopping", area=""})">
                             <i class="icon-th-list"></i>
                             <span>Ürünler</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="@Url.Action("CardPage", "Shopping")">
+                        <a href="@Url.Action("CardPage", new { @controller="Shopping", area=""})">
                             <i class="icon-shopping-cart"></i>
                             <span>Sepet</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="@Url.Action("CargoTracking", "Home")">
+                        <a href="@Url.Action("CargoTracking", new { @controller="Home", area=""})">
                             <i class="icon-dropbox"></i>
                             <span>Kargo Takip</span>
                         </a>
@@ -120,7 +138,7 @@
                     @if (Session["member"] != null || Session["admin"] != null)
                     {
                         <li>
-                            <a href="@Url.Action("Addresses", "Address")">
+                            <a href="@Url.Action("Addresses", new { @controller="Address", area=""})">
                                 <i class="icon-road"></i>
                                 <span>Adres</span>
                             </a>
@@ -128,7 +146,7 @@
 
 
                         <li>
-                            <a href="@Url.Action("ProfileDetail", "Home")">
+                            <a href="@Url.Action("ProfileDetail", new { @controller="Home", area=""})">
                                 <i class="icon-cog"></i>
                                 <span>Profil</span>
                             </a>
@@ -136,7 +154,7 @@
 
 
                         <li>
-                            <a href="@Url.Action("LogOut", "Home")">
+                            <a href="@Url.Action("LogOut", new { @controller="Home", area=""})">
                                 <i class="icon-signout"></i>
                                 <span>Çıkış Yap</span>
                             </a>
@@ -150,8 +168,8 @@
                                 <span>Giriş Yap</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="@Url.Action("Login", "Home")">Giriş Yap</a></li>
-                                <li><a href="@Url.Action("RegisterNow", "Register")">Üye Ol</a></li>
+                                <li><a href="@Url.Action("Login", new { @controller="Home", area=""})">Giriş Yap</a></li>
+                                <li><a href="@Url.Action("RegisterNow", new { @controller="Register", area=""})">Üye Ol</a></li>
                             </ul>
                         </li>
                     }
