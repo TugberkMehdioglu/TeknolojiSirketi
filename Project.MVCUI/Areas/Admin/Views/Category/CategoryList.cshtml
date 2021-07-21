@@ -11,39 +11,41 @@
     <input type="text" placeholder="Kategorilerde Ara" class="form-control" id="search">
 </div>
 
-
-<div class="panel-body">
-    <div class="adv-table">
-        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
-            <thead>
-                <tr>
-                    <th>Kategori ID</th>
-                    <th>Kategori Adı</th>
-                    <th class="hidden-phone">Kategori Açıklaması</th>
-                    <th class="text-center hidden-phone">Durum</th>
-                    <th class="text-center hidden-phone">Ürünleri</th>
-                    <th class="text-center hidden-phone; text-center">Güncelle</th>
-                    <th class="text-center hidden-phone; text-center">Sil</th>
-                </tr>
-            </thead>
-            <tbody id="body">
-                @foreach (Category item in Model.Categories)
-                {
-                    <tr class="gradeX" id="tr">
-                        <td>@item.ID</td>
-                        <td>@item.Name</td>
-                        <td class="hidden-phone">@item.Description</td>
-                        <td class="text-center hidden-phone">@item.Status</td>
-                        <td class="text-center hidden-phone">@Html.ActionLink("Göz at", "ProductList", new { id = item.ID, area = "admin", controller = "product" }, new { @class = "btn btn-info" })</td>
-                        <td class="text-center hidden-phone">@Html.ActionLink("Güncelle", "UpdateCategory", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
-                        <td class="text-center hidden-phone">@Html.ActionLink("Sil", "DeleteCategory", new { id = item.ID }, new { @class = "btn btn-danger" })</td>
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <div class="adv-table">
+            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+                <thead>
+                    <tr>
+                        <th>Kategori ID</th>
+                        <th>Kategori Adı</th>
+                        <th class="hidden-phone">Kategori Açıklaması</th>
+                        <th class="text-center hidden-phone">Durum</th>
+                        <th class="text-center hidden-phone">Ürünleri</th>
+                        <th class="text-center hidden-phone; text-center">Güncelle</th>
+                        <th class="text-center hidden-phone; text-center">Sil</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody id="body">
+                    @foreach (Category item in Model.Categories)
+                    {
+                        <tr class="gradeX" id="tr">
+                            <td>@item.ID</td>
+                            <td>@item.Name</td>
+                            <td class="hidden-phone">@item.Description</td>
+                            <td class="text-center hidden-phone">@item.Status</td>
+                            <td class="text-center hidden-phone">@Html.ActionLink("Göz at", "ProductList", new { id = item.ID, area = "admin", controller = "product" }, new { @class = "btn btn-info" })</td>
+                            <td class="text-center hidden-phone">@Html.ActionLink("Güncelle", "UpdateCategory", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+                            <td class="text-center hidden-phone">@Html.ActionLink("Sil", "DeleteCategory", new { id = item.ID }, new { @class = "btn btn-danger" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
 
+        </div>
     </div>
 </div>
+
 
 <script>
 
