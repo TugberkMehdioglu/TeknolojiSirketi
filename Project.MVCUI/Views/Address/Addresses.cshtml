@@ -43,6 +43,7 @@
                                 <div class="col-lg-10" style="font-size:medium">
                                     @item.FullAddress
                                     @Html.ActionLink("Sil", "DeleteAddress", new { id = item.ID }, new { @class = "btn btn-round btn-danger pull-right" })
+                                    &nbsp;
                                     @Html.ActionLink("Güncelle", "UpdateAddress", new { id = item.ID }, new { @class = "btn btn-round btn-warning pull-right" })
                                 </div>
                             </div>

@@ -3,6 +3,14 @@
     ViewBag.Title = "EditProfile";
 }
 
+<style>
+
+    .field-validation-error {
+        color: red;
+        font-weight: bolder;
+    }
+</style>
+
 <section id="container" class="">
     <div class="row">
         <aside class="profile-nav col-lg-3">
@@ -69,7 +77,7 @@
                                 <label class="control-label col-lg-2" style="font-size:large">Şifre: </label>
                                 <div class="col-lg-10">
                                     @Html.ValidationMessageFor(x => x.User.Password)
-                                    @Html.PasswordFor(x => x.User.Password, new { @class = "form-control" })
+                                    @Html.PasswordFor(x => x.User.Password, new { @class = "form-control", placeholder = "Şifre yenile" })
                                 </div>
                             </div>
 
@@ -79,7 +87,7 @@
                                 <label class="control-label col-lg-2" style="font-size:large">Şifre: </label>
                                 <div class="col-lg-10">
                                     @Html.ValidationMessageFor(x => x.User.ConfirmPassword)
-                                    @Html.PasswordFor(x => x.User.ConfirmPassword, new { @class = "form-control" })
+                                    @Html.PasswordFor(x => x.User.ConfirmPassword, new { @class = "form-control", placeholder = "Şifre doğrula" })
                                 </div>
                             </div>
 

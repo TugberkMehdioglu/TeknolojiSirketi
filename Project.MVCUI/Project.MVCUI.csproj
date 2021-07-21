@@ -2009,6 +2009,8 @@
     <Content Include="Views\Address\AddAddress.cshtml" />
     <Content Include="Views\Address\UpdateAddress.cshtml" />
     <Content Include="Views\Home\CargoTracking.cshtml" />
+    <Content Include="Views\Home\ForgetPassword.cshtml" />
+    <Content Include="Views\Home\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

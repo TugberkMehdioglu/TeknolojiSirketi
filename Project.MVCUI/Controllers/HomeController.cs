@@ -131,5 +131,63 @@ namespace Project.MVCUI.Controllers
         {
             return View();
         }
+
+        public ActionResult ForgetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgetPassword(string email)
+        {
+            AppUser user = _auRep.FirstOrDefault(x => x.Email == email);
+
+            if (user != null)
+            {
+                string mail = "Şifre değiştirme talibiniz alındı, lütfen http://localhost:44399/Home/ChangePassword/" + user.ActivationCode + " linkine tıklayarak şifrenizi değiştiriniz";
+                MailService.Send(email, subject: "Şifre değiştirme talebi", body: mail);
+
+                TempData["sifre"] = "Şifre değiştirme linkiniz e-postanıza yollandı, lütfen e-postanızı kontrol ediniz";
+                return View();
+            }
+            else
+            {
+                TempData["red"] = "Bu email adresine ait hesap bulunmamaktadır";
+                return View();
+            }
+        }
+
+        public ActionResult ChangePassword(Guid id)
+        {
+            AppUser user = _auRep.FirstOrDefault(x => x.ActivationCode == id);
+
+            if (user != null)
+            {
+                ProfileVM pvm = new ProfileVM
+                {
+                    User = user
+                };
+
+                return View(pvm);
+            }
+            else
+            {
+                TempData["red"] = "Hesabınız bulunamadı";
+                return RedirectToAction("ForgetPassword");
+            }
+            
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(AppUser user)
+        {
+            AppUser appUser = _auRep.Find(user.ID);
+
+            appUser.Password = DantexCryptex.Crypt(user.Password);
+            appUser.ConfirmPassword = DantexCryptex.Crypt(user.ConfirmPassword);
+
+            _auRep.Update(appUser);
+            return RedirectToAction("Login");
+        }
     }
 }
