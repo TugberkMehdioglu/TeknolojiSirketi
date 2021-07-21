@@ -10,8 +10,8 @@
 <div class="row product-list">
     @foreach (CartItem item in Model.Cart.Sepetim)
     {
-        <div class="col-md-4" id="div" style="width:427px; height:554px">
-            <section class="panel">
+        <div class="col-md-4" id="div" style="width:480px; height:600px">
+            <section class="panel" style="width:460px; height:590px;">
                 <div class="pro-img-box">
                     <a href="@Url.Action("ProductDetail", new { id=item.ID})"><img src="@item.ImagePath" alt="Resim Yok" title="@item.Name" width="397" height="397" /></a>
                     <a href="@Url.Action("DeleteFromCart", new { id=item.ID})" class="adtocart">
