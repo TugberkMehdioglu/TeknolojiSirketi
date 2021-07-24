@@ -4,6 +4,8 @@ using Project.MVCUI.VMClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -22,7 +24,7 @@ namespace Project.MVCUI.Areas.Admin.Controllers
             CategoryVM cvm = id == null ? new CategoryVM
             {
                 Categories = _cRep.GetActives()
-            } : new CategoryVM { Categories = _cRep.Where(x => x.ID == id) };
+            } : new CategoryVM { Categories = _cRep.Where(x => x.ID == id && x.Status != ENTITIES.Enums.DataStatus.Deleted) };
             return View(cvm);
         }
 
