@@ -9,7 +9,7 @@ namespace Project.ENTITIES.Models
 {
     public class Category : BaseEntity
     {
-        [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Ürün Adı")]
+        [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Kategori Adı")]
         [MinLength(2, ErrorMessage = "{0} en az {1} karakter olmalıdır")]
         [MaxLength(50, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
         public string Name { get; set; }

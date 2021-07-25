@@ -5,48 +5,72 @@
 }
 
 
-<h3>Ürün Eklemek icin @Html.ActionLink("tıklayınız", "AddProduct")</h3>
+<div class="text-center" style="font-family:'Agency FB'; font-size:x-large">Ürünler</div>
 
-<div class="container">
-    <div class="panel panel-primary">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th class="text-center">Ürün ID</th>
-                    <th class="text-center">Ürün Ismi</th>
-                    <th class="text-center">Ürün Fiyatı</th>
-                    <th class="text-center">Ürün Stok</th>
-                    <th class="text-center">Ürün Kategorisi</th>
-                    <th class="text-center">Ürün Resmi</th>
-                    <th class="hidden-phone text-center">Durum</th>
-                    <th class="hidden-phone text-center">Sil</th>
-                    <th class="hidden-phone text-center">Güncelle</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (Product item in Model.Products)
-                {
-                    <tr class="gradeX">
-                        <td>@item.ID</td>
-                        <td>@item.Name</td>
-                        <td>@item.UnitPrice.ToString("C2")</td>
-                        <td>@item.UnitInStock</td>
-                        @if (item.Category == null)
-                        {
-                            <td>Kategorisi belirtilmemiş</td>
-                        }
-                        else
-                        {
-                            <td>@item.Category.Name</td>
-                        }
-                        <td><img width="30" height="30" title="@item.Name" src="@item.ImagePath" /></td>
-                        <td class="center hidden-phone">@item.Status</td>
-                        <td class="center hidden-phone">@Html.ActionLink("Sil", "DeleteProduct", new { id = item.ID }, new { @class = "btn btn-danger" })</td>
-                        <td class="center hidden-phone">@Html.ActionLink("Güncelle", "UpdateProduct", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+<div class="panel-body"><h4>Ürün eklemek için @Html.ActionLink("tıklayınız", "AddProduct")</h4></div>
 
+<div class="panel-body col-lg-4">
+    <input type="text" placeholder="Ürünlerde Ara" class="form-control" id="search">
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <div class="adv-table">
+            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+                <thead>
+                    <tr>
+                        <th>Ürün ID</th>
+                        <th>Ürün Adı</th>
+                        <th>Ürün Fiyatı</th>
+                        <th>Stok</th>
+                        <th>Resmi</th>
+                        <th class="text-center hidden-phone; text-center">Kategorisi</th>
+                        <th class="text-center hidden-phone; text-center">Durum</th>
+                        <th class="text-center hidden-phone; text-center">Gözat</th>
+                        <th class="text-center hidden-phone; text-center">Güncelle</th>
+                        <th class="text-center hidden-phone; text-center">Sil</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody id="body">
+                    @foreach (Product item in Model.Products)
+                    {
+                        <tr class="gradeX" id="tr">
+                            <td>@item.ID</td>
+                            <td>@item.Name</td>
+                            <td>@item.UnitPrice</td>
+                            <td>@item.UnitInStock</td>
+                            @if (item.ImagePath == null)
+                            {
+                                <td class="text-center hidden-phone">Resmi Yok</td>
+                            }
+                            else
+                            {
+                                <td class="text-center hidden-phone"><img src="@item.ImagePath" title="@item.Name" alt="Resim Yok" width="30" height="30"/></td>
+                            }
+                            <td class="text-center hidden-phone">@item.Category.Name</td>
+                            <td class="text-center hidden-phone">@item.Status</td>
+                            <td class="text-center hidden-phone">@Html.ActionLink("Göz at", "ProductDetail", new { id = item.ID, area = "", @controller = "Shopping" }, new { @class = "btn btn-info" })</td>
+                            <td class="text-center hidden-phone">@Html.ActionLink("Güncelle", "UpdateProduct", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+                            <td class="text-center hidden-phone">@Html.ActionLink("Sil", "DeleteProduct", new { id = item.ID }, new { @class = "btn btn-danger" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
     </div>
 </div>
+
+
+<script>
+
+    $(document).ready(function () {
+        $("#search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#body tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+
+</script>

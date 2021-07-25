@@ -1,9 +1,13 @@
 ﻿using Project.BLL.DesignPatterns.GenericRepository.ConcRep;
+using Project.COMMON.Tools;
+using Project.DTO.Models;
 using Project.ENTITIES.Models;
 using Project.MVCUI.VMClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -40,10 +44,48 @@ namespace Project.MVCUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddProduct(Product product)
+        public ActionResult AddProduct(Product product, HttpPostedFileBase image)
         {
-            _pRep.Add(product);
-            return RedirectToAction("ProductList");
+            StockDTO stock = new StockDTO
+            {
+                ID = product.ID,
+                ProductName = product.Name,
+                UnitPrice = product.UnitPrice,
+                UnitInStock = product.UnitInStock
+            };
+
+            //Depo API'da yeni bir action açmak yerine önceden kullanılan List<StockDTO> parametreli action'ı kullandık
+            List<StockDTO> listStock = new List<StockDTO> { stock };
+
+            using(HttpClient client=new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44339/api/");
+                Task<HttpResponseMessage> postTask = client.PostAsJsonAsync("Home/AddStocks", listStock);
+
+                HttpResponseMessage result;
+
+                try
+                {
+                    result = postTask.Result;
+                }
+                catch (Exception)
+                {
+                    TempData["hata"] = "Depo bağlantıyı reddetti";
+                    return RedirectToAction("ProductList");
+                }
+
+                if (result.IsSuccessStatusCode)
+                {
+                    product.ImagePath = ImageUploader.UploadImage("/Pictures/", image);
+                    _pRep.Add(product);
+                    return RedirectToAction("ProductList");
+                }
+                else
+                {
+                    TempData["hata"] = "Depo işlemi reddetti";
+                    return RedirectToAction("ProductList");
+                }
+            }
         }
 
         public ActionResult UpdateProduct(int id)
