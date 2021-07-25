@@ -70,7 +70,7 @@ namespace Project.MVCUI.Areas.Admin.Controllers
                 }
                 catch (Exception)
                 {
-                    TempData["hata"] = "Depo bağlantıyı reddetti";
+                    TempData["hataCRUD"] = "Depo bağlantıyı reddetti";
                     return RedirectToAction("ProductList");
                 }
 
@@ -82,7 +82,7 @@ namespace Project.MVCUI.Areas.Admin.Controllers
                 }
                 else
                 {
-                    TempData["hata"] = "Depo işlemi reddetti";
+                    TempData["hataCRUD"] = "Depo işlemi reddetti";
                     return RedirectToAction("ProductList");
                 }
             }
@@ -99,16 +99,83 @@ namespace Project.MVCUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateProduct(Product product)
+        public ActionResult UpdateProduct(Product product, HttpPostedFileBase image)
         {
-            _pRep.Update(product);
-            return RedirectToAction("ProductList");
+            StockDTO stock = new StockDTO
+            {
+                ID = product.ID,
+                ProductName = product.Name,
+                UnitPrice = product.UnitPrice,
+                UnitInStock = product.UnitInStock
+            };
+
+            using(HttpClient client=new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44339/api/");
+                Task<HttpResponseMessage> postTask = client.PutAsJsonAsync("Home/UpdateStock", stock);
+
+                HttpResponseMessage result;
+
+                try
+                {
+                    result = postTask.Result;
+                }
+                catch (Exception)
+                {
+                    TempData["hataCRUD"] = "Depo bağlantıyı reddetti";
+                    return RedirectToAction("ProductList");
+                }
+
+                if (result.IsSuccessStatusCode)
+                {
+                    if (image != null)
+                    product.ImagePath = ImageUploader.UploadImage("/Pictures/", image);
+
+                    _pRep.Update(product);
+                    return RedirectToAction("ProductList");
+                }
+                else
+                {
+                    TempData["hataCRUD"] = "Depo işlemi reddetti";
+                    return RedirectToAction("ProductList");
+                }
+            }
+
+
         }
 
         public ActionResult DeleteProduct(int id)
         {
-            _pRep.Delete(_pRep.Find(id));
-            return RedirectToAction("ProductList");
+            StockDTO stock = new StockDTO { ID = id };
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44339/api/");
+                Task<HttpResponseMessage> postTask = client.PutAsJsonAsync("Home/DeleteStock", stock);
+                
+                HttpResponseMessage result;
+
+                try
+                {
+                    result = postTask.Result;
+                }
+                catch (Exception)
+                {
+                    TempData["hataCRUD"] = "Depo bağlantıyı reddetti";
+                    return RedirectToAction("ProductList");
+                }
+
+                if (result.IsSuccessStatusCode)
+                {
+                    _pRep.Delete(_pRep.Find(id));
+                    return RedirectToAction("ProductList");
+                }
+                else
+                {
+                    TempData["hataCRUD"] = "Depo işlemi reddetti";
+                    return RedirectToAction("ProductList");
+                }
+            }
         }
     }
 }

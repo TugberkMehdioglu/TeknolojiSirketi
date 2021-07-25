@@ -15,9 +15,10 @@
     }
 </style>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("UpdateProduct", "Product", FormMethod.Post, new { enctype="multipart/form-data"}))
 {
     @Html.HiddenFor(x => x.Product.ID)
+    @Html.HiddenFor(x => x.Product.ImagePath)
     <div class="row">
         <div class="col-sm-12">
             <section class="panel">
@@ -65,7 +66,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Resim Seçiniz</label>
                         <div class="col-sm-10">
-                            <input type="file" name="resim" class="form-control genislik" />
+                            <input type="file" name="image" class="form-control genislik" />
                         </div>
                     </div>
 
