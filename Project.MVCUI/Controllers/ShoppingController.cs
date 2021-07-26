@@ -101,6 +101,7 @@ namespace Project.MVCUI.Controllers
                 };
                 return View(cpvm);
             }
+            TempData["giris"] = "Sepetinizde ürün bulunmamaktadır";
             return RedirectToAction("ShoppingList");
         }
 

@@ -54,6 +54,12 @@
         <div class="alert-danger text-center" style="font-size:large">
             @ViewBag.Active
             @ViewBag.Kullanici
+            @TempData["HesapYok"]
+            @TempData["siparis"]
+        </div>
+
+        <div class="alert-success text-center" style="font-size:large">
+            @TempData["HesapAktif"]
         </div>
 
         @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-signin" }))

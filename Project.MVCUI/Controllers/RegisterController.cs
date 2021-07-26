@@ -81,7 +81,7 @@ namespace Project.MVCUI.Controllers
             }
             else
             {
-                TempData["HesapAktif"] = "Hesabınız bulunamadı";
+                TempData["HesapYok"] = "Hesabınız bulunamadı";
                 return RedirectToAction("Login", "Home");
             }
         }
