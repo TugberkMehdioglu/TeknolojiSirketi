@@ -81,41 +81,49 @@
                                     if (Model.Attributes[0].Name == item.Name)
                                     {
                                         @Html.HiddenFor(x => x.Attribute0.Name)
+                                        @Html.ValidationMessageFor(x => x.Attribute0.Value)
                                         @Html.TextBoxFor(x => x.Attribute0.Value, new { @class = "form-control genislik" });
                                     }
                                     else if (Model.Attributes[1].Name == item.Name)
                                     {
                                         @Html.HiddenFor(x => x.Attribute1.Name)
+                                        @Html.ValidationMessageFor(x => x.Attribute1.Value)
                                         @Html.TextBoxFor(x => x.Attribute1.Value, new { @class = "form-control genislik" });
                                     }
                                     else if (Model.Attributes[2].Name == item.Name)
                                     {
                                         @Html.HiddenFor(x => x.Attribute2.Name)
+                                        @Html.ValidationMessageFor(x => x.Attribute2.Value)
                                         @Html.TextBoxFor(x => x.Attribute2.Value, new { @class = "form-control genislik" });
                                     }
                                     else if (Model.Attributes[3].Name == item.Name)
                                     {
                                         @Html.HiddenFor(x => x.Attribute3.Name)
+                                        @Html.ValidationMessageFor(x => x.Attribute3.Value)
                                         @Html.TextBoxFor(x => x.Attribute3.Value, new { @class = "form-control genislik" });
                                     }
                                     else if (Model.Attributes[4].Name == item.Name)
                                     {
                                         @Html.HiddenFor(x => x.Attribute4.Name)
+                                        @Html.ValidationMessageFor(x => x.Attribute4.Value)
                                         @Html.TextBoxFor(x => x.Attribute4.Value, new { @class = "form-control genislik" });
                                     }
                                     else if (Model.Attributes[5].Name == item.Name)
                                     {
                                         @Html.HiddenFor(x => x.Attribute5.Name)
+                                        @Html.ValidationMessageFor(x => x.Attribute5.Value)
                                         @Html.TextBoxFor(x => x.Attribute5.Value, new { @class = "form-control genislik" });
                                     }
                                     else if (Model.Attributes[6].Name == item.Name)
                                     {
                                         @Html.HiddenFor(x => x.Attribute6.Name)
+                                        @Html.ValidationMessageFor(x => x.Attribute6.Value)
                                         @Html.TextBoxFor(x => x.Attribute6.Value, new { @class = "form-control genislik" });
                                     }
                                     else if (Model.Attributes[7].Name == item.Name)
                                     {
                                         @Html.HiddenFor(x => x.Attribute7.Name)
+                                        @Html.ValidationMessageFor(x => x.Attribute7.Value)
                                         @Html.TextBoxFor(x => x.Attribute7.Value, new { @class = "form-control genislik" });
                                     }
                                 }

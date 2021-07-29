@@ -13,6 +13,7 @@ namespace Project.MVCUI.VMClasses
         public List<Category> Categories { get; set; }
         public List<Project.ENTITIES.Models.Attribute> Attributes { get; set; }
 
+
         public Project.ENTITIES.Models.Attribute Attribute0 { get; set; }
         public Project.ENTITIES.Models.Attribute Attribute1 { get; set; }
         public Project.ENTITIES.Models.Attribute Attribute2 { get; set; }

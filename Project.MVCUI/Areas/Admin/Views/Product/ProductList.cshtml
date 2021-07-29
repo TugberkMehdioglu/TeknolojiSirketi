@@ -34,9 +34,9 @@
                     <tr>
                         <th>Ürün ID</th>
                         <th>Ürün Adı</th>
-                        <th>Ürün Fiyatı</th>
-                        <th>Stok</th>
-                        <th>Resmi</th>
+                        <th class="text-center">Ürün Fiyatı</th>
+                        <th class="text-center">Stok</th>
+                        <th class="text-center">Resmi</th>
                         <th class="text-center hidden-phone; text-center">Kategorisi</th>
                         <th class="text-center hidden-phone; text-center">Durum</th>
                         <th class="text-center hidden-phone; text-center">Gözat</th>
@@ -50,8 +50,8 @@
                         <tr class="gradeX" id="tr">
                             <td>@item.ID</td>
                             <td>@item.Name</td>
-                            <td>@item.UnitPrice</td>
-                            <td>@item.UnitInStock</td>
+                            <td class="text-center">@item.UnitPrice.ToString("C2")</td>
+                            <td class="text-center">@item.UnitInStock</td>
                             @if (item.ImagePath == null)
                             {
                                 <td class="text-center hidden-phone">Resmi Yok</td>
