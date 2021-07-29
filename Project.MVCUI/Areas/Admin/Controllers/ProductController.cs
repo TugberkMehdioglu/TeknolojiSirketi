@@ -14,13 +14,17 @@ using System.Web.Mvc;
 namespace Project.MVCUI.Areas.Admin.Controllers
 {
     public class ProductController : Controller
-    {
+    {      
         ProductRep _pRep;
         CategoryRep _cRep;
+        Project.BLL.DesignPatterns.GenericRepository.ConcRep.AttributeRep _aRep;
+        ProductAttributeRep _paRep;
         public ProductController()
         {
             _pRep = new ProductRep();
             _cRep = new CategoryRep();
+            _aRep = new AttributeRep();
+            _paRep = new ProductAttributeRep();
         }
 
         // GET: Admin/Product
@@ -28,30 +32,93 @@ namespace Project.MVCUI.Areas.Admin.Controllers
         {
             ProductVM pvm = new ProductVM()
             {
-                Products = id == null ? _pRep.GetActives() : _pRep.GetActives().Where(x => x.CategoryID == id).ToList()
-            };
-            return View(pvm);
-        }
-
-        public ActionResult AddProduct()
-        {
-            ProductVM pvm = new ProductVM
-            {
-                Product = new Product(),
+                Products = id == null ? _pRep.GetActives() : _pRep.GetActives().Where(x => x.CategoryID == id).ToList(),
                 Categories = _cRep.GetActives()
             };
             return View(pvm);
         }
 
-        [HttpPost]
-        public ActionResult AddProduct(Product product, HttpPostedFileBase image)
+        //Burada kategorisi belirtilmiş olan eklenecek ürünün attribute'larının name prop'ları belirtilmiş olarak gelmesini istedik
+        public ActionResult AddProduct(string category)
         {
+            String[] anakart = { "Soket Tipi", "Anakart Markası", "Anakart Yapı", "Maks. Ram Desteği", "Ram Tipi", "Anakart Chipseti", "Ram Slot Sayısı", "Desteklenen Ram Hızı" };
+            string[] islemci = { "İşlemci Markası", "İşlemci Hızı", "İşlemci Çekirdek", "Entegre Grafik Kartı", "Soket Tipi", "Maks. Turbo Hızı", "Top. İş Parçacığı", "Grafik Kartı Chipseti" };
+            string[] ekranKarti = { "Ekran Kartı Chipseti", "Çekirdek Hücre Sayısı", "Bellek Kapasitesi", "Bellek Arayüzü", "Grafik İşlemci", "Bellek Tipi", "Bellek Hızı", "HDMI" };
+            string[] ram = { "Ram Tipi", "Ram Kapasitesi", "Modül Sayısı", "Kullanım Alanı", "Hafıza Bus Hızı", "Kit", "Gecikme Süresi", "Menşei" };
+
+            //pvm içinde atama yapabilmek için if scope'larının dışında tanımladığımızdan object initializer yapamıyoruz
+            List<Project.ENTITIES.Models.Attribute> listAttribute = new List<ENTITIES.Models.Attribute>();
+
+            if (category == "Anakart")
+            {
+                for (int i = 0; i < anakart.Length; i++)
+                {
+                    listAttribute.Add(new Project.ENTITIES.Models.Attribute { Name = anakart[i] });
+                }
+            }
+            else if (category == "İşlemci")
+            {
+                for (int i = 0; i < islemci.Length; i++)
+                {
+                    listAttribute.Add(new Project.ENTITIES.Models.Attribute { Name = islemci[i] });
+                }
+            }
+            else if (category == "Ekran Kartı")
+            {
+                for (int i = 0; i < ekranKarti.Length; i++)
+                {
+                    listAttribute.Add(new Project.ENTITIES.Models.Attribute { Name = ekranKarti[i] });
+                }
+            }
+            else if (category == "Ram")
+            {
+                for (int i = 0; i < ram.Length; i++)
+                {
+                    listAttribute.Add(new Project.ENTITIES.Models.Attribute { Name = ram[i] });
+                }
+            }
+
+
+            ProductVM pvm = new ProductVM
+            {
+                Product = new Product(),
+                Categories = _cRep.GetActives(),
+                Attributes = listAttribute,
+                Attribute0 = new ENTITIES.Models.Attribute(),
+                Attribute1 = new ENTITIES.Models.Attribute(),
+                Attribute2 = new ENTITIES.Models.Attribute(),
+                Attribute3 = new ENTITIES.Models.Attribute(),
+                Attribute4 = new ENTITIES.Models.Attribute(),
+                Attribute5 = new ENTITIES.Models.Attribute(),
+                Attribute6 = new ENTITIES.Models.Attribute(),
+                Attribute7 = new ENTITIES.Models.Attribute()
+            };
+
+            pvm.Attribute0.Name = listAttribute[0].Name;
+            pvm.Attribute1.Name = listAttribute[1].Name;
+            pvm.Attribute2.Name = listAttribute[2].Name;
+            pvm.Attribute3.Name = listAttribute[3].Name;
+            pvm.Attribute4.Name = listAttribute[4].Name;
+            pvm.Attribute5.Name = listAttribute[5].Name;
+            pvm.Attribute6.Name = listAttribute[6].Name;
+            pvm.Attribute7.Name = listAttribute[7].Name;
+
+            return View(pvm);
+        }
+
+        [HttpPost]
+        public ActionResult AddProduct(ProductVM pvm, HttpPostedFileBase image)
+        {
+            pvm.Product.ImagePath = ImageUploader.UploadImage("/Pictures/", image);
+            _pRep.Add(pvm.Product); //API ile haberleşirken ID belirtmemiz gerektiği için DB'ye ürünü kaydetmeliyiz
+
+
             StockDTO stock = new StockDTO
             {
-                ID = product.ID,
-                ProductName = product.Name,
-                UnitPrice = product.UnitPrice,
-                UnitInStock = product.UnitInStock
+                ID = pvm.Product.ID,
+                ProductName = pvm.Product.Name,
+                UnitPrice = pvm.Product.UnitPrice,
+                UnitInStock = pvm.Product.UnitInStock
             };
 
             //Depo API'da yeni bir action açmak yerine önceden kullanılan List<StockDTO> parametreli action'ı kullandık
@@ -70,18 +137,46 @@ namespace Project.MVCUI.Areas.Admin.Controllers
                 }
                 catch (Exception)
                 {
+                    //Eğer API işlemi yapmazsa sitenin DB'sinden de ürünü siliyoruzki her iki DB'de ID uyuşmazlığı yaşanmasın
+                    _pRep.Destroy(_pRep.Find(pvm.Product.ID));
                     TempData["hataCRUD"] = "Depo bağlantıyı reddetti";
                     return RedirectToAction("ProductList");
                 }
 
                 if (result.IsSuccessStatusCode)
                 {
-                    product.ImagePath = ImageUploader.UploadImage("/Pictures/", image);
-                    _pRep.Add(product);
+
+                    List<Project.ENTITIES.Models.Attribute> listAttribute = new List<ENTITIES.Models.Attribute>
+                    {
+                        pvm.Attribute0,
+                        pvm.Attribute1,
+                        pvm.Attribute2,
+                        pvm.Attribute3,
+                        pvm.Attribute4,
+                        pvm.Attribute5,
+                        pvm.Attribute6,
+                        pvm.Attribute7
+                    };
+
+                    _aRep.AddRange(listAttribute);//Çoka-çok ilişkide ID kullanabilmek için DB'ye ekledik
+
+                    foreach (Project.ENTITIES.Models.Attribute item in listAttribute)
+                    {
+                        ProductAttribute pa = new ProductAttribute
+                        {
+                            AttributeID = item.ID,
+                            ProductID = pvm.Product.ID
+                        };
+
+                        _paRep.Add(pa);//Çoka-çok ilişki tamamlaması
+                    }
+
                     return RedirectToAction("ProductList");
                 }
                 else
                 {
+                    //Eğer API işlemi yapmazsa sitenin DB'sinden de ürünü siliyoruzki her iki DB'de ID uyuşmazlığı yaşanmasın
+                    _pRep.Destroy(_pRep.Find(pvm.Product.ID));
                     TempData["hataCRUD"] = "Depo işlemi reddetti";
                     return RedirectToAction("ProductList");
                 }

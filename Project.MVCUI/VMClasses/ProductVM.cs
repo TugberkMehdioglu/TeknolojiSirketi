@@ -11,6 +11,17 @@ namespace Project.MVCUI.VMClasses
         public List<Product> Products { get; set; }
         public Product Product { get; set; }
         public List<Category> Categories { get; set; }
+        public List<Project.ENTITIES.Models.Attribute> Attributes { get; set; }
+
+        public Project.ENTITIES.Models.Attribute Attribute0 { get; set; }
+        public Project.ENTITIES.Models.Attribute Attribute1 { get; set; }
+        public Project.ENTITIES.Models.Attribute Attribute2 { get; set; }
+        public Project.ENTITIES.Models.Attribute Attribute3 { get; set; }
+        public Project.ENTITIES.Models.Attribute Attribute4 { get; set; }
+        public Project.ENTITIES.Models.Attribute Attribute5 { get; set; }
+        public Project.ENTITIES.Models.Attribute Attribute6 { get; set; }
+        public Project.ENTITIES.Models.Attribute Attribute7 { get; set; }
+        public Project.ENTITIES.Models.Attribute Attribute8 { get; set; }
 
     }
 }

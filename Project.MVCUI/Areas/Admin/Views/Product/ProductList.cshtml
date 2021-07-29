@@ -8,7 +8,19 @@
 
 <div class="text-center" style="font-family:'Agency FB'; font-size:x-large">Ürünler</div>
 
-<div class="panel-body"><h4>Ürün eklemek için @Html.ActionLink("tıklayınız", "AddProduct")</h4></div>
+<div class="panel-body">
+    <h4>
+    Ürün eklemek için kategorisine tıklayınız
+        <br /><br />
+        <div class="btn-group">
+            @foreach (Category item in Model.Categories)
+            {
+                @Html.ActionLink($"{item.Name}", "AddProduct", new { category = item.Name }, new { @class = "btn btn-info" })
+            }
+        </div>
+
+    </h4>
+</div>
 
 <div class="panel-body col-lg-4">
     <input type="text" placeholder="Ürünlerde Ara" class="form-control" id="search">

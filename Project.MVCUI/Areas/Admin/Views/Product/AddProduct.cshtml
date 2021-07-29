@@ -55,7 +55,7 @@
                         <label class="col-sm-2 control-label">Kategori</label>
                         <div class="col-sm-10">
                             @Html.ValidationMessageFor(x => x.Product.CategoryID)
-                            @Html.DropDownListFor(x => x.Product.CategoryID, new SelectList(Model.Categories, "ID", "Name"), "Lütfen Seçiniz", new { @class="form-control genislik"})
+                            @Html.DropDownListFor(x => x.Product.CategoryID, new SelectList(Model.Categories, "ID", "Name"), "Lütfen Seçiniz", new { @class = "form-control genislik" })
                         </div>
                     </div>
 
@@ -66,6 +66,62 @@
                             <input type="file" name="image" class="form-control genislik" />
                         </div>
                     </div>
+
+                   
+                    @foreach (Project.ENTITIES.Models.Attribute item in Model.Attributes)
+                    {
+                        <br /><br />
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">@item.Name</label>
+                            <div class="col-sm-10">
+                                @*Bu neden olmadı araştır*@
+                                @*@Html.TextBoxFor(x => x.Attributes.Find(y => y.Name == item.Name).Value , new { @class="form-control genislik"})*@
+
+                                @{
+                                    if (Model.Attributes[0].Name == item.Name)
+                                    {
+                                        @Html.HiddenFor(x => x.Attribute0.Name)
+                                        @Html.TextBoxFor(x => x.Attribute0.Value, new { @class = "form-control genislik" });
+                                    }
+                                    else if (Model.Attributes[1].Name == item.Name)
+                                    {
+                                        @Html.HiddenFor(x => x.Attribute1.Name)
+                                        @Html.TextBoxFor(x => x.Attribute1.Value, new { @class = "form-control genislik" });
+                                    }
+                                    else if (Model.Attributes[2].Name == item.Name)
+                                    {
+                                        @Html.HiddenFor(x => x.Attribute2.Name)
+                                        @Html.TextBoxFor(x => x.Attribute2.Value, new { @class = "form-control genislik" });
+                                    }
+                                    else if (Model.Attributes[3].Name == item.Name)
+                                    {
+                                        @Html.HiddenFor(x => x.Attribute3.Name)
+                                        @Html.TextBoxFor(x => x.Attribute3.Value, new { @class = "form-control genislik" });
+                                    }
+                                    else if (Model.Attributes[4].Name == item.Name)
+                                    {
+                                        @Html.HiddenFor(x => x.Attribute4.Name)
+                                        @Html.TextBoxFor(x => x.Attribute4.Value, new { @class = "form-control genislik" });
+                                    }
+                                    else if (Model.Attributes[5].Name == item.Name)
+                                    {
+                                        @Html.HiddenFor(x => x.Attribute5.Name)
+                                        @Html.TextBoxFor(x => x.Attribute5.Value, new { @class = "form-control genislik" });
+                                    }
+                                    else if (Model.Attributes[6].Name == item.Name)
+                                    {
+                                        @Html.HiddenFor(x => x.Attribute6.Name)
+                                        @Html.TextBoxFor(x => x.Attribute6.Value, new { @class = "form-control genislik" });
+                                    }
+                                    else if (Model.Attributes[7].Name == item.Name)
+                                    {
+                                        @Html.HiddenFor(x => x.Attribute7.Name)
+                                        @Html.TextBoxFor(x => x.Attribute7.Value, new { @class = "form-control genislik" });
+                                    }
+                                }
+                            </div>
+                        </div>
+                    }
 
                     <br /><br /><br />
                     <div class="form-group">
@@ -82,4 +138,3 @@
         </div>
     </div>
 }
-
