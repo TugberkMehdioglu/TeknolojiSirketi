@@ -225,14 +225,14 @@ namespace Project.MVCUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateProduct(Product product, HttpPostedFileBase image)
+        public ActionResult UpdateProduct(ProductVM pvm, HttpPostedFileBase image)
         {
             StockDTO stock = new StockDTO
             {
-                ID = product.ID,
-                ProductName = product.Name,
-                UnitPrice = product.UnitPrice,
-                UnitInStock = product.UnitInStock
+                ID = pvm.Product.ID,
+                ProductName = pvm.Product.Name,
+                UnitPrice = pvm.Product.UnitPrice,
+                UnitInStock = pvm.Product.UnitInStock
             };
 
             using (HttpClient client = new HttpClient())
@@ -255,9 +255,22 @@ namespace Project.MVCUI.Areas.Admin.Controllers
                 if (result.IsSuccessStatusCode)
                 {
                     if (image != null)
-                        product.ImagePath = ImageUploader.UploadImage("/Pictures/", image);
+                        pvm.Product.ImagePath = ImageUploader.UploadImage("/Pictures/", image);
 
-                    _pRep.Update(product);
+                    List<Project.ENTITIES.Models.Attribute> listAttribute = new List<ENTITIES.Models.Attribute>
+                    {
+                        pvm.Attribute0,
+                        pvm.Attribute1,
+                        pvm.Attribute2,
+                        pvm.Attribute3,
+                        pvm.Attribute4,
+                        pvm.Attribute5,
+                        pvm.Attribute6,
+                        pvm.Attribute7
+                    };
+
+                    _aRep.UpdateRange(listAttribute);
+                    _pRep.Update(pvm.Product);
                     return RedirectToAction("ProductList");
                 }
                 else
