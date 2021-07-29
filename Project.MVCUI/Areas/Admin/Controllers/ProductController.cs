@@ -46,7 +46,7 @@ namespace Project.MVCUI.Areas.Admin.Controllers
             string[] ekranKarti = { "Ekran Kartı Chipseti", "Çekirdek Hücre Sayısı", "Bellek Kapasitesi", "Bellek Arayüzü", "Grafik İşlemci", "Bellek Tipi", "Bellek Hızı", "HDMI" };
             string[] ram = { "Ram Tipi", "Ram Kapasitesi", "Modül Sayısı", "Kullanım Alanı", "Hafıza Bus Hızı", "Kit", "Gecikme Süresi", "Menşei" };
 
-            //pvm içinde atama yapabilmek için if scope'larının dışında tanımladığımızdan object initializer yapamıyoruz
+            
             List<Project.ENTITIES.Models.Attribute> listAttribute = new List<ENTITIES.Models.Attribute>();
 
             if (category == "Anakart")

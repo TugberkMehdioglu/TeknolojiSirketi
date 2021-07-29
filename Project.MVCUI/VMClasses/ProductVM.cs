@@ -21,7 +21,6 @@ namespace Project.MVCUI.VMClasses
         public Project.ENTITIES.Models.Attribute Attribute5 { get; set; }
         public Project.ENTITIES.Models.Attribute Attribute6 { get; set; }
         public Project.ENTITIES.Models.Attribute Attribute7 { get; set; }
-        public Project.ENTITIES.Models.Attribute Attribute8 { get; set; }
 
     }
 }
