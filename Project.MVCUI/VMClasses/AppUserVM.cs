@@ -10,6 +10,9 @@ namespace Project.MVCUI.VMClasses
     {
         public AppUser AppUser { get; set; }
         public UserProfile Profile { get; set; }
+        public List<AppUser> AppUsers { get; set; }
+        public List<UserProfile> Profiles { get; set; }
+
 
     }
 }

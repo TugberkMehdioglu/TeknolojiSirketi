@@ -1,0 +1,90 @@
+﻿@model AppUserVM
+@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert-success text-center" style="font-size:large">
+    @TempData["yetki"]
+</div>
+
+<div class="alert-danger text-center" style="font-size:large">
+    @TempData["yetkiHata"]
+</div>
+
+<div class="text-center" style="font-family:'Agency FB'; font-size:x-large">Kullanıcılar</div>
+
+<div class="panel-body col-lg-4">
+    <input type="text" placeholder="Kullanıcılarda Ara" class="form-control" id="search">
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <div class="adv-table">
+            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Kullanıcı Adı</th>
+                        <th class="text-center">Yetki</th>
+                        <th class="text-center">Aktif</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center hidden-phone; text-center">İsim</th>
+                        <th class="text-center hidden-phone; text-center">Soyisim</th>
+                        <th class="text-center hidden-phone; text-center">Resim</th>
+                        <th class="text-center hidden-phone; text-center" colspan="3">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody id="body">
+                    @foreach (AppUser item in Model.AppUsers)
+                    {
+                        <tr class="gradeX" id="tr">
+                            <td>@item.ID</td>
+                            <td>@item.UserName</td>
+                            <td class="text-center">@item.Role</td>
+                            <td class="text-center">@item.Active</td>
+                            <td>@item.Email</td>
+                            @if (item.Profile == null)
+                            {
+                                <td class="text-center hidden-phone">Profil Yok</td>
+                                <td class="text-center hidden-phone">Profil Yok</td>
+                                <td class="text-center hidden-phone">Profil Yok</td>
+                            }
+                            else
+                            {
+                                <td class="text-center hidden-phone">@item.Profile.FirstName</td>
+                                <td class="text-center hidden-phone">@item.Profile.LastName</td>
+                                if (item.Profile.ImagePath != null)
+                                {
+                                    <td class="text-center hidden-phone"><img src="@item.Profile.ImagePath" title="@item.Profile.FullName" alt="Resim Yok" width="30" height="30" /></td>
+                                }
+                                else
+                                {
+                                    <td class="text-center hidden-phone">Resim Yok</td>
+                                }
+                            }
+                            <td class="text-center hidden-phone">@Html.ActionLink("Admin Yap", "AdminAuthorization", new { id = item.ID }, new { @class = "btn btn-warning" })</td>
+                            <td class="text-center hidden-phone">@Html.ActionLink("Member Yap", "MemberAuthorization", new { id = item.ID }, new { @class = "btn btn-info" })</td>
+                            <td class="text-center hidden-phone">@Html.ActionLink("Sil", "DeleteUser", new { id = item.ID }, new { @class = "btn btn-danger" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+        $("#search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#body tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+
+</script>

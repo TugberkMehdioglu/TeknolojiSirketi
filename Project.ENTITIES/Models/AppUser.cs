@@ -17,7 +17,7 @@ namespace Project.ENTITIES.Models
 
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Şifre")]
         [MinLength(3, ErrorMessage = "{0} en az {1} karakter olmalıdır")]
-        [MaxLength(30, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
+        [MaxLength(80, ErrorMessage = "{0} en çok {1} karakter olmalıdır")]
         public string Password { get; set; }
 
         [Compare("Password", ErrorMessage ="Şifreler uyuşmuyor"), Display(Name ="Şifre doğrula")]

@@ -49,8 +49,6 @@ namespace Project.MVCUI.Controllers
 
             string mail = "Kayıt işlemiz gerçekleşmiştir, hesabınızı aktifleştirmek için lütfen https://localhost:44399/Register/Activation/" + au.ActivationCode + " linkine tıklayarak hesabınızı aktifleştiriniz";
 
-            MailService.Send(au.Email, subject: "TeknoCenter Aktivasyon", body: mail);
-
             //Her kullanıcının şifresini kriptolu şekilde DB'de tutuyoruz
             //Hem Password hem de ConfirmPassword'e aynı kriptolu şifreyi atamazsak validation error alırız
             au.Password = au.ConfirmPassword = DantexCryptex.Crypt(au.Password);
@@ -59,6 +57,8 @@ namespace Project.MVCUI.Controllers
 
             up.ID = au.ID;//Bire-bir ilişki tamamlaması
             _upRep.Add(up);
+
+            MailService.Send(au.Email, subject: "TeknoCenter Aktivasyon", body: mail);
 
             return View("RegisterOk");
         }
