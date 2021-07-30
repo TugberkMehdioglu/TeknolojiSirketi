@@ -63,14 +63,18 @@ namespace Project.MVCUI.Controllers
 
         public ActionResult UpdateAddress(int id)
         {
-            ProfileVM pvm = new ProfileVM
+            if (id > 0)
             {
-                Address = _aRep.Find(id),
-                User = Session["member"] as AppUser,
-                Profile = (Session["member"] as AppUser).Profile
-            };
+                ProfileVM pvm = new ProfileVM
+                {
+                    Address = _aRep.Find(id),
+                    User = Session["member"] as AppUser,
+                    Profile = (Session["member"] as AppUser).Profile
+                };
 
-            return View(pvm);
+                return View(pvm);
+            }
+            else return RedirectToAction("Addresses");
         }
 
         [HttpPost]
@@ -82,8 +86,12 @@ namespace Project.MVCUI.Controllers
 
         public ActionResult DeleteAddress(int id)
         {
-            _aRep.Destroy(_aRep.Find(id)); //Kullanıcının silmek istediği adres bilgisini DB'den destroy ettik
-            return RedirectToAction("Addresses");
+            if (id > 0)
+            {
+                _aRep.Destroy(_aRep.Find(id)); //Kullanıcının silmek istediği adres bilgisini DB'den destroy ettik
+                return RedirectToAction("Addresses");
+            }
+            else return RedirectToAction("Addresses");
         }
     }
 }

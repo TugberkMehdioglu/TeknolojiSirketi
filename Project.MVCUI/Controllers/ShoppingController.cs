@@ -46,31 +46,39 @@ namespace Project.MVCUI.Controllers
 
         public ActionResult ProductDetail(int id)
         {
-            ProductVM pvm = new ProductVM
+            if (id > 0)
             {
-                Product = _pRep.Find(id)
-            };
+                ProductVM pvm = new ProductVM
+                {
+                    Product = _pRep.Find(id)
+                };
 
-            return View(pvm);
+                return View(pvm);
+            }
+            else return RedirectToAction("ShoppingList");
         }
 
         public ActionResult AddToCart(int id)
         {
-            Cart c = Session["scart"] != null ? Session["scart"] as Cart : new Cart();
-
-            Product UpcomingProduct = _pRep.Find(id);
-
-            CartItem ci = new CartItem
+            if (id > 0)
             {
-                ID = UpcomingProduct.ID,
-                Name = UpcomingProduct.Name,
-                Price = UpcomingProduct.UnitPrice,
-                ImagePath = UpcomingProduct.ImagePath
-            };
+                Cart c = Session["scart"] != null ? Session["scart"] as Cart : new Cart();
 
-            c.SepeteEkle(ci);
-            Session["scart"] = c;
-            return RedirectToAction("ShoppingList");           
+                Product UpcomingProduct = _pRep.Find(id);
+
+                CartItem ci = new CartItem
+                {
+                    ID = UpcomingProduct.ID,
+                    Name = UpcomingProduct.Name,
+                    Price = UpcomingProduct.UnitPrice,
+                    ImagePath = UpcomingProduct.ImagePath
+                };
+
+                c.SepeteEkle(ci);
+                Session["scart"] = c;
+                return RedirectToAction("ShoppingList");
+            }
+            else return RedirectToAction("ShoppingList");
         }
 
         public ActionResult DeleteFromCart(int id)

@@ -193,35 +193,40 @@ namespace Project.MVCUI.Areas.Admin.Controllers
 
         public ActionResult UpdateProduct(int id)
         {
-            List<Project.ENTITIES.Models.Attribute> listAttribute = new List<ENTITIES.Models.Attribute>();
-
-            List<ProductAttribute> listProductAttribute = new List<ProductAttribute>();
-
-            listProductAttribute.AddRange(_paRep.Where(x => x.ProductID == id));//Ürünün özelliklerini yakaladık
-
-
-            foreach (ProductAttribute item in listProductAttribute)
+            if (id > 0)
             {
-                listAttribute.Add(_aRep.FirstOrDefault(x => x.ID == item.AttributeID));//Ürünün özelliklerini attribute list'ine atadık
+                List<Project.ENTITIES.Models.Attribute> listAttribute = new List<ENTITIES.Models.Attribute>();
+
+                List<ProductAttribute> listProductAttribute = new List<ProductAttribute>();
+
+                listProductAttribute.AddRange(_paRep.Where(x => x.ProductID == id));//Ürünün özelliklerini yakaladık
+
+
+                foreach (ProductAttribute item in listProductAttribute)
+                {
+                    listAttribute.Add(_aRep.FirstOrDefault(x => x.ID == item.AttributeID));//Ürünün özelliklerini attribute list'ine atadık
+                }
+
+
+                ProductVM pvm = new ProductVM
+                {
+                    Categories = _cRep.GetActives(),
+                    Product = _pRep.Find(id)
+                };
+
+                pvm.Attribute0 = listAttribute[0];
+                pvm.Attribute1 = listAttribute[1];
+                pvm.Attribute2 = listAttribute[2];
+                pvm.Attribute3 = listAttribute[3];
+                pvm.Attribute4 = listAttribute[4];
+                pvm.Attribute5 = listAttribute[5];
+                pvm.Attribute6 = listAttribute[6];
+                pvm.Attribute7 = listAttribute[7];
+
+                return View(pvm);
             }
+            else return RedirectToAction("ProductList");
 
-
-            ProductVM pvm = new ProductVM
-            {
-                Categories = _cRep.GetActives(),
-                Product = _pRep.Find(id)
-            };
-
-            pvm.Attribute0 = listAttribute[0];
-            pvm.Attribute1 = listAttribute[1];
-            pvm.Attribute2 = listAttribute[2];
-            pvm.Attribute3 = listAttribute[3];
-            pvm.Attribute4 = listAttribute[4];
-            pvm.Attribute5 = listAttribute[5];
-            pvm.Attribute6 = listAttribute[6];
-            pvm.Attribute7 = listAttribute[7];
-
-            return View(pvm);
         }
 
         [HttpPost]
@@ -285,36 +290,41 @@ namespace Project.MVCUI.Areas.Admin.Controllers
 
         public ActionResult DeleteProduct(int id)
         {
-            StockDTO stock = new StockDTO { ID = id };
-
-            using (HttpClient client = new HttpClient())
+            if (id > 0)
             {
-                client.BaseAddress = new Uri("https://localhost:44339/api/");
-                Task<HttpResponseMessage> postTask = client.PutAsJsonAsync("Home/DeleteStock", stock);
+                StockDTO stock = new StockDTO { ID = id };
 
-                HttpResponseMessage result;
+                using (HttpClient client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("https://localhost:44339/api/");
+                    Task<HttpResponseMessage> postTask = client.PutAsJsonAsync("Home/DeleteStock", stock);
 
-                try
-                {
-                    result = postTask.Result;
-                }
-                catch (Exception)
-                {
-                    TempData["hataCRUD"] = "Depo bağlantıyı reddetti";
-                    return RedirectToAction("ProductList");
-                }
+                    HttpResponseMessage result;
 
-                if (result.IsSuccessStatusCode)
-                {
-                    _pRep.Delete(_pRep.Find(id));
-                    return RedirectToAction("ProductList");
-                }
-                else
-                {
-                    TempData["hataCRUD"] = "Depo işlemi reddetti";
-                    return RedirectToAction("ProductList");
+                    try
+                    {
+                        result = postTask.Result;
+                    }
+                    catch (Exception)
+                    {
+                        TempData["hataCRUD"] = "Depo bağlantıyı reddetti";
+                        return RedirectToAction("ProductList");
+                    }
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        _pRep.Delete(_pRep.Find(id));
+                        return RedirectToAction("ProductList");
+                    }
+                    else
+                    {
+                        TempData["hataCRUD"] = "Depo işlemi reddetti";
+                        return RedirectToAction("ProductList");
+                    }
                 }
             }
+            else return RedirectToAction("ProductList");
+
         }
     }
 }

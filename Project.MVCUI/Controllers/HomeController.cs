@@ -181,13 +181,17 @@ namespace Project.MVCUI.Controllers
         [HttpPost]
         public ActionResult ChangePassword(AppUser user)
         {
-            AppUser appUser = _auRep.Find(user.ID);
+            if (user != null)
+            {
+                AppUser appUser = _auRep.Find(user.ID);
 
-            appUser.Password = DantexCryptex.Crypt(user.Password);
-            appUser.ConfirmPassword = DantexCryptex.Crypt(user.ConfirmPassword);
+                appUser.Password = DantexCryptex.Crypt(user.Password);
+                appUser.ConfirmPassword = DantexCryptex.Crypt(user.ConfirmPassword);
 
-            _auRep.Update(appUser);
-            return RedirectToAction("Login");
+                _auRep.Update(appUser);
+                return RedirectToAction("Login");
+            }
+            else return RedirectToAction("Login");
         }
     }
 }

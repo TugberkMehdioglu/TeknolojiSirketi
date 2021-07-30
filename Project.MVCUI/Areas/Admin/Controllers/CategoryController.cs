@@ -42,11 +42,16 @@ namespace Project.MVCUI.Areas.Admin.Controllers
 
         public ActionResult UpdateCategory(int id)
         {
-            CategoryVM cvm = new CategoryVM
+            if (id > 0)
             {
-                Category = _cRep.Find(id)
-            };
-            return View(cvm);
+                CategoryVM cvm = new CategoryVM
+                {
+                    Category = _cRep.Find(id)
+                };
+                return View(cvm);
+            }
+            else return RedirectToAction("CategoryList");
+
         }
 
         [HttpPost]
@@ -58,8 +63,12 @@ namespace Project.MVCUI.Areas.Admin.Controllers
 
         public ActionResult DeleteCategory(int id)
         {
-            _cRep.Delete(_cRep.Find(id));
-            return RedirectToAction("CategoryList");
+            if (id > 0)
+            {
+                _cRep.Delete(_cRep.Find(id));
+                return RedirectToAction("CategoryList");
+            }
+            else return RedirectToAction("CategoryList");
         }
     }
 }
