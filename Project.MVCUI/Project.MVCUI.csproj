@@ -1811,6 +1811,8 @@
     <Compile Include="Areas\Admin\Controllers\AuthorityController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="AuthenticationClasses\AdminAuthentication.cs" />
+    <Compile Include="AuthenticationClasses\MemberAuthentication.cs" />
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />

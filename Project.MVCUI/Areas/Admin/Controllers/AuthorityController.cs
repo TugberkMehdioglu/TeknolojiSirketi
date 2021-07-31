@@ -1,5 +1,6 @@
 ﻿using Project.BLL.DesignPatterns.GenericRepository.ConcRep;
 using Project.ENTITIES.Models;
+using Project.MVCUI.AuthenticationClasses;
 using Project.MVCUI.VMClasses;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Project.MVCUI.Areas.Admin.Controllers
 {
+    [AdminAuthentication]
     public class AuthorityController : Controller
     {
         AppUserRep _auRep;

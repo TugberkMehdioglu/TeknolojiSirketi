@@ -2,6 +2,7 @@
 using Project.COMMON.Tools;
 using Project.DTO.Models;
 using Project.ENTITIES.Models;
+using Project.MVCUI.AuthenticationClasses;
 using Project.MVCUI.VMClasses;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Web.Mvc;
 
 namespace Project.MVCUI.Areas.Admin.Controllers
 {
+    [AdminAuthentication]
     public class ProductController : Controller
     {
         ProductRep _pRep;
