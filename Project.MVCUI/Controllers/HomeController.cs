@@ -75,60 +75,6 @@ namespace Project.MVCUI.Controllers
             else return RedirectToAction("ShoppingList", "Shopping");
         }
 
-        public ActionResult ProfileDetail()
-        {
-            if (Session["member"] != null)
-            {
-                ProfileVM pvm = new ProfileVM
-                {
-                    User = Session["member"] as AppUser,
-                    Profile = (Session["member"] as AppUser).Profile
-                };
-
-                return View(pvm);
-            }
-            else return RedirectToAction("Login");
-        }
-
-        public ActionResult EditProfile(int id)
-        {
-            if (id > 0)
-            {
-                ProfileVM pvm = new ProfileVM
-                {
-                    User = _auRep.Find(id),
-                    Profile = _auRep.Find(id).Profile
-                };
-
-                return View(pvm);
-            }
-            else return RedirectToAction("ShoppingList");
-        }
-
-        [HttpPost]
-        public ActionResult EditProfile(ProfileVM profileVM, HttpPostedFileBase photo)
-        {
-            AppUser au = _auRep.Find(profileVM.User.ID);
-
-            //Resim yüklenmemiş ise önceden yüklenmiş fotoğrafı atıyoruz
-            if (photo == null) profileVM.Profile.ImagePath = au.Profile.ImagePath;
-
-            else profileVM.Profile.ImagePath = ImageUploader.UploadImage("/Pictures/", photo);
-
-
-            profileVM.User.Password = profileVM.User.ConfirmPassword = DantexCryptex.Crypt(profileVM.User.Password);
-
-
-            //Validation Email'i zorunlu tutuyor ve burada active'i atamazsak otomatik false'a çeker
-            profileVM.User.Email = au.Email;
-            profileVM.User.Active = au.Active;
-
-            _auRep.Update(profileVM.User);
-            _upRep.Update(profileVM.Profile);
-
-            return RedirectToAction("ProfileDetail");
-        }
-
         public ActionResult CargoTracking()
         {
             return View();

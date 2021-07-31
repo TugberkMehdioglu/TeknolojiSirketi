@@ -71,7 +71,7 @@
                             <ul class="dropdown-menu extended logout">
                                 <div class="log-arrow-up"></div>
                                 <li><a href="@Url.Action("CardPage", new { @controller="Shopping", area=""})"><i class=" icon-shopping-cart"></i>Sepet</a></li>
-                                <li><a href="@Url.Action("ProfileDetail", new { @controller="Home", area=""})"><i class="icon-cog"></i> Profil</a></li>
+                                <li><a href="@Url.Action("ProfileDetail", new { @controller="Profile", area=""})"><i class="icon-cog"></i> Profil</a></li>
                                 <li><a href="@Url.Action("Addresses", new { @controller="Address", area=""})"><i class="icon-road"></i> Adreslerim</a></li>
                                 <li><a href="@Url.Action("LogOut", new { @controller="Home", area=""})"><i class="icon-signout"></i> Çıkış Yap</a></li>
                             </ul>
@@ -147,7 +147,7 @@
 
 
                         <li>
-                            <a href="@Url.Action("ProfileDetail", new { @controller="Home", area=""})">
+                            <a href="@Url.Action("ProfileDetail", new { @controller="Profile", area=""})">
                                 <i class="icon-cog"></i>
                                 <span>Profil</span>
                             </a>
@@ -207,10 +207,6 @@
     <script src="~/OuterTools/js/owl.carousel.js"></script>
     <script src="~/OuterTools/js/jquery.customSelect.min.js"></script>
     <script src="~/OuterTools/js/respond.min.js"></script>
-
-
-
-    @*<script class="include" type="text/javascript" src="~/OuterTools/js/jquery.dcjqaccordion.2.7.js"></script>*@
 
     <!--common script for all pages-->
     <script src="~/OuterTools/js/common-scripts.js"></script>
