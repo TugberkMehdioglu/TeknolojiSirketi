@@ -97,25 +97,13 @@
         <section class="panel">
             <div class="panel-body">
                 <div class="pro-sort">
-                    <label class="pro-lab">Sort By</label>
-                    <select class="styled">
-                        <option>Default Sorting</option>
-                        <option>Popularity</option>
-                        <option>Average Rating</option>
-                        <option>Newness</option>
-                        <option>Price Low to High</option>
-                        <option>Price High to Low</option>
-                    </select>
-                </div>
-                <div class="pro-sort">
-                    <label class="pro-lab">Show</label>
-                    <select class="styled">
-                        <option>Result Per Page</option>
-                        <option>2 Per Page</option>
-                        <option>4 Per Page</option>
-                        <option>6 Per Page</option>
-                        <option>8 Per Page</option>
-                        <option>10 Per Page</option>
+                    <label class="pro-lab">Sırala</label>
+                    <select class="styled" id="select" >
+                        <option value="2">2'şerli</option>
+                        <option value="4">4'erli</option>
+                        <option value="6">6'şarlı</option>
+                        <option value="8">8'erli</option>
+                        <option value="10">10'arlı</option>
                     </select>
                 </div>
 
@@ -142,7 +130,7 @@
                         <div class="col-md-4" id="div" style="width:427px; height:554px">
                             <section class="panel" style="width:400px; height:540px">
                                 <div class="pro-img-box">
-                                    <a href="@Url.Action("ProductDetail", new { id=item.ID})"><img src="@item.ImagePath" alt="Resim Yok" title="@item.Name" width="397" height="397"/></a>
+                                    <a href="@Url.Action("ProductDetail", new { id=item.ID})"><img src="@item.ImagePath" alt="Resim Yok" title="@item.Name" width="397" height="397" /></a>
                                     <a href="@Url.Action("AddToCart", new { id=item.ID})" class="adtocart">
                                         <i class="icon-shopping-cart"></i>
                                     </a>
@@ -176,6 +164,13 @@
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
+
+        $('#select').on('change', function () {
+
+            $.get("/shopping/shoppinglist", { page: this.value });
+        });
     });
+
+
 
 </script>

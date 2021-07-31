@@ -141,5 +141,26 @@ namespace Project.MVCUI.Controllers
             }
             else return RedirectToAction("Login");
         }
+
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ContactUs(string fullName, string email, string message)
+        {
+            if (fullName != null && email != null && message != null)
+            {
+                string mail = $"Sayın yetkili {fullName} kişisinin E-postası: {email}, mesajı: {message}";
+
+                //Burada receiver kısmına teknik destek mail hesabı yazılmalıdır
+                MailService.Send(receiver: "tugberkmehdioglu@yandex.com", subject: "Bize ulaşın mesajı !", body: mail);
+
+                ViewBag.destek = "Mesajınız müşteri hizmetlerine ulaşmıştır, en kısa zamanda size geri dönüş sağlanıcak";
+                return View();
+            }
+            else return RedirectToAction("ContactUs");
+        }
     }
 }
