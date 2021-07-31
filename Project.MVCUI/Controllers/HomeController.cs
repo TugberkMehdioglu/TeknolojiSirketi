@@ -29,8 +29,8 @@ namespace Project.MVCUI.Controllers
         public ActionResult Login(AppUser appUser)
         {
             AppUser control = _auRep.FirstOrDefault(x => x.UserName == appUser.UserName);
-            
-            if(control == null)
+
+            if (control == null)
             {
                 ViewBag.Kullanici = "Kullanıcı Adı veya şifre hatalı";
                 return View();
@@ -47,7 +47,7 @@ namespace Project.MVCUI.Controllers
                 if (!control.Active) return ActiveControl();
 
                 Session["admin"] = control;
-                return RedirectToAction("CategoryList", new { @controller= "Category", area="Admin" });
+                return RedirectToAction("CategoryList", new { @controller = "Category", area = "Admin" });
             }
             else
             {
@@ -57,7 +57,7 @@ namespace Project.MVCUI.Controllers
                 return RedirectToAction("ShoppingList", "Shopping");
             }
         }
-        
+
         public ActionResult ActiveControl()
         {
             ViewBag.Active = "Lütfen Mail'inize yolladığımız link'e tıklayarak hesabınızı aktif hale getiriniz";
@@ -115,7 +115,9 @@ namespace Project.MVCUI.Controllers
 
             else profileVM.Profile.ImagePath = ImageUploader.UploadImage("/Pictures/", photo);
 
+
             profileVM.User.Password = profileVM.User.ConfirmPassword = DantexCryptex.Crypt(profileVM.User.Password);
+
 
             //Validation Email'i zorunlu tutuyor ve burada active'i atamazsak otomatik false'a çeker
             profileVM.User.Email = au.Email;
@@ -140,7 +142,7 @@ namespace Project.MVCUI.Controllers
         [HttpPost]
         public ActionResult ForgetPassword(string email)
         {
-            AppUser user = _auRep.FirstOrDefault(x => x.Email == email);
+            AppUser user = _auRep.FirstOrDefault(x => x.Email == email && x.Status != DataStatus.Deleted);
 
             if (user != null)
             {
@@ -175,7 +177,7 @@ namespace Project.MVCUI.Controllers
                 TempData["red"] = "Hesabınız bulunamadı";
                 return RedirectToAction("ForgetPassword");
             }
-            
+
         }
 
         [HttpPost]

@@ -135,6 +135,12 @@ namespace Project.MVCUI.Controllers
         [HttpPost]
         public ActionResult ConfirmOrder(OrderVM ovm)
         {
+            if ((Session["member"] as AppUser).Profile.Addresses.Count == 0)
+            {
+                TempData["hata"] = "Siparişi tamamlamak için kayıtlı adresiniz olmak zorundadır";
+                return RedirectToAction("AddAddress", "Address");
+            }
+
             Cart c = Session["scart"] as Cart;
 
             ovm.PaymentDTO.ShoppingPrice = ovm.Order.TotalPrice = c.TotalPrice;
