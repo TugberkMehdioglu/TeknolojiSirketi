@@ -74,9 +74,6 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">@item.Name</label>
                             <div class="col-sm-10">
-                                @*Bu neden olmadı araştır*@
-                                @*@Html.TextBoxFor(x => x.Attributes.Find(y => y.Name == item.Name).Value , new { @class="form-control genislik"})*@
-
                                 @{
                                     if (Model.Attributes[0].Name == item.Name)
                                     {
