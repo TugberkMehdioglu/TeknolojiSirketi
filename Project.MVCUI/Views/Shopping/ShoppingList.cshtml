@@ -96,17 +96,6 @@
     <div class="col-md-9">
         <section class="panel">
             <div class="panel-body">
-                <div class="pro-sort">
-                    <label class="pro-lab">Sırala</label>
-                    <select class="styled" id="select" >
-                        <option value="2">2'şerli</option>
-                        <option value="4">4'erli</option>
-                        <option value="6">6'şarlı</option>
-                        <option value="8">8'erli</option>
-                        <option value="10">10'arlı</option>
-                    </select>
-                </div>
-
                 <div class="pull-right">
                     <ul class="pagination pagination-sm pro-page-list">
                         @if (ViewBag.categoryID != null)
@@ -163,11 +152,6 @@
             $("#ul li").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
-        });
-
-        $('#select').on('change', function () {
-
-            $.get("/shopping/shoppinglist", { page: this.value });
         });
     });
 
