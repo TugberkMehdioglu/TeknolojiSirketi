@@ -45,6 +45,8 @@ namespace Project.MVCUI.Areas.Admin.Controllers
         {
             if (category != null)
             {
+                //Bu kısım sayesinde kategorisine göre attribute name'leri seçilmiş şekilde gelicek, kullanıcı sadece attribute value'suna değer ataması yapıcak
+
                 String[] anakart = { "Soket Tipi", "Anakart Markası", "Anakart Yapı", "Maks. Ram Desteği", "Ram Tipi", "Anakart Chipseti", "Ram Slot Sayısı", "Desteklenen Ram Hızı" };
                 string[] islemci = { "İşlemci Markası", "İşlemci Hızı", "İşlemci Çekirdek", "Entegre Grafik Kartı", "Soket Tipi", "Maks. Turbo Hızı", "Top. İş Parçacığı", "Grafik Kartı Chipseti" };
                 string[] ekranKarti = { "Ekran Kartı Chipseti", "Çekirdek Hücre Sayısı", "Bellek Kapasitesi", "Bellek Arayüzü", "Grafik İşlemci", "Bellek Tipi", "Bellek Hızı", "HDMI" };
