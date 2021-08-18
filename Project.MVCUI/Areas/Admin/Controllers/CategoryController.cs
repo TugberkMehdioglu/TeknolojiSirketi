@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace Project.MVCUI.Areas.Admin.Controllers
 {
-    [AdminAuthentication]
+    [AdminAuthentication] //Sadece Admin yetkisi olanlar bu controller'a giriş sağlayabilir
     public class CategoryController : Controller
     {
         CategoryRep _cRep;
@@ -20,9 +20,11 @@ namespace Project.MVCUI.Areas.Admin.Controllers
         {
             _cRep = new CategoryRep();
         }
-        // GET: Admin/Category
+        
+        //id'li hali için ayrı bir action açmak yerine nullable ile turnery if kullanarak tek action'da iki ayrı request'e cevap verdik
         public ActionResult CategoryList(int? id)
         {
+            //CategoryList'e Get request'i olduğunda id parametresi null ise bütün kategorileri getir, null değilse istenen kategoriyi getir
             CategoryVM cvm = id == null ? new CategoryVM
             {
                 Categories = _cRep.GetActives()

@@ -1,4 +1,5 @@
-﻿using Project.BLL.DesignPatterns.GenericRepository.ConcRep;
+﻿using Newtonsoft.Json;
+using Project.BLL.DesignPatterns.GenericRepository.ConcRep;
 using Project.COMMON.Tools;
 using Project.DTO.Models;
 using Project.ENTITIES.Models;
@@ -14,7 +15,7 @@ using System.Web.Mvc;
 
 namespace Project.MVCUI.Areas.Admin.Controllers
 {
-    [AdminAuthentication]
+    [AdminAuthentication] //Sadece Admin yetkisi olanlar bu controller'a giriş sağlayabilir
     public class ProductController : Controller
     {
         ProductRep _pRep;
@@ -29,7 +30,7 @@ namespace Project.MVCUI.Areas.Admin.Controllers
             _paRep = new ProductAttributeRep();
         }
 
-        // GET: Admin/Product
+        //id'li hali için ayrı bir action açmak yerine nullable ile turnery if kullanarak tek action'da iki ayrı request'e cevap verdik
         public ActionResult ProductList(int? id)
         {
             ProductVM pvm = new ProductVM()
