@@ -30,6 +30,8 @@ namespace Project.MVCUI.Controllers
             _pRep = new ProductRep();
             _cRep = new CategoryRep();
         }
+
+        //id'li hali için ayrı bir action açmak yerine nullable ile turnery if kullanarak tek action'da iki ayrı request'e cevap verdik
         public ActionResult ShoppingList(int? page, int?categoryID)
         {
             PAVM pavm = new PAVM

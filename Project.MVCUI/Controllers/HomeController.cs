@@ -35,7 +35,7 @@ namespace Project.MVCUI.Controllers
                 ViewBag.Kullanici = "Kullanıcı Adı veya şifre hatalı";
                 return View();
             }
-
+            //Şifreyi decrypted etmeliyizki şifrenin sorgulamasını yapabilelim (DB'de kullanıcının şifresi kriptolu tutuluyor)
             string password = DantexCryptex.DeCrypt(control.Password);
             if (password != appUser.Password)
             {
@@ -44,14 +44,14 @@ namespace Project.MVCUI.Controllers
             }
             else if (control.Role == UserRole.Admin)
             {
-                if (!control.Active) return ActiveControl();
+                if (!control.Active) return ActiveControl(); //Mail aktif değilse giriş yaptırtmıyoruz
 
                 Session["admin"] = control;
                 return RedirectToAction("CategoryList", new { @controller = "Category", area = "Admin" });
             }
             else
             {
-                if (!control.Active) return ActiveControl();
+                if (!control.Active) return ActiveControl(); //Mail aktif değilse giriş yaptırtmıyoruz
 
                 Session["member"] = control;
                 return RedirectToAction("ShoppingList", "Shopping");
