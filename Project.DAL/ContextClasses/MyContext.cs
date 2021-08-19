@@ -12,7 +12,7 @@ namespace Project.DAL.ContextClasses
 {
     public class MyContext :DbContext
     {
-        public MyContext() : base("MyConnection")
+        public MyContext() : base("MyAutConnection")
         {
             Database.SetInitializer(new MyInit());
         }
