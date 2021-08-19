@@ -38,7 +38,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        @using (Html.BeginForm("EditProfile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        @using (Html.BeginForm("EditProfile", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             @Html.HiddenFor(x => x.User.ID)
                             @Html.HiddenFor(x => x.Profile.ID)
