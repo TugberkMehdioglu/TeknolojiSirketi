@@ -31,14 +31,58 @@ namespace Project.MVCUI.Areas.Admin.Controllers
         }
 
         //id'li hali için ayrı bir action açmak yerine nullable ile turnery if kullanarak tek action'da iki ayrı request'e cevap verdik
-        public ActionResult ProductList(int? id)
+        public async Task<ActionResult> ProductList(int? id)
         {
+
+            getAsyn();
+            
             ProductVM pvm = new ProductVM()
             {
                 Products = id == null ? _pRep.GetActives() : _pRep.GetActives().Where(x => x.CategoryID == id).ToList(),
                 Categories = _cRep.GetActives()
             };
             return View(pvm);
+        }
+
+        //Bu metod admin her siteye girip ürünleri listelettiğinde DepoAPI'daki stok miktarlarını alıp mevcut projenin stok miktarlarını günceller.
+        //ShoppingList'te bunu yapmamamızın nedeni Depo'daki stok bittiğinde ya da sipariş edilecek ürün miktarı kadar stok olmadığında Depo'nun alışverişe izin vermemesidir.
+        public async void getAsyn()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44339/api/");
+                Task<HttpResponseMessage> getTask = client.GetAsync("Home/GetStock");
+
+                HttpResponseMessage result = new HttpResponseMessage();
+
+                try
+                {
+                    result = getTask.Result;
+                }
+                catch (Exception)
+                {
+                    TempData["hata"] = "API bağlantıyı reddetti, stok bilgileri güncel olmayabilir";
+                }
+
+                if (result.IsSuccessStatusCode)
+                {
+                    string contentString = await getTask.Result.Content.ReadAsStringAsync();
+
+                    List<StockDTO> resultContent = JsonConvert.DeserializeObject<List<StockDTO>>(contentString);
+
+                    List<Product> abc = resultContent.Select(x => new Product
+                    {
+                        ID = x.ID,
+                        UnitInStock = x.UnitInStock
+                    }).ToList();
+
+                    _pRep.UpdateStockRange(abc);
+                }
+                else
+                {
+                    TempData["hata"] = "API ile ilgili bir sorun oluştu, stok bilgileri güncel olmayabilir";
+                }
+            }
         }
 
         //Burada kategorisi belirtilmiş olan eklenecek ürünün attribute'larının name prop'ları belirtilmiş olarak gelmesini istedik
