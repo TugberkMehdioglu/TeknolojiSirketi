@@ -15,7 +15,7 @@ namespace Project.ENTITIES.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Birim Fiyatı")]
-        [Range(minimum: 0, maximum: double.MaxValue, ErrorMessage = "{0} 0'dan büyük olmalıdır")]
+        [Range(minimum: 1, maximum: double.MaxValue, ErrorMessage = "{0} 0'dan büyük olmalıdır")]
         public decimal UnitPrice { get; set; }
 
         [Required(ErrorMessage = "{0} zorunludur"), Display(Name = "Stok")]
