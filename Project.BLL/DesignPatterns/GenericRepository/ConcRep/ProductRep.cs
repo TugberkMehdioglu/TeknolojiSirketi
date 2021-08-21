@@ -17,7 +17,8 @@ namespace Project.BLL.DesignPatterns.GenericRepository.ConcRep
                 UpdateStock(element);
             }
         }
-
+        
+        //BaseRep'teki Update methodu default değerleride güncellediğinden data annotation'lar yüzünden exception alınıyordu, bunu önlemek için UpdateStock ve UpdateStockRange eklemeleri yapıldı
         public void UpdateStock(Product item)
         {
             item.Status = ENTITIES.Enums.DataStatus.Updated;
