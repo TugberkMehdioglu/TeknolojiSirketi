@@ -92,7 +92,7 @@ namespace Project.MVCUI.Controllers
 
             if (user != null)
             {
-                string mail = "Şifre değiştirme talibiniz alındı, lütfen http://localhost:44399/Home/ChangePassword/" + user.ActivationCode + " linkine tıklayarak şifrenizi değiştiriniz";
+                string mail = "Şifre değiştirme talibiniz alındı, lütfen https://localhost:44399/Home/ChangePassword/" + user.ActivationCode + " linkine tıklayarak şifrenizi değiştiriniz";
                 MailService.Send(email, subject: "Şifre değiştirme talebi", body: mail);
 
                 TempData["sifre"] = "Şifre değiştirme linkiniz e-postanıza yollandı, lütfen e-postanızı kontrol ediniz";

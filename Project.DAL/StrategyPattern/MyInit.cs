@@ -736,7 +736,7 @@ namespace Project.DAL.StrategyPattern
 
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44339/api/");
+                client.BaseAddress = new Uri("https://localhost:44339/api/");
                 Task<HttpResponseMessage> postTask = client.PostAsJsonAsync("Home/AddStocks", dto);
 
                 HttpResponseMessage result;

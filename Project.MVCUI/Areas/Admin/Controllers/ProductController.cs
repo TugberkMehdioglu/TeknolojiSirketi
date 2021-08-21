@@ -219,7 +219,7 @@ namespace Project.MVCUI.Areas.Admin.Controllers
 
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44339/api/");
+                client.BaseAddress = new Uri("https://localhost:44339/api/");
                 Task<HttpResponseMessage> postTask = client.PostAsJsonAsync("Home/AddStocks", listStock);
 
                 HttpResponseMessage result;
@@ -376,7 +376,7 @@ namespace Project.MVCUI.Areas.Admin.Controllers
 
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:44339/api/");
+                client.BaseAddress = new Uri("https://localhost:44339/api/");
                 Task<HttpResponseMessage> postTask = client.PutAsJsonAsync("Home/UpdateStock", stock);
 
                 HttpResponseMessage result;
@@ -448,7 +448,7 @@ namespace Project.MVCUI.Areas.Admin.Controllers
 
                 using (HttpClient client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("http://localhost:44339/api/");
+                    client.BaseAddress = new Uri("https://localhost:44339/api/");
                     Task<HttpResponseMessage> postTask = client.PutAsJsonAsync("Home/DeleteStock", stock);
 
                     HttpResponseMessage result;
