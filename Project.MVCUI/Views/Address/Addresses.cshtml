@@ -39,13 +39,20 @@
                         @foreach (Address item in Model.Profile.Addresses)
                         {
                             <div class="form-group">
-                                <label class="control-label col-lg-2" style="font-size:large">@item.Name: </label>
-                                <div class="col-lg-10" style="font-size:medium">
+                                <div><label class="control-label col-lg-2" style="font-size:medium;width:auto;">@item.Name: </label></div>
+                                
+                                <div class="col-lg-10" style="font-size:small;width:auto;">
                                     @item.FullAddress
-                                    @Html.ActionLink("Sil", "DeleteAddress", new { id = item.ID, area="" }, new { @class = "btn btn-round btn-danger pull-right" })
-                                    &nbsp;
-                                    @Html.ActionLink("Güncelle", "UpdateAddress", new { id = item.ID, area="" }, new { @class = "btn btn-round btn-warning pull-right" })
                                 </div>
+                                <div>
+                                    @Html.ActionLink("Sil", "DeleteAddress", new { id = item.ID, area = "" }, new { @class = "btn btn-round btn-danger pull-right" })
+
+                                </div>
+                                <div style="margin-right:50px">
+                                    @Html.ActionLink("Güncelle", "UpdateAddress", new { id = item.ID, area = "" }, new { @class = "btn btn-round btn-warning pull-right" })
+                                </div>
+                                    &nbsp;
+                                
                             </div>
 
                             <br /><br /><br /><br />

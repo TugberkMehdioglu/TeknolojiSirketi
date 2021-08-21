@@ -48,10 +48,13 @@ namespace Project.MVCUI.Areas.Admin.Controllers
             {
                 //Bu kısım sayesinde kategorisine göre attribute name'leri seçilmiş şekilde gelicek, kullanıcı sadece attribute value'suna değer ataması yapıcak
 
-                String[] anakart = { "Soket Tipi", "Anakart Markası", "Anakart Yapı", "Maks. Ram Desteği", "Ram Tipi", "Anakart Chipseti", "Ram Slot Sayısı", "Desteklenen Ram Hızı" };
+                string[] anakart = { "Soket Tipi", "Anakart Markası", "Anakart Yapı", "Maks. Ram Desteği", "Ram Tipi", "Anakart Chipseti", "Ram Slot Sayısı", "Desteklenen Ram Hızı" };
                 string[] islemci = { "İşlemci Markası", "İşlemci Hızı", "İşlemci Çekirdek", "Entegre Grafik Kartı", "Soket Tipi", "Maks. Turbo Hızı", "Top. İş Parçacığı", "Grafik Kartı Chipseti" };
                 string[] ekranKarti = { "Ekran Kartı Chipseti", "Çekirdek Hücre Sayısı", "Bellek Kapasitesi", "Bellek Arayüzü", "Grafik İşlemci", "Bellek Tipi", "Bellek Hızı", "HDMI" };
                 string[] ram = { "Ram Tipi", "Ram Kapasitesi", "Modül Sayısı", "Kullanım Alanı", "Hafıza Bus Hızı", "Kit", "Gecikme Süresi", "Menşei" };
+                string[] kasa = { "Boyut", "PSU", "Ön Çıkışlar", "Fan", "Anakart Desteği", "Malzeme" };
+                string[] sogutucu = { "Fan RPM", "Fan Boyutu", "Radyatör Boyutu", "Radyatör Malzeme", "Gürültü Seviyesi", "Uygunluk" };
+                string[] ssd = { "Kapasite", "Bağlantı", "Okuma Hızı", "Yazma Hızı", "IOPS Okuma", "IOPS Yazma", };
 
 
                 List<Project.ENTITIES.Models.Attribute> listAttribute = new List<ENTITIES.Models.Attribute>();
@@ -84,7 +87,27 @@ namespace Project.MVCUI.Areas.Admin.Controllers
                         listAttribute.Add(new Project.ENTITIES.Models.Attribute { Name = ram[i] });
                     }
                 }
-
+                else if (category == "Kasa")
+                {
+                    for (int i = 0; i < kasa.Length; i++)
+                    {
+                        listAttribute.Add(new ENTITIES.Models.Attribute { Name = kasa[i] });
+                    }
+                }
+                else if (category == "Soğutucu")
+                {
+                    for (int i = 0; i < sogutucu.Length; i++)
+                    {
+                        listAttribute.Add(new ENTITIES.Models.Attribute { Name = sogutucu[i] });
+                    }
+                }
+                else if (category == "SSD")
+                {
+                    for (int i = 0; i < ssd.Length; i++)
+                    {
+                        listAttribute.Add(new ENTITIES.Models.Attribute { Name = ssd[i] });
+                    }
+                }
 
                 ProductVM pvm = new ProductVM
                 {
@@ -101,14 +124,27 @@ namespace Project.MVCUI.Areas.Admin.Controllers
                     Attribute7 = new ENTITIES.Models.Attribute()
                 };
 
-                pvm.Attribute0.Name = listAttribute[0].Name;
-                pvm.Attribute1.Name = listAttribute[1].Name;
-                pvm.Attribute2.Name = listAttribute[2].Name;
-                pvm.Attribute3.Name = listAttribute[3].Name;
-                pvm.Attribute4.Name = listAttribute[4].Name;
-                pvm.Attribute5.Name = listAttribute[5].Name;
-                pvm.Attribute6.Name = listAttribute[6].Name;
-                pvm.Attribute7.Name = listAttribute[7].Name;
+                if (category == "Kasa" || category == "Soğutucu" || category == "SSD")
+                {
+                    pvm.Attribute0.Name = listAttribute[0].Name;
+                    pvm.Attribute1.Name = listAttribute[1].Name;
+                    pvm.Attribute2.Name = listAttribute[2].Name;
+                    pvm.Attribute3.Name = listAttribute[3].Name;
+                    pvm.Attribute4.Name = listAttribute[4].Name;
+                    pvm.Attribute5.Name = listAttribute[5].Name;
+                }
+                else
+                {
+                    pvm.Attribute0.Name = listAttribute[0].Name;
+                    pvm.Attribute1.Name = listAttribute[1].Name;
+                    pvm.Attribute2.Name = listAttribute[2].Name;
+                    pvm.Attribute3.Name = listAttribute[3].Name;
+                    pvm.Attribute4.Name = listAttribute[4].Name;
+                    pvm.Attribute5.Name = listAttribute[5].Name;
+                    pvm.Attribute6.Name = listAttribute[6].Name;
+                    pvm.Attribute7.Name = listAttribute[7].Name;
+                }
+
 
                 return View(pvm);
             }
@@ -139,7 +175,7 @@ namespace Project.MVCUI.Areas.Admin.Controllers
 
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44339/api/");
+                client.BaseAddress = new Uri("http://localhost:44339/api/");
                 Task<HttpResponseMessage> postTask = client.PostAsJsonAsync("Home/AddStocks", listStock);
 
                 HttpResponseMessage result;
@@ -158,8 +194,36 @@ namespace Project.MVCUI.Areas.Admin.Controllers
 
                 if (result.IsSuccessStatusCode)
                 {
+                    if (pvm.Product.Category.Name == "Kasa" || pvm.Product.Category.Name == "Soğutucu" || pvm.Product.Category.Name == "SSD")
+                    {
+                        List<Project.ENTITIES.Models.Attribute> listAttribute = new List<ENTITIES.Models.Attribute>
+                    {
+                        pvm.Attribute0,
+                        pvm.Attribute1,
+                        pvm.Attribute2,
+                        pvm.Attribute3,
+                        pvm.Attribute4,
+                        pvm.Attribute5
 
-                    List<Project.ENTITIES.Models.Attribute> listAttribute = new List<ENTITIES.Models.Attribute>
+                    };
+                        _aRep.AddRange(listAttribute);
+
+                        foreach (Project.ENTITIES.Models.Attribute item in listAttribute)
+                        {
+                            ProductAttribute pa = new ProductAttribute
+                            {
+                                AttributeID = item.ID,
+                                ProductID = pvm.Product.ID
+                            };
+
+                            _paRep.Add(pa);//Çoka-çok ilişki tamamlaması
+                        }
+
+                        return RedirectToAction("ProductList");
+                    }
+                    else
+                    {
+                        List<Project.ENTITIES.Models.Attribute> listAttribute = new List<ENTITIES.Models.Attribute>
                     {
                         pvm.Attribute0,
                         pvm.Attribute1,
@@ -171,18 +235,26 @@ namespace Project.MVCUI.Areas.Admin.Controllers
                         pvm.Attribute7
                     };
 
-                    _aRep.AddRange(listAttribute);//Çoka-çok ilişkide ID kullanabilmek için DB'ye ekledik
+                        _aRep.AddRange(listAttribute);
 
-                    foreach (Project.ENTITIES.Models.Attribute item in listAttribute)
-                    {
-                        ProductAttribute pa = new ProductAttribute
+                        foreach (Project.ENTITIES.Models.Attribute item in listAttribute)
                         {
-                            AttributeID = item.ID,
-                            ProductID = pvm.Product.ID
-                        };
+                            ProductAttribute pa = new ProductAttribute
+                            {
+                                AttributeID = item.ID,
+                                ProductID = pvm.Product.ID
+                            };
 
-                        _paRep.Add(pa);//Çoka-çok ilişki tamamlaması
+                            _paRep.Add(pa);//Çoka-çok ilişki tamamlaması
+                        }
+
+                        return RedirectToAction("ProductList");
                     }
+
+
+                    /*_aRep.AddRange(listAttribute);*///Çoka-çok ilişkide ID kullanabilmek için DB'ye ekledik
+
+
 
                     return RedirectToAction("ProductList");
                 }
@@ -219,14 +291,27 @@ namespace Project.MVCUI.Areas.Admin.Controllers
                     Product = _pRep.Find(id)
                 };
 
-                pvm.Attribute0 = listAttribute[0];
-                pvm.Attribute1 = listAttribute[1];
-                pvm.Attribute2 = listAttribute[2];
-                pvm.Attribute3 = listAttribute[3];
-                pvm.Attribute4 = listAttribute[4];
-                pvm.Attribute5 = listAttribute[5];
-                pvm.Attribute6 = listAttribute[6];
-                pvm.Attribute7 = listAttribute[7];
+                if (pvm.Product.Category.Name == "Kasa" || pvm.Product.Category.Name == "Soğutucu" || pvm.Product.Category.Name == "SSD")
+                {
+                    pvm.Attribute0 = listAttribute[0];
+                    pvm.Attribute1 = listAttribute[1];
+                    pvm.Attribute2 = listAttribute[2];
+                    pvm.Attribute3 = listAttribute[3];
+                    pvm.Attribute4 = listAttribute[4];
+                    pvm.Attribute5 = listAttribute[5];
+                }
+                else
+                {
+                    pvm.Attribute0 = listAttribute[0];
+                    pvm.Attribute1 = listAttribute[1];
+                    pvm.Attribute2 = listAttribute[2];
+                    pvm.Attribute3 = listAttribute[3];
+                    pvm.Attribute4 = listAttribute[4];
+                    pvm.Attribute5 = listAttribute[5];
+                    pvm.Attribute6 = listAttribute[6];
+                    pvm.Attribute7 = listAttribute[7];
+                }
+
 
                 return View(pvm);
             }
@@ -247,7 +332,7 @@ namespace Project.MVCUI.Areas.Admin.Controllers
 
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44339/api/");
+                client.BaseAddress = new Uri("http://localhost:44339/api/");
                 Task<HttpResponseMessage> postTask = client.PutAsJsonAsync("Home/UpdateStock", stock);
 
                 HttpResponseMessage result;
@@ -267,7 +352,9 @@ namespace Project.MVCUI.Areas.Admin.Controllers
                     if (image != null)
                         pvm.Product.ImagePath = ImageUploader.UploadImage("/Pictures/", image);
 
-                    List<Project.ENTITIES.Models.Attribute> listAttribute = new List<ENTITIES.Models.Attribute>
+                    if (pvm.Product.CategoryID == 1 || pvm.Product.CategoryID == 2 || pvm.Product.CategoryID == 3 || pvm.Product.CategoryID == 4)
+                    {
+                        List<Project.ENTITIES.Models.Attribute> listAttribute = new List<ENTITIES.Models.Attribute>
                     {
                         pvm.Attribute0,
                         pvm.Attribute1,
@@ -278,8 +365,24 @@ namespace Project.MVCUI.Areas.Admin.Controllers
                         pvm.Attribute6,
                         pvm.Attribute7
                     };
+                        _aRep.UpdateRange(listAttribute);
+                    }
+                    else
+                    {
+                        List<Project.ENTITIES.Models.Attribute> listAttribute = new List<ENTITIES.Models.Attribute>
+                    {
+                        pvm.Attribute0,
+                        pvm.Attribute1,
+                        pvm.Attribute2,
+                        pvm.Attribute3,
+                        pvm.Attribute4,
+                        pvm.Attribute5
+                        };
+                        _aRep.UpdateRange(listAttribute);
+                    }
 
-                    _aRep.UpdateRange(listAttribute);
+
+
                     _pRep.Update(pvm.Product);
                     return RedirectToAction("ProductList");
                 }
@@ -301,7 +404,7 @@ namespace Project.MVCUI.Areas.Admin.Controllers
 
                 using (HttpClient client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("https://localhost:44339/api/");
+                    client.BaseAddress = new Uri("http://localhost:44339/api/");
                     Task<HttpResponseMessage> postTask = client.PutAsJsonAsync("Home/DeleteStock", stock);
 
                     HttpResponseMessage result;

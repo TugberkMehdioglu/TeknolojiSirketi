@@ -15,7 +15,7 @@
     }
 </style>
 
-@using (Html.BeginForm("UpdateProduct", "Product", FormMethod.Post, new { enctype="multipart/form-data"}))
+@using (Html.BeginForm("UpdateProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.Product.ID)
     @Html.HiddenFor(x => x.Product.ImagePath)
@@ -139,26 +139,33 @@
                     </div>
 
                     <br /><br />
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">@Model.Attribute6.Name</label>
-                        <div class="col-sm-10">
-                            @Html.HiddenFor(x => x.Attribute6.ID)
-                            @Html.HiddenFor(x => x.Attribute6.Name)
-                            @Html.ValidationMessageFor(x => x.Attribute6.Value)
-                            @Html.TextBoxFor(x => x.Attribute6.Value, new { @class = "form-control genislik" })
+                    @if (Model.Product.Category.Name == "Anakart" || Model.Product.Category.Name == "İşlemci" || Model.Product.Category.Name == "Ekran Kartı" || Model.Product.Category.Name == "Ram")
+                    {
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">@Model.Attribute6.Name</label>
+                            <div class="col-sm-10">
+                                @Html.HiddenFor(x => x.Attribute6.ID)
+                                @Html.HiddenFor(x => x.Attribute6.Name)
+                                @Html.ValidationMessageFor(x => x.Attribute6.Value)
+                                @Html.TextBoxFor(x => x.Attribute6.Value, new { @class = "form-control genislik" })
+                            </div>
                         </div>
-                    </div>
 
-                    <br /><br />
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">@Model.Attribute7.Name</label>
-                        <div class="col-sm-10">
-                            @Html.HiddenFor(x => x.Attribute7.ID)
-                            @Html.HiddenFor(x => x.Attribute7.Name)
-                            @Html.ValidationMessageFor(x => x.Attribute7.Value)
-                            @Html.TextBoxFor(x => x.Attribute7.Value, new { @class = "form-control genislik" })
+                        <br /><br />
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">@Model.Attribute7.Name</label>
+                            <div class="col-sm-10">
+                                @Html.HiddenFor(x => x.Attribute7.ID)
+                                @Html.HiddenFor(x => x.Attribute7.Name)
+                                @Html.ValidationMessageFor(x => x.Attribute7.Value)
+                                @Html.TextBoxFor(x => x.Attribute7.Value, new { @class = "form-control genislik" })
+                            </div>
                         </div>
-                    </div>
+
+                    }
+
+
+
 
                     <br /> <br />
                     <div class="form-group">
