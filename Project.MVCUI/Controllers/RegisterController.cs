@@ -47,7 +47,7 @@ namespace Project.MVCUI.Controllers
                 return View();
             }
 
-            string mail = "Kayıt işlemiz gerçekleşmiştir, hesabınızı aktifleştirmek için lütfen https://localhost:44399/Register/Activation/" + au.ActivationCode + " linkine tıklayarak hesabınızı aktifleştiriniz";
+            string mail = "Kayıt işlemiz gerçekleşmiştir, hesabınızı aktifleştirmek için lütfen http://localhost:44399/Register/Activation/" + au.ActivationCode + " linkine tıklayarak hesabınızı aktifleştiriniz";
 
             //Her kullanıcının şifresini kriptolu şekilde DB'de tutuyoruz
             //Hem Password hem de ConfirmPassword'e aynı kriptolu şifreyi atamazsak validation error alırız
