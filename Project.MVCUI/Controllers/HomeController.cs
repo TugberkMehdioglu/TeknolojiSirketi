@@ -42,6 +42,11 @@ namespace Project.MVCUI.Controllers
                 ViewBag.Kullanici = "Kullanıcı Adı veya şifre hatalı";
                 return View();
             }
+            else if (control.Status == DataStatus.Deleted)
+            {
+                ViewBag.Kullanici = "Hesabınız engellenmiştir";
+                return View();
+            }
             else if (control.Role == UserRole.Admin)
             {
                 if (!control.Active) return ActiveControl(); //Mail aktif değilse giriş yaptırtmıyoruz
