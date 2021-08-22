@@ -61,7 +61,8 @@ namespace Project.MVCUI.Areas.Admin.Controllers
                 }
                 catch (Exception)
                 {
-                    TempData["hata"] = "API bağlantıyı reddetti, stok bilgileri güncel olmayabilir";
+                    TempData["hata"] = "DepoAPI bağlantıyı reddetti, stok bilgileri güncel olmayabilir";
+                    return;
                 }
 
                 if (result.IsSuccessStatusCode)
