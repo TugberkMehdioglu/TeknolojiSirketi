@@ -478,8 +478,20 @@ namespace Project.DAL.StrategyPattern
             }
             context.SaveChanges();
 
-
             //----------------------KASA-----------------------------//
+
+            List<Project.ENTITIES.Models.Attribute> kasaList = new List<Attribute>
+            {
+                new Attribute{Name="Boyut", Value="Mid Tower"},
+                new Attribute{Name="PSU", Value="-"},
+                new Attribute{Name="Ön Çıkışlar", Value="2 x USB 3.2 Gen1 Type-A / 1 x HD Audio / 1 x Mic"},
+                new Attribute{Name="Fan", Value="2x 120mm ARGB LED Fan 1x 120mm Fan"},
+                new Attribute{Name="Anakart Desteği", Value="ATX / mATX / Mini-ITX"},
+                new Attribute{Name="Malzeme", Value="Steel, Plastic, Tempered Glass"},
+            };
+            context.Attributes.AddRange(kasaList);
+            context.SaveChanges();
+
 
             Category kasa = new Category
             {
@@ -544,8 +556,34 @@ namespace Project.DAL.StrategyPattern
             kasa.Products.Add(urunKasa5);
             context.SaveChanges();
 
+            foreach (Product item in kasa.Products)
+            {
+                foreach (Project.ENTITIES.Models.Attribute element in kasaList)
+                {
+                    ProductAttribute pa = new ProductAttribute
+                    {
+                        ProductID = item.ID,
+                        AttributeID = element.ID
+                    };
+                    context.ProductAttributes.Add(pa);
+                }
+            }
+            context.SaveChanges();
 
             //----------------------SOĞUTUCU-----------------------------//
+
+            List<Project.ENTITIES.Models.Attribute> sogutucuList = new List<Attribute>
+            {
+                new Attribute{Name="Fan RPM", Value="1700 RPM"},
+                new Attribute{Name="Fan Boyutu", Value="120mm x 25mm"},
+                new Attribute{Name="Radyatör Boyutu", Value="275mm x 120mm x 27mm"},
+                new Attribute{Name="Radyatör Malzeme", Value="Alüminyum"},
+                new Attribute{Name="Gürültü Seviyesi", Value="37 dBA"},
+                new Attribute{Name="Uygunluk", Value="1150/1151/1155/1156/2011/2066 AM3/AM2/AM4"},
+            };
+            context.Attributes.AddRange(sogutucuList);
+            context.SaveChanges();
+
             Category sogutucu = new Category
             {
                 Name = "Soğutucu",
@@ -609,8 +647,33 @@ namespace Project.DAL.StrategyPattern
             sogutucu.Products.Add(urunSogutucu5);
             context.SaveChanges();
 
+            foreach (Product item in sogutucu.Products)
+            {
+                foreach (Project.ENTITIES.Models.Attribute element in sogutucuList)
+                {
+                    ProductAttribute pa = new ProductAttribute
+                    {
+                        ProductID = item.ID,
+                        AttributeID = element.ID
+                    };
+                    context.ProductAttributes.Add(pa);
+                }
+            }
+            context.SaveChanges();
 
             //----------------------SSD-----------------------------//
+
+            List<Project.ENTITIES.Models.Attribute> ssdList = new List<Attribute>
+            {
+                new Attribute{Name="Kapasite", Value="500GB"},
+                new Attribute{Name="Bağlantı", Value="Sata 3.0"},
+                new Attribute{Name="Okuma Hızı", Value="560MB"},
+                new Attribute{Name="Yazma Hızı", Value="540MB"},
+                new Attribute{Name="IOPS Okuma", Value="90K"},
+                new Attribute{Name="IOPS Yazma", Value="90K"},
+            };
+            context.Attributes.AddRange(ssdList);
+            context.SaveChanges();
 
             Category ssd = new Category
             {
@@ -673,6 +736,20 @@ namespace Project.DAL.StrategyPattern
                 ImagePath = "/Pictures/ssd/6.jpg"
             };
             ssd.Products.Add(urunSsd5);
+            context.SaveChanges();
+
+            foreach (Product item in ssd.Products)
+            {
+                foreach (Project.ENTITIES.Models.Attribute element in ssdList)
+                {
+                    ProductAttribute pa = new ProductAttribute
+                    {
+                        ProductID = item.ID,
+                        AttributeID = element.ID
+                    };
+                    context.ProductAttributes.Add(pa);
+                }
+            }
             context.SaveChanges();
 
 
