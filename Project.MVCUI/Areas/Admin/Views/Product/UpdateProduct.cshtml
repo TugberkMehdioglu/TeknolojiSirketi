@@ -15,6 +15,10 @@
     }
 </style>
 
+<div class="text-center" style="font-family:'Times New Roman', Times, serif; font-weight:bold; color:green; font-size:large">
+    <p>Birim fiyatı kısmında '.' (nokta) ile fiyat girişi kabul edilmediğinden ürünün fiyatı 1TL olarak gözükecektir!</p>
+</div>
+
 @using (Html.BeginForm("UpdateProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.Product.ID)

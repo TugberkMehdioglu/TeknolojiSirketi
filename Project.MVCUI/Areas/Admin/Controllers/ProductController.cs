@@ -203,6 +203,8 @@ namespace Project.MVCUI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult AddProduct(ProductVM pvm, HttpPostedFileBase image)
         {
+            if (pvm.Product.UnitPrice == 0) pvm.Product.UnitPrice = 1;
+
             pvm.Product.ImagePath = ImageUploader.UploadImage("/Pictures/", image);
             _pRep.Add(pvm.Product); //API ile haberleşirken ID belirtmemiz gerektiği için DB'ye ürünü kaydetmeliyiz
 
@@ -367,6 +369,8 @@ namespace Project.MVCUI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult UpdateProduct(ProductVM pvm, HttpPostedFileBase image)
         {
+            if (pvm.Product.UnitPrice == 0) pvm.Product.UnitPrice = 1;
+
             StockDTO stock = new StockDTO
             {
                 ID = pvm.Product.ID,
