@@ -1,4 +1,4 @@
-# TeknolojiSirketi
+# e-commerce-simulation
 
 TeknolojiSirketiAraclari Repository'deki BankaAPI KargoAPI DepoAPI MagazaWinUi KargoWinUI projeleri ile birlikte çalışır.
 
