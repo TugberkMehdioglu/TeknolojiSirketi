@@ -149,7 +149,7 @@ namespace Project.MVCUI.Controllers
 
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri("https://localhost:44309/api/");
+                client.BaseAddress = new Uri("http://localhost:44309/api/");
                 Task<HttpResponseMessage> postTask = client.PostAsJsonAsync("Payment/ReceivePayment", ovm.PaymentDTO);
 
                 HttpResponseMessage result;
@@ -203,7 +203,7 @@ namespace Project.MVCUI.Controllers
 
                     using (HttpClient client2 = new HttpClient())
                     {
-                        client2.BaseAddress = new Uri("https://localhost:44339/api/");
+                        client2.BaseAddress = new Uri("http://localhost:44339/api/");
                         Task<HttpResponseMessage> postTask2 = client2.PostAsJsonAsync("Home/StockDrop", listDrop);
 
                         HttpResponseMessage result2;
@@ -244,7 +244,7 @@ namespace Project.MVCUI.Controllers
 
                             using (HttpClient client3 = new HttpClient())
                             {
-                                client3.BaseAddress = new Uri("https://localhost:44351/api/");
+                                client3.BaseAddress = new Uri("http://localhost:44351/api/");
                                 Task<HttpResponseMessage> postTask3 = client3.PostAsJsonAsync("Home/CargoOrder", cargo);
 
                                 HttpResponseMessage result3;
