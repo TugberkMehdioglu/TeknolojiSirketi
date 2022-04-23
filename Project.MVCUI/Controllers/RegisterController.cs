@@ -36,12 +36,12 @@ namespace Project.MVCUI.Controllers
                 ViewBag.ZatenVar = "Lütfen bütün alanları doldurunuz!";
                 return View();
             }
-            else if (_auRep.Any(x => x.UserName == au.UserName && x.Status != ENTITIES.Enums.DataStatus.Deleted))
+            else if (_auRep.Any(x => x.UserName == au.UserName))
             {
                 ViewBag.ZatenVar = "Kullanıcı adı daha önce alınmış, lütfen farklı bir kullanıcı adı seçiniz";
                 return View();
             }
-            else if (_auRep.Any(x => x.Email == au.Email && x.Status != ENTITIES.Enums.DataStatus.Deleted))
+            else if (_auRep.Any(x => x.Email == au.Email))
             {
                 ViewBag.ZatenVar = "Girmiş olduğunuz Email'e kayıtlı hesap bulunmaktadır";
                 return View();

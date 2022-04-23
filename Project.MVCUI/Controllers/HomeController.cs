@@ -42,6 +42,11 @@ namespace Project.MVCUI.Controllers
                 ViewBag.Kullanici = "Kullanıcı Adı veya şifre hatalı";
                 return View();
             }
+            else if (control.Status == DataStatus.Deleted)
+            {
+                ViewBag.Kullanici = "Hesabınız engellenmiştir";
+                return View();
+            }
             else if (control.Role == UserRole.Admin)
             {
                 if (!control.Active) return ActiveControl(); //Mail aktif değilse giriş yaptırtmıyoruz
@@ -92,7 +97,7 @@ namespace Project.MVCUI.Controllers
 
             if (user != null)
             {
-                string mail = "Şifre değiştirme talibiniz alındı, lütfen http://localhost:44399/Home/ChangePassword/" + user.ActivationCode + " linkine tıklayarak şifrenizi değiştiriniz";
+                string mail = "Şifre değiştirme talibiniz alındı, lütfen https://localhost:44399/Home/ChangePassword/" + user.ActivationCode + " linkine tıklayarak şifrenizi değiştiriniz";
                 MailService.Send(email, subject: "Şifre değiştirme talebi", body: mail);
 
                 TempData["sifre"] = "Şifre değiştirme linkiniz e-postanıza yollandı, lütfen e-postanızı kontrol ediniz";

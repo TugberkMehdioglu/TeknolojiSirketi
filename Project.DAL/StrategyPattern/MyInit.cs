@@ -478,6 +478,282 @@ namespace Project.DAL.StrategyPattern
             }
             context.SaveChanges();
 
+            //----------------------KASA-----------------------------//
+
+            List<Project.ENTITIES.Models.Attribute> kasaList = new List<Attribute>
+            {
+                new Attribute{Name="Boyut", Value="Mid Tower"},
+                new Attribute{Name="PSU", Value="-"},
+                new Attribute{Name="Ön Çıkışlar", Value="2 x USB 3.2 Gen1 Type-A / 1 x HD Audio / 1 x Mic"},
+                new Attribute{Name="Fan", Value="2x 120mm ARGB LED Fan 1x 120mm Fan"},
+                new Attribute{Name="Anakart Desteği", Value="ATX / mATX / Mini-ITX"},
+                new Attribute{Name="Malzeme", Value="Steel, Plastic, Tempered Glass"},
+            };
+            context.Attributes.AddRange(kasaList);
+            context.SaveChanges();
+
+
+            Category kasa = new Category
+            {
+                Name = "Kasa",
+                Description = "Bilgisayar kasaları ve bilgisayar kasası modelleri markaları özel taksit seçenekleri uygun fiyatlar sadece Tekno Center'da. Hemen satın al."
+            };
+            context.Categories.Add(kasa);
+            context.SaveChanges();
+
+            Product urunKasa = new Product
+            {
+                Name = "MSI MAG FORGE 100R Tempered Glass ARGB USB 3.2 Mid Tower Kasa",
+                UnitPrice = 715m,
+                UnitInStock = 25,
+                ImagePath = "/Pictures/kasa/1.jpg"
+            };
+            kasa.Products.Add(urunKasa);
+
+            Product urunKasa1 = new Product
+            {
+                Name = "NZXT H510 ELITE RGB Tempered Glass USB 3.1 Siyah Mid Tower Kasa",
+                UnitPrice = 1850m,
+                UnitInStock = 15,
+                ImagePath = "/Pictures/kasa/2.jpg"
+            };
+            kasa.Products.Add(urunKasa1);
+
+            Product urunKasa2 = new Product
+            {
+                Name = "MSI MPG SEKIRA 500G Tempered Glass USB 3.2 Mid Tower Kasa",
+                UnitPrice = 2161m,
+                UnitInStock = 20,
+                ImagePath = "/Pictures/kasa/3.jpg"
+            };
+            kasa.Products.Add(urunKasa2);
+
+            Product urunKasa3 = new Product
+            {
+                Name = "Thermaltake H330 ARGB TG 650W USB 3.0 Mid Tower Kasa",
+                UnitPrice = 1180m,
+                UnitInStock = 25,
+                ImagePath = "/Pictures/kasa/4.jpg"
+            };
+            kasa.Products.Add(urunKasa3);
+
+            Product urunKasa4 = new Product
+            {
+                Name = "Sharkoon RGB FLOW Tempered Glass USB 3.0 Mid Tower Kasa",
+                UnitPrice = 530m,
+                UnitInStock = 30,
+                ImagePath = "/Pictures/kasa/5.jpg"
+            };
+            kasa.Products.Add(urunKasa4);
+
+            Product urunKasa5 = new Product
+            {
+                Name = "POWERBOOST VK-G3621C Rainbow Mesh ABS USB 3.0 Siyah Mid Tower Kasa",
+                UnitPrice = 361m,
+                UnitInStock = 24,
+                ImagePath = "/Pictures/kasa/6.jpg"
+            };
+            kasa.Products.Add(urunKasa5);
+            context.SaveChanges();
+
+            foreach (Product item in kasa.Products)
+            {
+                foreach (Project.ENTITIES.Models.Attribute element in kasaList)
+                {
+                    ProductAttribute pa = new ProductAttribute
+                    {
+                        ProductID = item.ID,
+                        AttributeID = element.ID
+                    };
+                    context.ProductAttributes.Add(pa);
+                }
+            }
+            context.SaveChanges();
+
+            //----------------------SOĞUTUCU-----------------------------//
+
+            List<Project.ENTITIES.Models.Attribute> sogutucuList = new List<Attribute>
+            {
+                new Attribute{Name="Fan RPM", Value="1700 RPM"},
+                new Attribute{Name="Fan Boyutu", Value="120mm x 25mm"},
+                new Attribute{Name="Radyatör Boyutu", Value="275mm x 120mm x 27mm"},
+                new Attribute{Name="Radyatör Malzeme", Value="Alüminyum"},
+                new Attribute{Name="Gürültü Seviyesi", Value="37 dBA"},
+                new Attribute{Name="Uygunluk", Value="1150/1151/1155/1156/2011/2066 AM3/AM2/AM4"},
+            };
+            context.Attributes.AddRange(sogutucuList);
+            context.SaveChanges();
+
+            Category sogutucu = new Category
+            {
+                Name = "Soğutucu",
+                Description = "Bilgisayar soğutma sistemleri fan, sıvı soğutma, işlemci soğutucu ve daha fazlası en ucuz fiyatlarla Tekno Center'da. Hemen satın al."
+            };
+            context.Categories.Add(sogutucu);
+            context.SaveChanges();
+
+            Product urunSogutucu = new Product
+            {
+                Name = "MSI MAG CORELIQUID 240R ARGB 240mm İşlemci Sıvı Soğutucu",
+                UnitPrice = 1460m,
+                UnitInStock = 25,
+                ImagePath = "/Pictures/sogutucu/1.jpg"
+            };
+            sogutucu.Products.Add(urunSogutucu);
+
+            Product urunSogutucu1 = new Product
+            {
+                Name = "CORSAIR Hydro Serisi H100X 240mm İşlemci Sıvı Soğutucu",
+                UnitPrice = 1141m,
+                UnitInStock = 20,
+                ImagePath = "/Pictures/sogutucu/2.jpg"
+            };
+            sogutucu.Products.Add(urunSogutucu1);
+
+            Product urunSogutucu2 = new Product
+            {
+                Name = "Thermaltake UX200 ARGB 120mm İşlemci Hava Soğutucu",
+                UnitPrice = 388m,
+                UnitInStock = 20,
+                ImagePath = "/Pictures/sogutucu/3.jpg"
+            };
+            sogutucu.Products.Add(urunSogutucu2);
+
+            Product urunSogutucu3 = new Product
+            {
+                Name = "NZXT KRAKEN M22 RGB 120mm İşlemci Sıvı Soğutucu",
+                UnitPrice = 805m,
+                UnitInStock = 25,
+                ImagePath = "/Pictures/sogutucu/4.jpg"
+            };
+            sogutucu.Products.Add(urunSogutucu3);
+
+            Product urunSogutucu4 = new Product
+            {
+                Name = "NZXT Aer RGB 2 120mm Fan",
+                UnitPrice = 221m,
+                UnitInStock = 30,
+                ImagePath = "/Pictures/sogutucu/5.jpg"
+            };
+            sogutucu.Products.Add(urunSogutucu4);
+
+            Product urunSogutucu5 = new Product
+            {
+                Name = "GAMEBOOSTER NITRO 120 ARGB Kontrolcülü 120mm İşlemci Sıvı Soğutucu",
+                UnitPrice = 469m,
+                UnitInStock = 24,
+                ImagePath = "/Pictures/sogutucu/6.jpg"
+            };
+            sogutucu.Products.Add(urunSogutucu5);
+            context.SaveChanges();
+
+            foreach (Product item in sogutucu.Products)
+            {
+                foreach (Project.ENTITIES.Models.Attribute element in sogutucuList)
+                {
+                    ProductAttribute pa = new ProductAttribute
+                    {
+                        ProductID = item.ID,
+                        AttributeID = element.ID
+                    };
+                    context.ProductAttributes.Add(pa);
+                }
+            }
+            context.SaveChanges();
+
+            //----------------------SSD-----------------------------//
+
+            List<Project.ENTITIES.Models.Attribute> ssdList = new List<Attribute>
+            {
+                new Attribute{Name="Kapasite", Value="500GB"},
+                new Attribute{Name="Bağlantı", Value="Sata 3.0"},
+                new Attribute{Name="Okuma Hızı", Value="560MB"},
+                new Attribute{Name="Yazma Hızı", Value="540MB"},
+                new Attribute{Name="IOPS Okuma", Value="90K"},
+                new Attribute{Name="IOPS Yazma", Value="90K"},
+            };
+            context.Attributes.AddRange(ssdList);
+            context.SaveChanges();
+
+            Category ssd = new Category
+            {
+                Name = "SSD",
+                Description = "Bilgisayar soğutma sistemleri fan, sıvı soğutma, işlemci soğutucu ve daha fazlası en ucuz fiyatlarla Tekno Center'da. Hemen satın al."
+            };
+            context.Categories.Add(ssd);
+            context.SaveChanges();
+
+            Product urunSsd = new Product
+            {
+                Name = "Patriot 480GB BURST SATA 3.0 2.5' SSD(560MB Okuma / 540MB Yazma)",
+                UnitPrice = 579m,
+                UnitInStock = 25,
+                ImagePath = "/Pictures/ssd/1.jpg"
+            };
+            ssd.Products.Add(urunSsd);
+
+            Product urunSsd1 = new Product
+            {
+                Name = "SanDisk 500GB Ultra NVMe M.2 SSD (2400MB Okuma / 1750MB Yazma)",
+                UnitPrice = 680m,
+                UnitInStock = 20,
+                ImagePath = "/Pictures/ssd/2.jpg"
+            };
+            ssd.Products.Add(urunSsd1);
+
+            Product urunSsd2 = new Product
+            {
+                Name = "Seagate 250GB Barracuda 120 SATA 3.0 2.5' SSD(560MB Okuma / 540MB Yazma)",
+                UnitPrice = 402m,
+                UnitInStock = 20,
+                ImagePath = "/Pictures/ssd/3.jpg"
+            };
+            ssd.Products.Add(urunSsd2);
+
+            Product urunSsd3 = new Product
+            {
+                Name = "SAMSUNG 500GB 970 EVO Plus NVMe M.2 SSD (3500MB Okuma / 3200MB Yazma)",
+                UnitPrice = 799m,
+                UnitInStock = 25,
+                ImagePath = "/Pictures/ssd/4.jpg"
+            };
+            ssd.Products.Add(urunSsd3);
+
+            Product urunSsd4 = new Product
+            {
+                Name = "Kingston 500GB KC2000 NVMe M.2 SSD (3000MB Okuma / 2000MB Yazma)",
+                UnitPrice = 998m,
+                UnitInStock = 30,
+                ImagePath = "/Pictures/ssd/5.jpg"
+            };
+            ssd.Products.Add(urunSsd4);
+
+            Product urunSsd5 = new Product
+            {
+                Name = "XPG 512GB SX8200 PRO PCIe Gen3x4 M.2 SSD (3500MB Okuma / 2300MB Yazma)",
+                UnitPrice = 810m,
+                UnitInStock = 24,
+                ImagePath = "/Pictures/ssd/6.jpg"
+            };
+            ssd.Products.Add(urunSsd5);
+            context.SaveChanges();
+
+            foreach (Product item in ssd.Products)
+            {
+                foreach (Project.ENTITIES.Models.Attribute element in ssdList)
+                {
+                    ProductAttribute pa = new ProductAttribute
+                    {
+                        ProductID = item.ID,
+                        AttributeID = element.ID
+                    };
+                    context.ProductAttributes.Add(pa);
+                }
+            }
+            context.SaveChanges();
+
+
+
 
             //----------------------KASA-----------------------------//
 

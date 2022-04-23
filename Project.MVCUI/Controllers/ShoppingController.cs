@@ -79,6 +79,7 @@ namespace Project.MVCUI.Controllers
                 c.SepeteEkle(ci);
                 Session["scart"] = c;
                 return RedirectToAction("ShoppingList");
+
             }
             else return RedirectToAction("ShoppingList");
         }
